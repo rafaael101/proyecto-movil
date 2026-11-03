@@ -92,7 +92,7 @@ Conteo para la rúbrica: **Stack** 3 (1, 2, 6) · **Tabs** 3 (3, 4, 5) · **Moda
 
 - **Mapa** → F02 (mapa y canchas) y F03 (check-in).
 - **Historial** → F06 (lista paginada y caché). Desde aquí se crea, edita (F05) y se abre la tarjeta (F07).
-- **Perfil** → correo del usuario, promedios (F06) y botón **Cerrar sesión** (F01).
+- **Perfil** → nombre y correo del usuario, promedios (F06) y botón **Cerrar sesión** (F01).
 
 ---
 
@@ -218,7 +218,7 @@ return (
 4. Todas las pantallas del grupo con sesión se desmontan (incluido cualquier modal abierto) y se muestra `InicioSesion`.
 5. Si se vuelve a iniciar sesión, la app empieza **desde cero en Mapa**, no en la última tab visitada.
 
-**Requisito para F01 y F06 (no lo hace la navegación):** cerrar sesión debe borrar también la caché del historial (RN11) y los stores con datos del usuario. Como dice la clase *Persistencia Local*: cerrar sesión no es solo borrar la sesión, es borrar todo lo asociado al usuario.
+**Requisito para F01 y F06 (no lo hace la navegación):** cerrar sesión debe terminar el check-in activo (RN04), y borrar también la caché del historial (RN11) y los stores con datos del usuario. Como dice la clase *Persistencia Local*: cerrar sesión no es solo borrar la sesión, es borrar todo lo asociado al usuario.
 
 ---
 
@@ -493,7 +493,7 @@ Esta spec define el comportamiento, pero el código va con la feature que tiene 
 - **Tipos de las tabs:** `CompositeScreenProps`, sin `any`.
 - **Iconos:** Ionicons de `@expo/vector-icons`.
 - **Tarjeta de jugador:** se abre desde un partido del Historial y recibe `idPartido`.
-- **Perfil:** correo, promedios y cerrar sesión.
+- **Perfil:** nombre, correo, promedios y cerrar sesión.
 - **Nuevo partido:** solo desde el botón [+] del Historial.
 - **Modal del formulario:** deslizar hacia abajo descarta los datos sin preguntar (E4).
 - **Paleta:** minimalista, blanco + naranja `#C2410C` como único acento, fuente del sistema.

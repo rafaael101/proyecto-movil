@@ -62,7 +62,7 @@ Una app móvil con dos módulos:
 - **RN01 — Duración del check-in:** un check-in cuenta durante **90 minutos** desde que se crea. Después deja de contar automáticamente.
 - **RN02 — Cercanía:** solo se puede hacer check-in si el GPS indica que el usuario está a **150 m o menos** de la cancha. Evita check-ins falsos desde casa.
 - **RN03 — Un check-in a la vez:** un usuario solo puede tener un check-in activo. Hacer check-in en otra cancha termina el anterior.
-- **RN04 — Salida manual:** el usuario puede terminar su check-in antes de tiempo ("Ya me voy").
+- **RN04 — Salida manual:** el usuario puede terminar su check-in antes de tiempo ("Ya me voy"). Al cerrar sesión, el check-in activo también se termina; si no hay conexión, vence solo por RN01.
 - **RN05 — Catálogo de canchas fijo en la app:** las canchas (nombre y coordenadas) están escritas en el código (`src/constantes/canchas.ts`). No se guardan en el backend y los usuarios no crean canchas. Así funcionan sin conexión y no hace falta administrarlas.
 
   | ID (`idCancha`)     | Nombre                                        | Latitud   | Longitud    |
@@ -87,7 +87,7 @@ Una app móvil con dos módulos:
   | 10 o más          | Llena        | 5v5 y probablemente espera |
 
 - **RN08 — Estadísticas autorreportadas:** cada usuario captura las suyas; nadie más las valida.
-- **RN09 — Datos de un partido:** fecha, cancha (opcional), resultado (ganó / perdió), puntos, rebotes y asistencias. Marcador final opcional.
+- **RN09 — Datos de un partido:** fecha (solo el día, hoy o antes), cancha (opcional), resultado (ganó / perdió), puntos, rebotes y asistencias (enteros de 0 a 100). Marcador final opcional: los dos números o ninguno, de 0 a 200, sin empate, coherente con el resultado y nunca menor que los puntos del jugador. Detalle en `02-data-model.md`.
 - **RN10 — Solo el dueño modifica:** un usuario solo puede ver, editar y eliminar sus propios partidos.
 - **RN11 — Historial sin conexión:** la última lista de partidos descargada se guarda en el teléfono (AsyncStorage) y se muestra sin internet, en modo solo lectura. Crear, editar, borrar partidos y hacer check-in requieren conexión.
 
@@ -97,11 +97,11 @@ Una app móvil con dos módulos:
 
 | Requisito obligatorio | Cómo se cumple | Features |
 |---|---|---|
-| Autenticación | Registro, login, sesión persistente y cerrar sesión con Firebase Auth | F01 |
+| Autenticación | Registro (nombre, correo y contraseña), login, sesión persistente y cerrar sesión con Firebase Auth | F01 |
 | Navegación (≥ 5 pantallas, Stack + Tabs + Modal) | **Stack:** Login, Registro, Detalle de cancha · **Tabs:** Mapa, Historial, Perfil · **Modal:** Partido (crear/editar), Tarjeta de jugador → 8 pantallas | Todas |
 | CRUD completo | Entidad **Partido**: crear, leer (historial), editar y eliminar | F05, F06 |
 | Persistencia local | AsyncStorage: sesión de Firebase y caché del historial (RN11) | F01, F06 |
-| Backend (≥ 5 endpoints) | Firebase: crear check-in, terminar check-in, obtener check-ins activos, crear / listar / editar / eliminar partido (7), además de registro e inicio de sesión | F01, F03–F06 |
+| Backend (≥ 5 endpoints) | Firebase: crear check-in, terminar check-in, obtener check-ins activos, crear / listar / editar / eliminar partido (7), además de registro e inicio de sesión. Una lectura extra de todos los partidos calcula los promedios (ver `02-data-model.md`) | F01, F03–F06 |
 | Features nativas (≥ 2) | Geolocalización y mapas, cámara/galería, compartir contenido | F02, F03, F07 |
 | State management | Zustand | Todas |
 | Formularios validados (≥ 3) | Registro, inicio de sesión, partido (crear/editar) | F01, F05 |
@@ -124,7 +124,8 @@ Una app móvil con dos módulos:
 | Navegación         | **React Navigation** (Native Stack + Bottom Tabs), configurada a mano | Es lo que se enseña en clase (`NavigationContainer`, `RootStackParamList`); más fácil de defender. Por eso el proyecto se crea con la plantilla `blank-typescript`, no con la de Expo Router |
 | Estado global      | Zustand                                          | El más sencillo de los tres que acepta la rúbrica |
 | Backend            | Firebase (Auth + Firestore)                      | La rúbrica lo nombra; no requiere SQL; el SDK de JavaScript funciona en Expo Go |
-| Persistencia local | AsyncStorage                                     | Lo pide la rúbrica |
+| Persistencia local | AsyncStorage                                     | Lo pide la rúbrica. La sesión de Firebase también va aquí y no en SecureStore; la justificación está en `02-data-model.md` |
+| Conectividad       | `@react-native-community/netinfo`                | Visto en clase (*Offline y Conectividad*). Revisa si hay internet antes de hablar con Firebase (RN11) |
 | Mapa               | `react-native-maps` (en iPhone usa Apple Maps, sin llave de API) | Funciona en Expo Go |
 | Ubicación          | `expo-location`                                  | Visto en clase |
 | Cámara / foto      | `expo-image-picker` (cámara o galería)           | Visto en clase |
