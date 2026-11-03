@@ -63,7 +63,7 @@ Una app móvil con dos módulos:
 - **RN02 — Cercanía:** solo se puede hacer check-in si el GPS indica que el usuario está a **150 m o menos** de la cancha. Evita check-ins falsos desde casa.
 - **RN03 — Un check-in a la vez:** un usuario solo puede tener un check-in activo. Hacer check-in en otra cancha termina el anterior.
 - **RN04 — Salida manual:** el usuario puede terminar su check-in antes de tiempo ("Ya me voy").
-- **RN05 — Catálogo de canchas fijo en la app:** las canchas (nombre y coordenadas) están escritas en el código (`src/constants/canchas.ts`). No se guardan en el backend y los usuarios no crean canchas. Así funcionan sin conexión y no hace falta administrarlas.
+- **RN05 — Catálogo de canchas fijo en la app:** las canchas (nombre y coordenadas) están escritas en el código (`src/constantes/canchas.ts`). No se guardan en el backend y los usuarios no crean canchas. Así funcionan sin conexión y no hace falta administrarlas.
 
   | ID (`idCancha`)     | Nombre                                        | Latitud   | Longitud    |
   |---------------------|-----------------------------------------------|-----------|-------------|
@@ -75,7 +75,7 @@ Una app móvil con dos módulos:
   | `gimnasio-municipal`| Gimnasio Municipal Óscar "Tigre" García       | 31.868311 | -116.613094 |
   | `parque-la-hoja`    | Parque De La Hoja                             | 31.881610 | -116.603568 |
 
-  **Cancha de prueba (solo desarrollo):** para probar RN02 sin salir de casa se agrega una cancha extra cuyas coordenadas se leen del `.env` (`EXPO_PUBLIC_TEST_COURT_LAT`, `EXPO_PUBLIC_TEST_COURT_LNG`). Si esas variables no existen, la cancha no aparece. Sus coordenadas **nunca** se escriben en el código ni en las specs, porque el repositorio es público. Se elimina antes de la entrega.
+  **Cancha de prueba (solo desarrollo):** para probar RN02 sin salir de casa se agrega una cancha extra cuyas coordenadas se leen del `.env` (`EXPO_PUBLIC_CANCHA_PRUEBA_LAT`, `EXPO_PUBLIC_CANCHA_PRUEBA_LNG`). Si esas variables no existen, la cancha no aparece. Sus coordenadas **nunca** se escriben en el código ni en las specs, porque el repositorio es público. Se elimina antes de la entrega.
 - **RN06 — Privacidad:** la app muestra **solo el número** de jugadores por cancha, nunca quiénes son ni su ubicación.
 - **RN07 — Niveles de afluencia** (pensados en básquet):
 
@@ -131,7 +131,7 @@ Una app móvil con dos módulos:
 | Tarjeta            | `react-native-view-shot` + `expo-sharing`        | Convertir la tarjeta en imagen y compartirla |
 | Formularios        | Validación manual + custom hook de formulario    | Es lo que se enseña en clase; las validaciones son funciones puras fáciles de probar |
 | Testing            | Jest + `jest-expo` + React Native Testing Library | Estándar en Expo |
-| Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos), sin acentos ni ñ (`anio`, `ubicacion`). Las APIs de librerías se quedan en inglés (`useState`, `navigate`) | Más fácil de leer y explicar |
+| Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos, **carpetas** y variables de `.env`), sin acentos ni ñ. Carpetas: `src/pantallas/`, `src/componentes/`, `src/navegacion/`, `src/constantes/`, etc. (`anio`, `ubicacion`). Las APIs de librerías se quedan en inglés (`useState`, `navigate`) | Más fácil de leer y explicar |
 | Nivel del código y diseño | Ordenado y con buena presentación, sin patrones avanzados: componentes reutilizables, paleta y tipografía consistentes (`tema.ts`), estados de carga/error cuidados | Que se vea profesional y se pueda defender línea por línea |
 
 ### Por qué se necesita un backend
