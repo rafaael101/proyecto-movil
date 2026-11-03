@@ -132,7 +132,9 @@ Una app móvil con dos módulos:
 | Tarjeta            | `react-native-view-shot` + `expo-sharing`        | Convertir la tarjeta en imagen y compartirla |
 | Formularios        | Validación manual + custom hook de formulario    | Es lo que se enseña en clase; las validaciones son funciones puras fáciles de probar |
 | Testing            | Jest + `jest-expo` + React Native Testing Library | Estándar en Expo |
-| Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos, **carpetas** y variables de `.env`), sin acentos ni ñ. Carpetas: `src/pantallas/`, `src/componentes/`, `src/navegacion/`, `src/constantes/`, etc. (`anio`, `ubicacion`). Las APIs de librerías se quedan en inglés (`useState`, `navigate`) | Más fácil de leer y explicar |
+| Calidad de código  | ESLint con la configuración de Expo (`npx expo lint`) + Prettier como extensión del editor (`.prettierrc`, sin instalar paquete) | Consistencia de formato, como recomienda el profesor; sin herramientas extra |
+| Git                | Solo rama `main`. Commits en español con el estilo de la clase, una idea por commit y el id de la task: `agrega dependencias de navegación (N1)` | Clase *Git y Deploy*; proyecto individual, lo más simple de defender |
+| Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos, **carpetas** y variables de `.env`), sin acentos ni ñ. Carpetas: `src/pantallas/`, `src/componentes/`, `src/navegacion/`, `src/constantes/`, etc. (`anio`, `ubicacion`). Excepción: `src/hooks/` y `src/stores/` conservan la palabra de la herramienta, igual que el prefijo `use`. Las APIs de librerías se quedan en inglés (`useState`, `navigate`). Detalle en `docs/coding-standards.md` | Más fácil de leer y explicar |
 | Nivel del código y diseño | Ordenado y con buena presentación, sin patrones avanzados: componentes reutilizables, paleta y tipografía consistentes (`tema.ts`), estados de carga/error cuidados | Que se vea profesional y se pueda defender línea por línea |
 
 ### Por qué se necesita un backend
@@ -148,10 +150,10 @@ El check-in solo tiene sentido si **otros usuarios lo ven**. Si los datos se gua
 | 1 | 2–8 nov | `00-project`, `01-navigation`, `02-data-model`, F01, F02, F03 | Repo, proyecto Expo, Firebase, navegación base, F01 |
 | 2 | 9–15 nov | F04, F05 | F02, F03, F04 + sus tests |
 | 3 | 16–22 nov | F06, F07 | F05, F06 + sus tests |
-| 4 | 23–fin nov | — | F07, tests faltantes, README, arquitectura, build con EAS, video y ensayo de la presentación |
+| 4 | 23–fin nov | — | F07, tests faltantes, reporte de cobertura (`npx jest --coverage`), README, arquitectura, build con EAS, video y ensayo de la presentación |
 
 - Los tests se escriben junto con cada feature, no al final.
-- Ritmo de Git: commits pequeños con fecha real, uno por tarea de la spec. El profesor revisa el historial en la defensa.
+- Ritmo de Git: commits pequeños con fecha real, uno por tarea de la spec y mínimo 3 por semana, todos en `main`. El profesor revisa el historial en la defensa. Formato de los mensajes en `docs/coding-standards.md`.
 
 ---
 

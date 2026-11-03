@@ -359,7 +359,8 @@ src/
 │   └── PantallaTarjetaJugador.tsx
 └── componentes/
     ├── VistaCargando.tsx            ← carga de sesión (y estado "cargando" de las pantallas)
-    └── VistaError.tsx               ← mensaje + botón (casos de "no encontrado")
+    ├── VistaError.tsx               ← mensaje + botón (errores y casos de "no encontrado")
+    └── VistaVacia.tsx               ← mensaje cuando una lista no tiene datos
 ```
 
 **Regla de la clase *Tab Navigator* (reto "La navegación amnésica"):** cada pantalla se importa desde su archivo en `src/pantallas/`. Nunca se declara una pantalla **dentro** de un navegador o de `App`, ni con `component={() => …}`. Si se hace, la pantalla se vuelve a crear en cada render y pierde su estado (scroll, texto escrito).

@@ -226,16 +226,13 @@ export type ValoresFormularioPartido = {
   marcadorRival: string;
 };
 
-// Un mensaje por campo con error; si el campo no aparece, está bien
-export type ErroresPartido = {
-  fecha?: string;
-  idCancha?: string;
-  resultado?: string;
-  puntos?: string;
-  rebotes?: string;
-  asistencias?: string;
-  marcador?: string; // un solo mensaje para los dos campos del marcador
-};
+// Un mensaje por campo con error; si el campo no aparece, está bien.
+// Usa los mismos nombres que ValoresFormularioPartido para encajar con useFormulario.
+// Se lee: "un objeto con las llaves del formulario y textos como valores (Record),
+// donde cada llave es opcional (Partial)".
+export type ErroresPartido = Partial<Record<keyof ValoresFormularioPartido, string>>;
+// El error del marcador (abarca los dos campos) se guarda en marcadorPropio
+// y el formulario lo muestra una sola vez, debajo de los dos campos.
 ```
 
 ### Tipos derivados (no se guardan en Firestore)
@@ -591,7 +588,7 @@ Todas son **funciones puras** (mismo resultado para los mismos datos, sin Fireba
 | `validarResultado(resultado)` | Obligatorio (RN09) | "Indica si ganaste o perdiste" |
 | `validarEstadistica(texto, nombreCampo)` | Obligatoria. Solo dígitos (sin negativos ni decimales). Máximo `ESTADISTICA_MAXIMA` (100) | "Escribe tus {nombreCampo}" · "Usa solo números enteros" · "Máximo 100" |
 | `validarMarcador(propio, rival, resultado, puntos)` | Opcional, pero **los dos o ninguno**. Enteros de 0 a `MARCADOR_MAXIMO` (200). Sin empate. Si `resultado` es `'gano'`, propio > rival; si `'perdio'`, propio < rival. Tus puntos no pueden ser más que los de tu equipo | "Escribe los dos marcadores o deja ambos vacíos" · "Usa solo números enteros" · "Máximo 200" · "En básquet no hay empates" · "Si ganaste, tu marcador debe ser mayor" · "Si perdiste, tu marcador debe ser menor" · "Tus puntos no pueden ser más que los de tu equipo" |
-| `validarPartido(valores, hoy)` | Llama a todas las anteriores y junta los mensajes en un `ErroresPartido` | — |
+| `validarPartido(valores, hoy)` | Llama a todas las anteriores y junta los mensajes en un `ErroresPartido`. El mensaje de `validarMarcador` se guarda en `marcadorPropio` | — |
 | `hayErrores(errores)` | `true` si `ErroresPartido` tiene al menos un mensaje | — |
 | `convertirAPartido(valores)` | Convierte un formulario **ya válido** en `DatosPartido`: textos a número con `Number(...)`; marcador vacío → `null` | — |
 | `convertirAValores(partido)` | Al revés, para llenar el formulario en modo editar (F05) | — |
@@ -816,6 +813,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - **Puntos ≤ marcador propio:** no puedes anotar más que tu equipo.
 - **Cerrar sesión con check-in activo:** F01 llama a `terminarCheckIn` antes de cerrar sesión; si falla (sin internet), el check-in vence solo a los 90 min (RN01).
 - **Sesión de Firebase:** en AsyncStorage, como dice 00-project. La justificación para la defensa está en *Diferencias con lo visto en clase*.
+- **Errores del formulario de partido:** `ErroresPartido` usa las mismas llaves que `ValoresFormularioPartido`; el error del marcador va en `marcadorPropio`.
 
 ## Cambios propuestos a otras specs
 
