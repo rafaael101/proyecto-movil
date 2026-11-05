@@ -1,6 +1,6 @@
 # Proyecto final — HoopsMap
 
-> **Estado:** v1.0 (pendientes solo las preguntas para el profesor) · **Última actualización:** 2026-11-02
+> **Estado:** v1.1 (pendientes solo las preguntas para el profesor) · **Última actualización:** 2026-11-05
 > **Materia:** Aplicaciones Móviles · **Metodología:** Spec-Driven Development (SDD)
 > **Equipo:** individual. La rúbrica del curso está pensada para equipos de 3; aquí se cumple **cada requisito obligatorio en su mínimo**, sin extras.
 > **Entrega final:** últimos días de noviembre de 2026
@@ -134,7 +134,7 @@ Una app móvil con dos módulos:
 | Testing            | Jest + `jest-expo` + React Native Testing Library | Estándar en Expo |
 | Calidad de código  | ESLint con la configuración de Expo (`npx expo lint`) + Prettier como extensión del editor (`.prettierrc`, sin instalar paquete) | Consistencia de formato, como recomienda el profesor; sin herramientas extra |
 | Git                | Solo rama `main`. Commits en español con el estilo de la clase, una idea por commit y el id de la task: `agrega dependencias de navegación (N1)` | Clase *Git y Deploy*; proyecto individual, lo más simple de defender |
-| Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos, **carpetas** y variables de `.env`), sin acentos ni ñ. Carpetas: `src/pantallas/`, `src/componentes/`, `src/navegacion/`, `src/constantes/`, etc. (`anio`, `ubicacion`). Excepción: `src/hooks/` y `src/stores/` conservan la palabra de la herramienta, igual que el prefijo `use`. Las APIs de librerías se quedan en inglés (`useState`, `navigate`). Detalle en `docs/coding-standards.md` | Más fácil de leer y explicar |
+| Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos, **carpetas** y variables de `.env`), sin acentos ni ñ. Carpetas: `src/pantallas/`, `src/componentes/`, `src/navegacion/`, `src/constantes/`, etc. (`anio`, `ubicacion`). Excepciones: `src/hooks/` y `src/stores/` conservan la palabra de la herramienta, igual que el prefijo `use`; la carpeta `specs/` y sus archivos conservan los nombres de *Estructura de specs* (su contenido sí va en español). Las APIs de librerías se quedan en inglés (`useState`, `navigate`). Detalle en `docs/coding-standards.md` | Más fácil de leer y explicar |
 | Nivel del código y diseño | Ordenado y con buena presentación, sin patrones avanzados: componentes reutilizables, paleta y tipografía consistentes (`tema.ts`), estados de carga/error cuidados | Que se vea profesional y se pueda defender línea por línea |
 
 ### Por qué se necesita un backend
@@ -220,3 +220,5 @@ specs/
     ├── F06-game-history.md
     └── F07-player-card.md
 ```
+
+Los nombres de estos archivos son una **excepción** a la regla de nombres en español (ver *Idioma del código*): se quedan como están. Lo que va **dentro** de cada spec sí se escribe en español.
