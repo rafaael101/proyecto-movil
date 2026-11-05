@@ -1,6 +1,6 @@
 # Navegación — HoopsMap
 
-> **Estado:** v1.0 · **Última actualización:** 2026-11-02
+> **Estado:** v1.1 · **Última actualización:** 2026-11-05
 > **Depende de:** `specs/00-project.md` (sección *Cumplimiento de la rúbrica* y *Decisiones técnicas*)
 > **Clases de referencia:** [Stack Navigator](https://academy.alvesc.com/clase/stack-navigator) · [Tab Navigator](https://academy.alvesc.com/clase/tab-navigator)
 
@@ -459,8 +459,8 @@ Cada task ≈ un commit.
 - [ ] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
 - [ ] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
 - [ ] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales.
-- [ ] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). *Se hace después de la task del store de sesión de F01.*
-- [ ] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. *Requiere Jest configurado.*
+- [ ] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). *Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión).*
+- [ ] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. *Requiere Jest configurado.* El simulador de `servicioSesion` debe traer `escucharCambiosDeSesion: jest.fn(() => () => {})`: desde F01.6, `NavegadorRaiz` la llama al montarse y, con el simulador vacío (`() => ({})`), el test truena. Como nunca avisa, no cambia el estado que el test le puso al store.
 - [ ] **N10 — Probar los criterios de aceptación en el iPhone** y marcar los que ya se pueden probar. Los que dependen de otras features se marcan cuando esas features estén listas.
 
 ### Tasks que se implementan en otras features
