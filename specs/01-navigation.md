@@ -323,7 +323,7 @@ En iPhone, un modal no trae flecha de regreso; por eso los dos modales llevan su
 
 ### Tabs e iconos
 
-- Iconos de **Ionicons** (`@expo/vector-icons`), que ya viene incluido en Expo; no se instala nada extra.
+- Iconos de **Ionicons** (`@expo/vector-icons`), que se instala con `npx expo install @expo/vector-icons`.
 - Cada tab usa la versión rellena cuando está activa y la de contorno cuando no:
 
 | Tab | Etiqueta | Icono activo | Icono inactivo |
@@ -481,7 +481,7 @@ Esta spec define el comportamiento, pero el código va con la feature que tiene 
 |---|---|---|
 | `npm install` | `npx expo install` | Elige versiones de los paquetes nativos compatibles con Expo Go. |
 | `RootStackParamList`, `TabParamList` | `ParametrosStackRaiz`, `ParametrosTabs` | Regla de nombres en español de 00-project.md; el patrón es el mismo. |
-| Iconos con emoji en `<Text>` | Ionicons de `@expo/vector-icons` | Cambian de color con la tab activa; ya vienen con Expo. |
+| Iconos con emoji en `<Text>` | Ionicons de `@expo/vector-icons` | Cambian de color con la tab activa; se instalan con `npx expo install`. |
 | `navigation: any` en pantallas de tab | `CompositeScreenProps` | El proyecto prohíbe `any`; el profesor pide revisar que `navigate` no sea `as any`. |
 | "Cerrar sesión" navega a Login | La navegación cambia sola según el store | Patrón de autenticación recomendado por React Navigation; impide regresar al login con el gesto. |
 
