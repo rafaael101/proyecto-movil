@@ -1,6 +1,6 @@
 # Modelo de datos — HoopsMap
 
-> **Estado:** v1.0 · **Última actualización:** 2026-11-02
+> **Estado:** v1.1 · **Última actualización:** 2026-11-05
 > **Depende de:** `specs/00-project.md` (RN01–RN11, *Cumplimiento de la rúbrica*, *Decisiones técnicas*) y `specs/01-navigation.md` (solo viajan `idCancha` e `idPartido`)
 > **Clases de referencia:** [Persistencia Local y Almacenamiento Seguro](https://academy.alvesc.com/clase/persistencia-y-almacenamiento-seguro) · [Autenticación y Seguridad](https://academy.alvesc.com/clase/autenticacion-y-seguridad) · [Offline y Conectividad](https://academy.alvesc.com/clase/offline-y-conectividad)
 
@@ -69,7 +69,7 @@ Esta spec **no** define pantallas: las features (F01–F07) usan lo que aquí se
 5. **Registrar partido (F05):** el formulario valida con funciones puras y se crea un documento en `usuarios/{idUsuario}/partidos`.
 6. **Historial (F06):** se descargan páginas de 10 partidos. Aparte se descargan **todos** los partidos para calcular los promedios; esa lista completa se guarda en AsyncStorage (RN11).
 7. **Sin internet:** Historial y Perfil leen la caché, con aviso de cuándo se guardó. Crear, editar, borrar y hacer check-in se bloquean con un mensaje (RN11).
-8. **Cerrar sesión (F01):** si hay check-in activo se termina (RN04); después se borra la caché del historial y se limpian los stores. Si no hay internet para terminar el check-in, la sesión se cierra igual y el check-in vence solo a los 90 min (RN01).
+8. **Cerrar sesión (F01):** se llama siempre a `terminarCheckIn` (RN04); después `signOut`, se borra la caché del historial y se limpian los stores. Si no hay internet para terminar el check-in, la sesión se cierra igual y el check-in vence solo a los 90 min (RN01).
 
 ---
 
@@ -128,7 +128,26 @@ export type Usuario = {
 };
 ```
 
-El servicio de sesión (F01) convierte el `User` de Firebase en `Usuario` con una función `convertirUsuario`. Las validaciones de correo y contraseña son de F01; la de `nombre` está en *Validaciones* de esta spec.
+El servicio de sesión (F01) convierte el `User` de Firebase en `Usuario` con una función `convertirUsuario`. Las validaciones de nombre, correo y contraseña están en *Validaciones* de esta spec (las de correo y contraseña las definió F01).
+
+**Tipos de los formularios de sesión** (los usa F01 con `useFormulario`):
+
+```ts
+export type ValoresRegistro = {
+  nombre: string;
+  correo: string;
+  contrasena: string;
+};
+
+export type ValoresInicioSesion = {
+  correo: string;
+  contrasena: string;
+};
+
+// Un mensaje por campo con error; si el campo no aparece, está bien (mismo patrón que ErroresPartido)
+export type ErroresRegistro = Partial<Record<keyof ValoresRegistro, string>>;
+export type ErroresInicioSesion = Partial<Record<keyof ValoresInicioSesion, string>>;
+```
 
 ### CheckIn — `src/tipos/checkIn.ts`
 
@@ -347,7 +366,7 @@ El check-in propio **sí cuenta** en su cancha (el usuario está jugando ahí).
 
 Los servicios viven en `src/servicios/` y son el **único** lugar que importa Firebase y AsyncStorage. Todas son `async` y, si algo falla, **lanzan un error** que el store atrapa con `try/catch` y convierte en mensaje con `obtenerMensajeError` (ver *Errores*).
 
-**Regla común:** antes de hablar con Firebase, cada operación llama a `verificarConexion()`. Si no hay internet, lanza el error `'sin-conexion'` de inmediato. Así se evita el "spinner eterno": sin conexión, Firestore deja una escritura esperando sin responder.
+**Regla común:** antes de hablar con Firebase, cada operación llama a `verificarConexion()`. Si no hay internet, lanza el error `'sin-conexion'` de inmediato. Así se evita el "spinner eterno": sin conexión, Firestore deja una escritura esperando sin responder. **Excepción:** `escucharCambiosDeSesion` y `salirDeFirebase` (F01) no llaman a `verificarConexion()`, porque la app debe abrir y cerrar sesión sin internet.
 
 ### Las 7 operaciones de la rúbrica
 
@@ -366,6 +385,16 @@ Los servicios viven en `src/servicios/` y son el **único** lugar que importa Fi
 | Función | Recibe | Devuelve | Para qué |
 |---|---|---|---|
 | `obtenerTodosLosPartidos` | `idUsuario` | `Promise<Partido[]>` | Promedios del Perfil (F06) y caché sin conexión (RN11). Misma consulta que la 5 sin `limit` |
+
+**Sesión (F01, `servicioSesion.ts`; no cuentan para las 7):**
+
+| Función | Recibe | Devuelve | Firebase | ¿`verificarConexion()`? |
+|---|---|---|---|---|
+| `crearCuenta` | `nombre`, `correo`, `contrasena` | `Promise<Usuario>` | `createUserWithEmailAndPassword` + `updateProfile` | Sí |
+| `entrarConCorreo` | `correo`, `contrasena` | `Promise<void>` | `signInWithEmailAndPassword` | Sí |
+| `salirDeFirebase` | — | `Promise<void>` | `signOut` | No |
+| `escucharCambiosDeSesion` | `alCambiar: (usuario: Usuario \| null) => void` | `() => void` | `onAuthStateChanged` | No |
+| `convertirUsuario` | `User` de Firebase | `Usuario` | — | — |
 
 ### Detalles de cada operación
 
@@ -412,9 +441,15 @@ Errores: `'sin-conexion'`, `permission-denied`, `unavailable`.
 | `permission-denied` | "No tienes permiso para hacer esto." |
 | `not-found` | "Este partido ya no existe." |
 | `unauthenticated` | "Tu sesión terminó. Vuelve a iniciar sesión." |
+| `auth/invalid-credential` | "Correo o contraseña incorrectos." |
+| `auth/email-already-in-use` | "Ya existe una cuenta con este correo." |
+| `auth/invalid-email` | "Correo no válido." |
+| `auth/weak-password` | "La contraseña es muy débil." |
+| `auth/too-many-requests` | "Demasiados intentos. Espera unos minutos e intenta de nuevo." |
+| `auth/network-request-failed` | "No hay conexión. Revisa tu internet e intenta de nuevo." |
 | Cualquier otro | "Algo salió mal. Intenta de nuevo." |
 
-Los códigos de Firestore se leen con `error instanceof FirebaseError` y `error.code`. Los errores de Auth (`auth/...`) los traduce F01.
+Los códigos de Firestore se leen con `error instanceof FirebaseError` y `error.code`. Los errores de Auth (`auth/...`) también están en esta tabla (los definió F01).
 
 ---
 
@@ -626,6 +661,12 @@ Todas son **funciones puras** (mismo resultado para los mismos datos, sin Fireba
 | Función | Regla | Mensajes |
 |---|---|---|
 | `validarNombre(nombre)` | Obligatorio, de 2 a 30 caracteres después de `trim()` | "Escribe tu nombre" · "Mínimo 2 caracteres" · "Máximo 30 caracteres" |
+| `validarCorreo(correo)` | Obligatorio después de `trim()`. Formato `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` (clase *Validación de Formularios*) | "Escribe tu correo" · "Correo no válido" |
+| `validarContrasena(contrasena)` | Solo registro. Sin `trim()`. Obligatoria, mínimo `CONTRASENA_LONGITUD_MINIMA` (6) y al menos un número | "Escribe tu contraseña" · "Mínimo 6 caracteres" · "Incluye al menos un número" |
+| `validarRegistro(valores)` | Llama a `validarNombre`, `validarCorreo` y `validarContrasena` y junta los mensajes en `ErroresRegistro` | — |
+| `validarInicioSesion(valores)` | `validarCorreo` + contraseña solo obligatoria; junta los mensajes en `ErroresInicioSesion` | "Escribe tu contraseña" |
+
+**Nombre que se muestra — `src/utilidades/usuario.ts`:** `obtenerNombreVisible(nombre: string): string` devuelve el nombre, o `'Jugador'` si está vacío (E15). La usan Perfil (F01) y la tarjeta (F07).
 
 ### Constantes — `src/constantes/configuracion.ts`
 
@@ -637,6 +678,7 @@ export const ESTADISTICA_MAXIMA = 100; // RN09: puntos, rebotes y asistencias
 export const MARCADOR_MAXIMO = 200; // RN09: marcador final
 export const NOMBRE_LONGITUD_MINIMA = 2; // F01
 export const NOMBRE_LONGITUD_MAXIMA = 30; // F01
+export const CONTRASENA_LONGITUD_MINIMA = 6; // F01 (igual al mínimo de Firebase)
 export const CLAVE_CACHE_HISTORIAL = 'hoopsmap.historial'; // RN11
 ```
 
@@ -811,7 +853,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - **Paginación:** cursor = último documento leído, páginas de 10.
 - **Límites:** puntos, rebotes y asistencias de 0 a 100; marcador de 0 a 200.
 - **Puntos ≤ marcador propio:** no puedes anotar más que tu equipo.
-- **Cerrar sesión con check-in activo:** F01 llama a `terminarCheckIn` antes de cerrar sesión; si falla (sin internet), el check-in vence solo a los 90 min (RN01).
+- **Cerrar sesión con check-in activo:** F01 llama siempre a `terminarCheckIn` antes de `signOut` (las reglas de Firestore necesitan la sesión); si falla (sin internet), el check-in vence solo a los 90 min (RN01).
 - **Sesión de Firebase:** en AsyncStorage, como dice 00-project. La justificación para la defensa está en *Diferencias con lo visto en clase*.
 - **Errores del formulario de partido:** `ErroresPartido` usa las mismas llaves que `ValoresFormularioPartido`; el error del marcador va en `marcadorPropio`.
 
