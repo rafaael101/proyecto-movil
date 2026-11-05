@@ -1,6 +1,6 @@
 # Estándar de código — HoopsMap
 
-> **Estado:** v2.0 (final) · **Última actualización:** 2026-11-02
+> **Estado:** v2.1 · **Última actualización:** 2026-11-05
 > **Depende de:** `specs/00-project.md` (fuente de verdad), `specs/01-navigation.md` y `specs/02-data-model.md`. Si este documento y una spec no coinciden, **manda la spec** y se corrige este archivo.
 > **Clases de referencia:** [Git y Deploy](https://academy.alvesc.com/clase/git-y-deploy) · [TypeScript Básico](https://academy.alvesc.com/clase/typescript-basico) · [Hooks con TypeScript](https://academy.alvesc.com/clase/hooks-typescript) · [StyleSheet y Flexbox](https://academy.alvesc.com/clase/stylesheet-flexbox) · [Validación de Formularios](https://academy.alvesc.com/clase/validacion-formularios) · [Custom Hook de Formulario](https://academy.alvesc.com/clase/custom-hook-formulario) · [Sugerencias de Proyectos Finales](https://academy.alvesc.com/clase/sugerencias-de-proyectos-finales)
 
@@ -32,6 +32,8 @@ Guía de consulta para escribir el código de HoopsMap (a mano o con Claude Code
 
 "Check-in" se queda como en las specs: `CheckIn`, `crearCheckIn`, `CHECK_IN_DURACION_MINUTOS`.
 
+**Excepción para las specs:** la carpeta `specs/` y sus archivos conservan los nombres de *Estructura de specs* de 00-project (`00-project.md`, `01-navigation.md`, `F03-check-in.md`). Lo que va dentro de cada spec sí va en español.
+
 ---
 
 ## 2. Estructura de carpetas
@@ -49,8 +51,9 @@ HoopsMap/
 │   ├── utilidades/         ← funciones puras (validaciones, fechas, conteos, promedios, errores)
 │   ├── constantes/         ← tema.ts, configuracion.ts, canchas.ts
 │   └── tipos/              ← tipos de las entidades (02-data-model)
-├── specs/                  ← especificaciones SDD
+├── specs/                  ← especificaciones SDD (nombres en excepción, sección 1)
 ├── docs/                   ← este documento y la arquitectura
+├── CLAUDE.md               ← instrucciones que Claude Code lee en cada sesión
 ├── assets/                 ← íconos e imágenes de la plantilla
 ├── firestore.rules         ← copia de las reglas publicadas (02-data-model)
 ├── jest.setup.ts           ← simuladores para los tests (sección 12)
@@ -58,7 +61,7 @@ HoopsMap/
 └── .prettierrc             ← formato (sección 16)
 ```
 
-> **Excepción de nombre:** `hooks/` y `stores/` conservan la palabra de la herramienta, igual que el prefijo `use`. Son vocabulario de React y Zustand (como `navigate`), no nombres que inventamos.
+> **Excepciones de nombre:** `hooks/` y `stores/` conservan la palabra de la herramienta, igual que el prefijo `use`. Son vocabulario de React y Zustand (como `navigate`), no nombres que inventamos. `CLAUDE.md` se llama así porque es el nombre que busca Claude Code. Los archivos de `specs/` tienen su propia excepción (sección 1).
 
 | Carpeta | Qué va | Ejemplos (de las specs) | Qué **no** va |
 |---|---|---|---|
@@ -91,6 +94,7 @@ HoopsMap/
 | Utilidades | tema en camelCase | `fechas.ts`, `validacionesPartido.ts` |
 | Tipos | entidad en camelCase | `partido.ts`, `checkIn.ts` |
 | Test | mismo nombre + `.test` | `promedios.test.ts`, `NavegadorRaiz.test.tsx` |
+| Spec | El de *Estructura de specs* de 00-project (excepción, sección 1) | `02-data-model.md`, `F05-game-crud.md` |
 
 `.tsx` solo si el archivo tiene JSX; si no, `.ts`.
 
@@ -660,7 +664,7 @@ contador = contador + 1;
 | TypeScript | `npx tsc --noEmit` | Antes de cada commit |
 | ESLint (configuración de Expo) | `npx expo lint` | Antes de cada commit. La primera vez instala ESLint y crea `eslint.config.js`, que sí se sube |
 | Prettier | Formato al guardar en el editor | Siempre |
-| Tests | `npx jest` | Antes de cada commit que toque código con tests |
+| Tests | `npx jest` | Antes de cada commit, desde que Jest está configurado (task D6 de 02-data-model) |
 | Cobertura | `npx jest --coverage` | Al final, para el reporte que pide el checklist de entrega |
 
 **Prettier** se usa como extensión de VS Code (no se instala como paquete), con "Format on Save" activado y este `.prettierrc` en la raíz:
@@ -698,7 +702,8 @@ git push
 - En español y en el estilo de la clase: empieza con el verbo (`agrega`, `corrige`, `extrae`, `conecta`, `quita`, `actualiza`).
 - **Una sola idea**: si necesitas la palabra "y", son dos commits.
 - Dice qué cambió, sin mencionar herramientas.
-- Termina con el **id de la task** entre paréntesis. Si es documentación, con el nombre de la spec.
+- Termina con el **id de la task** entre paréntesis. Si es una spec, con el nombre de la spec.
+- Si cambia un archivo que no es task ni spec (este estándar, `CLAUDE.md`, el README, `.gitignore`), termina con el **nombre de ese archivo**; si es `.md`, sin la extensión, igual que las specs.
 - Ids de task: las specs base usan los suyos (`N1`, `D7`); las specs de features numeran sus tasks con el id de la feature (`F03.1`, `F03.2`…).
 
 ```text
@@ -706,6 +711,8 @@ git push
 ✅ crea las 8 pantallas provisionales (N4)
 ✅ corrige la fecha de hoy después de las 4 p. m. (D7)
 ✅ escribe la spec de navegación (01-navigation)
+✅ reemplaza AGENTS.md por CLAUDE.md (CLAUDE)
+✅ agrega coverage al .gitignore (.gitignore)
 
 ❌ cambios
 ❌ ya jala!!!
@@ -717,7 +724,7 @@ git push
 
 - Una task de la spec ≈ un commit.
 - Mínimo **3 commits por semana**, con fecha real (clase *Git y Deploy*). Nunca un commit gigante la noche antes.
-- Antes de commitear: `npx tsc --noEmit`, `npx expo lint` y `npx jest` sin errores.
+- Antes de commitear: `npx tsc --noEmit`, `npx expo lint` y `npx jest` sin errores (`npx jest` desde la task D6).
 
 **Reglas**
 
@@ -762,9 +769,14 @@ Una task o feature está terminada cuando:
 
 - [ ] Sus criterios de aceptación se probaron en el iPhone con Expo Go (o en Jest / la consola de Firebase, según diga el criterio).
 - [ ] Contempla cargando, error, vacío, sin internet y permisos negados (los que le apliquen).
-- [ ] `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan sin errores.
+- [ ] `npx tsc --noEmit`, `npx expo lint` y `npx jest` (desde D6) pasan sin errores.
 - [ ] No hay warnings en la consola de Expo (checklist de entrega).
 - [ ] No hay `any`, `console.log`, código comentado ni código provisional.
 - [ ] Sus tests están escritos junto con el código, no "para después".
 - [ ] La spec está marcada (`[x]`) y actualizada si algo cambió.
 - [ ] Puedes explicar cada archivo que se agregó o cambió.
+
+**Quién marca qué en la spec**
+
+- **La task** (`[x]` en *Tasks*): la marca Claude Code al terminar de implementarla.
+- **Los criterios de aceptación** (CAxx, CADxx): los marcas tú, después de probarlos en el iPhone, en Jest o en la consola de Firebase, según diga el criterio. Los que dependen de otra feature se marcan cuando esa feature esté lista (como en la task N10 de 01-navigation).
