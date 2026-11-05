@@ -39,7 +39,7 @@ Sigue `docs/coding-standards.md`. Lo crítico:
 
 - **Nombres (§1, §3):** todo lo que nombramos va en español sin acentos ni ñ (`anio`, `esDueno`, `PantallaMapa.tsx`). Las APIs de librerías se quedan en inglés. Los textos para el usuario van en español con acentos. Comentarios y tests, en español. Excepción: los archivos de `specs/`, la carpeta `docs/` y `coding-standards.md` conservan sus nombres.
 - **Carpetas (§2):** `src/navegacion`, `pantallas`, `componentes`, `hooks`, `stores`, `servicios`, `utilidades`, `constantes`, `tipos`.
-- **Capas (§4):** pantalla → store (Zustand) → servicio → Firebase / AsyncStorage / NetInfo. Solo `src/servicios/` importa Firebase, AsyncStorage y NetInfo (excepciones en §4).
+- **Capas (§4):** pantalla → store (Zustand) → servicio → Firebase / AsyncStorage / NetInfo. Solo `src/servicios/` importa Firebase, AsyncStorage y NetInfo (excepciones en §4). Solo `cerrarSesion` de `useStoreSesion` llama a `limpiar()` de otros stores; los demás stores nunca importan `useStoreSesion`.
 - **TypeScript (§5):** modo strict. Usa `type`, nunca `interface` ni `enum`. Prohibidos `any`, `as any`, `@ts-ignore` y el `!`.
 - **Tema (§7):** todo color, tamaño de letra, espaciado y radio sale de `src/constantes/tema.ts`.
 - **4 estados (§9):** en este orden: cargando → error → vacío → datos, con `VistaCargando`, `VistaError` y `VistaVacia`. Los casos sin internet también están en §9.
