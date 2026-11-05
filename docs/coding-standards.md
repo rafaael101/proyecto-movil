@@ -628,7 +628,7 @@ contador = contador + 1;
 
 - **Siempre con `npx expo install <paquete>`**: elige versiones compatibles con Expo Go. Las de desarrollo: `npx expo install <paquete> -- --save-dev`.
 - **Solo las que aparecen en *Decisiones técnicas* de 00-project.** Una nueva se propone primero en la spec (con su porqué) y luego se instala.
-- Se prefieren módulos de Expo y lo que ya trae la plantilla (`@expo/vector-icons`).
+- Se prefieren módulos de Expo y lo que ya trae la plantilla.
 
 | Para qué | Paquete(s) | Dónde se decidió |
 |---|---|---|
@@ -639,7 +639,7 @@ contador = contador + 1;
 | Conectividad | `@react-native-community/netinfo` | 02-data-model D8 |
 | Mapa y ubicación | `react-native-maps`, `expo-location` | 00-project |
 | Foto y tarjeta | `expo-image-picker`, `react-native-view-shot`, `expo-sharing` | 00-project |
-| Iconos | `@expo/vector-icons` (ya viene) | 01-navigation |
+| Iconos | `@expo/vector-icons` y `expo-font` (lo necesita vector-icons para cargar la fuente) | 01-navigation |
 | Tests (desarrollo) | `jest-expo`, `jest`, `@testing-library/react-native` | 00-project, 02-data-model D6 |
 | Lint (desarrollo) | ESLint con la configuración de Expo (lo instala `npx expo lint`) | Este documento |
 
