@@ -532,7 +532,7 @@ const formulario = useFormulario<ValoresFormularioPartido>({
 | Tipo | Qué | De dónde salen |
 |---|---|---|
 | Unitario | Funciones puras de `utilidades/` y `servicioCache` con AsyncStorage simulado | CAD16–CAD27 de 02-data-model (12 criterios, mínimo un `it` cada uno) |
-| Integración | Una pantalla o navegador con stores reales y **servicios simulados** | 1: N9 de 01-navigation. Los otros 3 los declara la spec de la feature que los aporte |
+| Integración | Una pantalla o navegador con stores reales y **servicios simulados** | 2: N9 de 01-navigation y F01.14 de F01. Los otros 2 los declara la spec de la feature que los aporte |
 
 Las reglas de Firestore **no** se prueban con Jest: se prueban en el Rules Playground de la consola (CAD01–CAD05).
 
