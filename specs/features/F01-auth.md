@@ -252,6 +252,7 @@ type EstadoSesion = {
 ```
 
 - **Estado inicial:** `usuario: null`, `revisandoSesion: true`, `cerrandoSesion: false`.
+- - **`limpiar()`:** deja `usuario: null`, `cerrandoSesion: false` y `revisandoSesion: false`. **No** regresa `revisandoSesion` a `true`: la escucha de la sesión sigue activa y Firebase ya avisó que no hay usuario, así que la app se quedaría en `VistaCargando` para siempre.
 - **¿Por qué las acciones devuelven el mensaje en lugar de guardarlo en el store?** El error del servidor solo lo muestra la pantalla que hizo la petición. Si se guardara en el store, el error del inicio de sesión aparecería también en "Crear cuenta". Por la regla de coding-standards §8 ("`useState` si el dato solo lo usa una pantalla"), cada pantalla lo guarda en su propio `useState<string | null>(null)`.
 - Cada acción usa `try/catch`: `console.error` con el detalle y `obtenerMensajeError(error)` para el usuario (coding-standards §10).
 - **`registrarse`:** al terminar `crearCuenta`, hace `set({ usuario })` con el usuario que devuelve (ya trae el nombre, E15).
