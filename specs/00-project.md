@@ -43,7 +43,7 @@ Una app móvil con dos módulos:
 
 | ID  | Feature                                         | Módulo     | Prioridad   | Spec |
 |-----|-------------------------------------------------|------------|-------------|------|
-| F01 | Registro, inicio y cierre de sesión             | Cuenta     | Alta        | pendiente |
+| F01 | Registro, inicio y cierre de sesión             | Cuenta     | Alta        | `features/F01-auth.md` |
 | F02 | Mapa de canchas cercanas                        | Afluencia  | Alta        | pendiente |
 | F03 | Hacer y terminar check-in en cancha             | Afluencia  | **Central** | pendiente |
 | F04 | Detalle de cancha y su afluencia                | Afluencia  | Alta        | pendiente |
