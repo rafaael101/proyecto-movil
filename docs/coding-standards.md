@@ -33,6 +33,7 @@ Guía de consulta para escribir el código de HoopsMap (a mano o con Claude Code
 "Check-in" se queda como en las specs: `CheckIn`, `crearCheckIn`, `CHECK_IN_DURACION_MINUTOS`.
 
 **Excepción para las specs:** la carpeta `specs/` y sus archivos conservan los nombres de *Estructura de specs* de 00-project (`00-project.md`, `01-navigation.md`, `F03-check-in.md`). Lo que va dentro de cada spec sí va en español.
+La carpeta `docs/` y este archivo (`coding-standards.md`) también conservan su nombre.
 
 ---
 
@@ -52,7 +53,7 @@ HoopsMap/
 │   ├── constantes/         ← tema.ts, configuracion.ts, canchas.ts
 │   └── tipos/              ← tipos de las entidades (02-data-model)
 ├── specs/                  ← especificaciones SDD (nombres en excepción, sección 1)
-├── docs/                   ← este documento y la arquitectura
+├── docs/                   ← este documento y la arquitectura (nombres en excepción, sección 1)
 ├── CLAUDE.md               ← instrucciones que Claude Code lee en cada sesión
 ├── assets/                 ← íconos e imágenes de la plantilla
 ├── firestore.rules         ← copia de las reglas publicadas (02-data-model)
