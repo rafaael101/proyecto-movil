@@ -1,6 +1,6 @@
 # Estándar de código — HoopsMap
 
-> **Estado:** v2.1 · **Última actualización:** 2026-11-05
+> **Estado:** v2.2 · **Última actualización:** 2026-11-05
 > **Depende de:** `specs/00-project.md` (fuente de verdad), `specs/01-navigation.md` y `specs/02-data-model.md`. Si este documento y una spec no coinciden, **manda la spec** y se corrige este archivo.
 > **Clases de referencia:** [Git y Deploy](https://academy.alvesc.com/clase/git-y-deploy) · [TypeScript Básico](https://academy.alvesc.com/clase/typescript-basico) · [Hooks con TypeScript](https://academy.alvesc.com/clase/hooks-typescript) · [StyleSheet y Flexbox](https://academy.alvesc.com/clase/stylesheet-flexbox) · [Validación de Formularios](https://academy.alvesc.com/clase/validacion-formularios) · [Custom Hook de Formulario](https://academy.alvesc.com/clase/custom-hook-formulario) · [Sugerencias de Proyectos Finales](https://academy.alvesc.com/clase/sugerencias-de-proyectos-finales)
 
@@ -161,6 +161,7 @@ Cualquier capa puede usar: utilidades (puras), constantes y tipos.
 1. `src/utilidades/errores.ts` importa `FirebaseError` para leer `error.code` (02-data-model, CAD29).
 2. Los componentes **visuales** nativos (por ejemplo `MapView` de `react-native-maps`) se usan en pantallas o componentes, porque son UI.
 3. Una pantalla puede usar `useNetInfo` **solo** para mostrar el aviso de "Sin conexión" (02-data-model). La revisión antes de hablar con Firebase siempre es `verificarConexion()` en el servicio.
+4. Solo la acción `cerrarSesion` de `useStoreSesion` puede llamar a `limpiar()` de otros stores (`useStoreX.getState().limpiar()`), para cerrar sesión de verdad (F01). Los otros stores nunca importan `useStoreSesion`: reciben `idUsuario` como parámetro.
 
 **Por qué:** si mañana cambia el backend, solo cambia `servicios/`. Y en la defensa puedes señalar el único archivo que habla con Firestore.
 
@@ -227,7 +228,7 @@ navigation.push('DetalleCancha', { idCancha });     // doble toque abre dos pant
 - **Si un archivo pasa de ~150 líneas, se divide.** Si la misma pieza aparece en dos pantallas, se vuelve componente.
 - **Cada pantalla en su archivo de `src/pantallas/`.** Nunca se declara dentro de un navegador ni con `component={() => ...}` (01-navigation, CA24).
 
-**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). Los de formulario (por ejemplo un botón principal o un campo de texto con su error) se crean cuando el primer formulario (F01) los necesite.
+**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error) y `BotonPrincipal` (deshabilitado y cargando).
 
 ```tsx
 // src/componentes/VistaError.tsx
@@ -390,6 +391,7 @@ export const useStorePartidos = create<EstadoPartidos>((set) => ({
 
 - **Leer con selector:** `const partidos = useStorePartidos((estado) => estado.partidos);` La pantalla solo se vuelve a dibujar cuando cambia ese dato.
 - **Acciones que la pantalla necesita saber si salieron bien** (guardar, eliminar) devuelven `Promise<boolean>`: `true` si se guardó, `false` si falló (el mensaje queda en `mensajeError`). Así la pantalla decide si cierra el modal.
+- **Excepción, `useStoreSesion` (F01):** no lleva `cargando` ni `mensajeError`. `revisandoSesion` hace de `cargando`, y `registrarse`, `iniciarSesion` y `cerrarSesion` devuelven `Promise<string | null>` (el mensaje, o `null` si salió bien), porque el error solo lo muestra la pantalla que hizo la petición y se guarda en su `useState`.
 
 ---
 
@@ -564,8 +566,11 @@ import { useStoreSesion } from '../stores/useStoreSesion';
 import { NavegadorRaiz } from './NavegadorRaiz';
 
 // Un test nunca habla con Firebase: se reemplaza el servicio por uno falso.
-// Las funciones reales del servicio de sesión las define F01.
-jest.mock('../servicios/servicioSesion', () => ({}));
+// NavegadorRaiz empieza a escuchar la sesión al montarse (F01.6): el simulador
+// devuelve una función vacía para "dejar de escuchar" y nunca avisa de cambios.
+jest.mock('../servicios/servicioSesion', () => ({
+  escucharCambiosDeSesion: jest.fn(() => () => {}),
+}));
 
 describe('Integración — NavegadorRaiz', () => {
   it('sin usuario muestra "Iniciar sesión"', () => {
