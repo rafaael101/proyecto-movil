@@ -454,7 +454,7 @@ Cada task ≈ un commit.
 
 - [x] **N1 — Instalar dependencias de navegación.** `npx expo install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs react-native-screens react-native-safe-area-context`. Son los mismos paquetes de la clase, pero con `npx expo install` en lugar de `npm install`, para que Expo elija versiones compatibles con Expo Go.
 - [x] **N2 — Crear `src/constantes/tema.ts` y `opcionesHeader.ts`.** `tema.ts` con la paleta, tipografía, espaciado y radio de la sección *Paleta y tipografía*; `opcionesHeader.ts` con el estilo de header de esta spec.
-- [ ] **N3 — Crear `src/navegacion/tipos.ts`** con `ParametrosStackRaiz`, `ParametrosTabs` y las props de las 8 pantallas.
+- [x] **N3 — Crear `src/navegacion/tipos.ts`** con `ParametrosStackRaiz`, `ParametrosTabs` y las props de las 8 pantallas.
 - [ ] **N4 — Crear las 8 pantallas provisionales** en `src/pantallas/` (solo un texto con su nombre, tipadas con sus props) y `VistaCargando` en `src/componentes/`.
 - [ ] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
 - [ ] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
