@@ -26,9 +26,18 @@ export type ParametrosTabs = {
 // Pantallas del Stack: igual que en clase.
 export type PropsPantallaInicioSesion = NativeStackScreenProps<ParametrosStackRaiz, 'InicioSesion'>;
 export type PropsPantallaRegistro = NativeStackScreenProps<ParametrosStackRaiz, 'Registro'>;
-export type PropsPantallaDetalleCancha = NativeStackScreenProps<ParametrosStackRaiz, 'DetalleCancha'>;
-export type PropsPantallaFormularioPartido = NativeStackScreenProps<ParametrosStackRaiz, 'FormularioPartido'>;
-export type PropsPantallaTarjetaJugador = NativeStackScreenProps<ParametrosStackRaiz, 'TarjetaJugador'>;
+export type PropsPantallaDetalleCancha = NativeStackScreenProps<
+  ParametrosStackRaiz,
+  'DetalleCancha'
+>;
+export type PropsPantallaFormularioPartido = NativeStackScreenProps<
+  ParametrosStackRaiz,
+  'FormularioPartido'
+>;
+export type PropsPantallaTarjetaJugador = NativeStackScreenProps<
+  ParametrosStackRaiz,
+  'TarjetaJugador'
+>;
 
 // Pantallas de Tab: viven dentro de las tabs, pero también navegan
 // a rutas del Stack raíz (por ejemplo, Mapa → DetalleCancha).
