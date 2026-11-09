@@ -418,10 +418,10 @@ Probados en el iPhone con Expo Go.
 
 **Tabs y headers**
 
-- [ ] CA08 — Con sesión se ven 3 tabs en este orden: Mapa, Historial, Perfil, cada una con su icono de Ionicons.
-- [ ] CA09 — La tab activa muestra su icono relleno en el color primario; las inactivas, el icono de contorno en el color inactivo.
-- [ ] CA10 — Los headers de las 3 tabs, de "Detalle de cancha" y de las pantallas de sesión son blancos, con el título en `texto` y los botones/flecha en `primario`, y muestran los títulos de la tabla de pantallas.
-- [ ] CA11 — Solo se ve **un** header en cada tab (no hay header duplicado).
+- [x] CA08 — Con sesión se ven 3 tabs en este orden: Mapa, Historial, Perfil, cada una con su icono de Ionicons.
+- [x] CA09 — La tab activa muestra su icono relleno en el color primario; las inactivas, el icono de contorno en el color inactivo.
+- [x] CA10 — Los headers de las 3 tabs, de "Detalle de cancha" y de las pantallas de sesión son blancos, con el título en `texto` y los botones/flecha en `primario`, y muestran los títulos de la tabla de pantallas.
+- [x] CA11 — Solo se ve **un** header en cada tab (no hay header duplicado).
 - [ ] CA12 — Si hago scroll en Historial, cambio a Perfil y regreso, el scroll sigue donde estaba.
 
 **Stack y modales**
@@ -457,7 +457,7 @@ Cada task ≈ un commit.
 - [x] **N3 — Crear `src/navegacion/tipos.ts`** con `ParametrosStackRaiz`, `ParametrosTabs` y las props de las 8 pantallas.
 - [x] **N4 — Crear las 8 pantallas provisionales** en `src/pantallas/` (solo un texto con su nombre, tipadas con sus props) y `VistaCargando` en `src/componentes/`.
 - [x] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
-- [ ] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
+- [x] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
 - [ ] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales.
 - [ ] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). *Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión).*
 - [ ] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. *Requiere Jest configurado.* El simulador de `servicioSesion` debe traer `escucharCambiosDeSesion: jest.fn(() => () => {})`: desde F01.6, `NavegadorRaiz` la llama al montarse y, con el simulador vacío (`() => ({})`), el test truena. Como nunca avisa, no cambia el estado que el test le puso al store.
