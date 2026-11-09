@@ -456,7 +456,7 @@ Cada task ≈ un commit.
 - [x] **N2 — Crear `src/constantes/tema.ts` y `opcionesHeader.ts`.** `tema.ts` con la paleta, tipografía, espaciado y radio de la sección *Paleta y tipografía*; `opcionesHeader.ts` con el estilo de header de esta spec.
 - [x] **N3 — Crear `src/navegacion/tipos.ts`** con `ParametrosStackRaiz`, `ParametrosTabs` y las props de las 8 pantallas.
 - [x] **N4 — Crear las 8 pantallas provisionales** en `src/pantallas/` (solo un texto con su nombre, tipadas con sus props) y `VistaCargando` en `src/componentes/`.
-- [ ] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
+- [x] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
 - [ ] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
 - [ ] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales.
 - [ ] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). *Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión).*
