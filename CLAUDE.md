@@ -8,16 +8,16 @@ App móvil (React Native + Expo + TypeScript) para jugadores recreativos de bás
 
 ## Mapa de documentos
 
-| Qué | Dónde |
-|---|---|
-| Visión, MVP, reglas RNxx, rúbrica, decisiones técnicas, plan | `specs/00-project.md` (fuente de verdad) |
-| Navegación: 8 pantallas, parámetros, paleta y tipografía | `specs/01-navigation.md` |
-| Datos: tipos, Firestore, servicios, caché, validaciones, mensajes de error | `specs/02-data-model.md` |
-| Features F01–F07 | `specs/features/` |
-| Estándar de código | `docs/coding-standards.md` |
-| Reglas de seguridad de Firestore | `firestore.rules` (copia de las publicadas; las define 02-data-model) |
-| Variables de entorno, sin valores | `.env.example` |
-| Clases del profesor | https://academy.alvesc.com/ruta/desarrollo-movil |
+| Qué                                                                        | Dónde                                                                 |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Visión, MVP, reglas RNxx, rúbrica, decisiones técnicas, plan               | `specs/00-project.md` (fuente de verdad)                              |
+| Navegación: 8 pantallas, parámetros, paleta y tipografía                   | `specs/01-navigation.md`                                              |
+| Datos: tipos, Firestore, servicios, caché, validaciones, mensajes de error | `specs/02-data-model.md`                                              |
+| Features F01–F07                                                           | `specs/features/`                                                     |
+| Estándar de código                                                         | `docs/coding-standards.md`                                            |
+| Reglas de seguridad de Firestore                                           | `firestore.rules` (copia de las publicadas; las define 02-data-model) |
+| Variables de entorno, sin valores                                          | `.env.example`                                                        |
+| Clases del profesor                                                        | https://academy.alvesc.com/ruta/desarrollo-movil                      |
 
 - Orden de autoridad: `00-project.md` > otras specs > `coding-standards.md`.
 - Si dos documentos no coinciden, manda el de más arriba. Avísame para corregir el otro.
@@ -26,7 +26,7 @@ App móvil (React Native + Expo + TypeScript) para jugadores recreativos de bás
 
 1. No implementes nada sin spec. Si la feature no tiene spec en `specs/features/`, detente y avísame.
 2. Antes de escribir código, lee la spec completa, las RNxx que cita de `00-project.md` y lo que use de `01-navigation.md` y `02-data-model.md`.
-3. Implementa una sola task de la sección *Tasks*.
+3. Implementa una sola task de la sección _Tasks_.
 4. Al terminar, márcala `[x]` en la spec y detente. No empieces la siguiente.
    - Tú marcas solo la task. Los criterios de aceptación (CAxx, CADxx) los marco yo después de probarlos (§19).
 5. No agregues nada que la spec no pida, aunque parezca útil. Propónlo como texto; yo decido.
@@ -41,7 +41,7 @@ Sigue `docs/coding-standards.md`. Lo crítico:
 - **Carpetas (§2):** `src/navegacion`, `pantallas`, `componentes`, `hooks`, `stores`, `servicios`, `utilidades`, `constantes`, `tipos`.
 - **Capas (§4):** pantalla → store (Zustand) → servicio → Firebase / AsyncStorage / NetInfo. Solo `src/servicios/` importa Firebase, AsyncStorage y NetInfo (excepciones en §4). Solo `cerrarSesion` de `useStoreSesion` llama a `limpiar()` de otros stores; los demás stores nunca importan `useStoreSesion`.
 - **TypeScript (§5):** modo strict. Usa `type`, nunca `interface` ni `enum`. Prohibidos `any`, `as any`, `@ts-ignore` y el `!`.
-- **Tema (§7):** todo color, tamaño de letra, espaciado y radio sale de `src/constantes/tema.ts`.
+- **Tema (§7):** todo color, tamaño de letra, espaciado, radio y tamaño de icono sale de `src/constantes/tema.ts`.
 - **4 estados (§9):** en este orden: cargando → error → vacío → datos, con `VistaCargando`, `VistaError` y `VistaVacia`. Los casos sin internet también están en §9.
 - **Errores (§10):**
   - El servicio lanza el error.
@@ -86,12 +86,12 @@ npx jest
 - La primera vez, `npx expo lint` instala ESLint y crea `eslint.config.js` (§16). Pídeme permiso antes de correrlo.
 - `npx jest` funciona solo cuando Jest ya está configurado (task D6 de `02-data-model.md`). Antes de eso, dime que no se corrió.
 - Nunca "arregles" un error apagando la revisión (`any`, `@ts-ignore`, `eslint-disable`).
-- Repasa los criterios de aceptación de la spec y la *Definición de terminado* (§19). Dime cuáles crees que ya se cumplen y cuáles debo probar en el iPhone, en Jest o en la consola de Firebase.
+- Repasa los criterios de aceptación de la spec y la _Definición de terminado_ (§19). Dime cuáles crees que ya se cumplen y cuáles debo probar en el iPhone, en Jest o en la consola de Firebase.
 - Al cerrar una feature no puede quedar `console.log`, código comentado ni código provisional.
 
 ## Dependencias (§14)
 
-- Solo las de *Decisiones técnicas* de `00-project.md`. La lista está en §14.
+- Solo las de _Decisiones técnicas_ de `00-project.md`. La lista está en §14.
 - Prefiere los módulos de Expo y lo que ya trae la plantilla.
 - Pregúntame antes de instalar y explica para qué sirve el paquete.
 - Siempre con `npx expo install <paquete>`. Para las de desarrollo: `npx expo install <paquete> -- --save-dev`. Nunca `npm install`.

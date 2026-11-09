@@ -1,7 +1,7 @@
 # Navegación — HoopsMap
 
 > **Estado:** v1.1 · **Última actualización:** 2026-11-05
-> **Depende de:** `specs/00-project.md` (sección *Cumplimiento de la rúbrica* y *Decisiones técnicas*)
+> **Depende de:** `specs/00-project.md` (sección _Cumplimiento de la rúbrica_ y _Decisiones técnicas_)
 > **Clases de referencia:** [Stack Navigator](https://academy.alvesc.com/clase/stack-navigator) · [Tab Navigator](https://academy.alvesc.com/clase/tab-navigator)
 
 ---
@@ -33,20 +33,20 @@ Jugador recreativo de básquetbol, en dos situaciones:
 
 ## Datos de entrada
 
-| Dato | De dónde viene | Para qué se usa |
-|---|---|---|
-| Usuario actual (o ninguno) | Store de sesión (F01, Firebase Auth) | Decidir si se muestra la parte de autenticación o la app |
-| ¿Se está revisando la sesión? | Store de sesión (F01) | Mostrar una vista de carga al abrir la app |
-| `idCancha` | Pantalla Mapa (marcador tocado) | Abrir el detalle de esa cancha |
-| `idPartido` | Pantalla Historial (partido tocado) | Editar ese partido o crear su tarjeta |
+| Dato                          | De dónde viene                       | Para qué se usa                                          |
+| ----------------------------- | ------------------------------------ | -------------------------------------------------------- |
+| Usuario actual (o ninguno)    | Store de sesión (F01, Firebase Auth) | Decidir si se muestra la parte de autenticación o la app |
+| ¿Se está revisando la sesión? | Store de sesión (F01)                | Mostrar una vista de carga al abrir la app               |
+| `idCancha`                    | Pantalla Mapa (marcador tocado)      | Abrir el detalle de esa cancha                           |
+| `idPartido`                   | Pantalla Historial (partido tocado)  | Editar ese partido o crear su tarjeta                    |
 
-**Regla de parámetros:** entre pantallas **solo viajan ids** (`idCancha`, `idPartido`), nunca el objeto completo. La pantalla que recibe el id busca el dato en el catálogo (RN05) o en el store de partidos. Así, si el partido se edita, la pantalla siempre muestra la versión actual (es la pregunta 4 del reto de la clase *Stack Navigator*).
+**Regla de parámetros:** entre pantallas **solo viajan ids** (`idCancha`, `idPartido`), nunca el objeto completo. La pantalla que recibe el id busca el dato en el catálogo (RN05) o en el store de partidos. Así, si el partido se edita, la pantalla siempre muestra la versión actual (es la pregunta 4 del reto de la clase _Stack Navigator_).
 
 ---
 
 ## Árbol de navegación
 
-Hay **un solo Stack raíz**. Según haya sesión o no, el Stack muestra un grupo de pantallas u otro (ver *Decisión de sesión* más abajo).
+Hay **un solo Stack raíz**. Según haya sesión o no, el Stack muestra un grupo de pantallas u otro (ver _Decisión de sesión_ más abajo).
 
 ```text
 NavigationContainer
@@ -69,22 +69,22 @@ NavigationContainer
         └── TarjetaJugador ...... modal   "Tarjeta de jugador" ← recibe idPartido
 ```
 
-**¿Por qué el detalle y los modales están en el Stack raíz y no dentro de las tabs?** Es el patrón *Tabs + Stack* de la clase *Tab Navigator*: las tabs son una pantalla más del Stack (`Principal`), y las pantallas de detalle se abren **encima** de las tabs. Por eso, en el detalle de cancha y en los modales **no se ve la barra de tabs**, y la flecha de regreso devuelve a la tab de donde se vino.
+**¿Por qué el detalle y los modales están en el Stack raíz y no dentro de las tabs?** Es el patrón _Tabs + Stack_ de la clase _Tab Navigator_: las tabs son una pantalla más del Stack (`Principal`), y las pantallas de detalle se abren **encima** de las tabs. Por eso, en el detalle de cancha y en los modales **no se ve la barra de tabs**, y la flecha de regreso devuelve a la tab de donde se vino.
 
 ---
 
 ## Tabla de pantallas
 
-| # | Componente | Ruta | Título visible | Tipo | Parámetros | Se llega desde |
-|---|---|---|---|---|---|---|
-| 1 | `PantallaInicioSesion` | `InicioSesion` | Iniciar sesión | Stack | — | Inicio de la app sin sesión; al cerrar sesión |
-| 2 | `PantallaRegistro` | `Registro` | Crear cuenta | Stack | — | InicioSesion ("Crear cuenta") |
-| 3 | `PantallaMapa` | `Mapa` | Canchas cercanas | Tab (etiqueta "Mapa") | — | Inicio de la app con sesión (tab inicial) |
-| 4 | `PantallaHistorial` | `Historial` | Mis partidos | Tab (etiqueta "Historial") | — | Barra de tabs |
-| 5 | `PantallaPerfil` | `Perfil` | Mi perfil | Tab (etiqueta "Perfil") | — | Barra de tabs |
-| 6 | `PantallaDetalleCancha` | `DetalleCancha` | Nombre de la cancha | Stack | `{ idCancha: string }` | Mapa (tocar un marcador) |
-| 7 | `PantallaFormularioPartido` | `FormularioPartido` | Nuevo partido / Editar partido | Modal | `{ idPartido?: string }` o nada | Historial: botón [+] (crear) o tocar un partido (editar) |
-| 8 | `PantallaTarjetaJugador` | `TarjetaJugador` | Tarjeta de jugador | Modal | `{ idPartido: string }` | Historial: control de tarjeta en un partido |
+| #   | Componente                  | Ruta                | Título visible                 | Tipo                       | Parámetros                      | Se llega desde                                           |
+| --- | --------------------------- | ------------------- | ------------------------------ | -------------------------- | ------------------------------- | -------------------------------------------------------- |
+| 1   | `PantallaInicioSesion`      | `InicioSesion`      | Iniciar sesión                 | Stack                      | —                               | Inicio de la app sin sesión; al cerrar sesión            |
+| 2   | `PantallaRegistro`          | `Registro`          | Crear cuenta                   | Stack                      | —                               | InicioSesion ("Crear cuenta")                            |
+| 3   | `PantallaMapa`              | `Mapa`              | Canchas cercanas               | Tab (etiqueta "Mapa")      | —                               | Inicio de la app con sesión (tab inicial)                |
+| 4   | `PantallaHistorial`         | `Historial`         | Mis partidos                   | Tab (etiqueta "Historial") | —                               | Barra de tabs                                            |
+| 5   | `PantallaPerfil`            | `Perfil`            | Mi perfil                      | Tab (etiqueta "Perfil")    | —                               | Barra de tabs                                            |
+| 6   | `PantallaDetalleCancha`     | `DetalleCancha`     | Nombre de la cancha            | Stack                      | `{ idCancha: string }`          | Mapa (tocar un marcador)                                 |
+| 7   | `PantallaFormularioPartido` | `FormularioPartido` | Nuevo partido / Editar partido | Modal                      | `{ idPartido?: string }` o nada | Historial: botón [+] (crear) o tocar un partido (editar) |
+| 8   | `PantallaTarjetaJugador`    | `TarjetaJugador`    | Tarjeta de jugador             | Modal                      | `{ idPartido: string }`         | Historial: control de tarjeta en un partido              |
 
 Conteo para la rúbrica: **Stack** 3 (1, 2, 6) · **Tabs** 3 (3, 4, 5) · **Modal** 2 (7, 8) → **8 pantallas**. `VistaCargando` es un componente compartido, no una pantalla, y no se cuenta.
 
@@ -135,9 +135,18 @@ export type ParametrosTabs = {
 // Pantallas del Stack: igual que en clase.
 export type PropsPantallaInicioSesion = NativeStackScreenProps<ParametrosStackRaiz, 'InicioSesion'>;
 export type PropsPantallaRegistro = NativeStackScreenProps<ParametrosStackRaiz, 'Registro'>;
-export type PropsPantallaDetalleCancha = NativeStackScreenProps<ParametrosStackRaiz, 'DetalleCancha'>;
-export type PropsPantallaFormularioPartido = NativeStackScreenProps<ParametrosStackRaiz, 'FormularioPartido'>;
-export type PropsPantallaTarjetaJugador = NativeStackScreenProps<ParametrosStackRaiz, 'TarjetaJugador'>;
+export type PropsPantallaDetalleCancha = NativeStackScreenProps<
+  ParametrosStackRaiz,
+  'DetalleCancha'
+>;
+export type PropsPantallaFormularioPartido = NativeStackScreenProps<
+  ParametrosStackRaiz,
+  'FormularioPartido'
+>;
+export type PropsPantallaTarjetaJugador = NativeStackScreenProps<
+  ParametrosStackRaiz,
+  'TarjetaJugador'
+>;
 
 // Pantallas de Tab: viven dentro de las tabs, pero también navegan
 // a rutas del Stack raíz (por ejemplo, Mapa → DetalleCancha).
@@ -155,7 +164,7 @@ export type PropsPantallaPerfil = CompositeScreenProps<
 >;
 ```
 
-**`CompositeScreenProps` en palabras sencillas:** "esta pantalla es una tab, **y además** puede navegar a las pantallas del Stack que está afuera". Une los dos tipos en uno. En el ejemplo de la clase *Tab Navigator* esto se resolvió con `navigation: any`, pero el proyecto prohíbe `any` y el propio profesor pide revisar que `navigate` no quede como `as any` (reto de la clase *Stack Navigator*).
+**`CompositeScreenProps` en palabras sencillas:** "esta pantalla es una tab, **y además** puede navegar a las pantallas del Stack que está afuera". Une los dos tipos en uno. En el ejemplo de la clase _Tab Navigator_ esto se resolvió con `navigation: any`, pero el proyecto prohíbe `any` y el propio profesor pide revisar que `navigate` no quede como `as any` (reto de la clase _Stack Navigator_).
 
 ---
 
@@ -165,11 +174,11 @@ export type PropsPantallaPerfil = CompositeScreenProps<
 
 `NavegadorRaiz` lee del store de sesión (F01) dos cosas: si hay usuario y si todavía se está revisando la sesión. Con eso hay tres casos:
 
-| Estado | Lo que se muestra |
-|---|---|
-| Revisando la sesión (al abrir la app, Firebase lee la sesión guardada en AsyncStorage) | `VistaCargando` en lugar del navegador |
-| Sin usuario | Grupo **sin sesión**: `InicioSesion` (primera) y `Registro` |
-| Con usuario | Grupo **con sesión**: `Principal` (tabs, empieza en Mapa), `DetalleCancha`, `FormularioPartido`, `TarjetaJugador` |
+| Estado                                                                                 | Lo que se muestra                                                                                                 |
+| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Revisando la sesión (al abrir la app, Firebase lee la sesión guardada en AsyncStorage) | `VistaCargando` en lugar del navegador                                                                            |
+| Sin usuario                                                                            | Grupo **sin sesión**: `InicioSesion` (primera) y `Registro`                                                       |
+| Con usuario                                                                            | Grupo **con sesión**: `Principal` (tabs, empieza en Mapa), `DetalleCancha`, `FormularioPartido`, `TarjetaJugador` |
 
 Esqueleto (solo para entender la idea; el código final se hace en Claude Code):
 
@@ -182,15 +191,35 @@ return (
   <Stack.Navigator screenOptions={opcionesHeader}>
     {usuario === null ? (
       <>
-        <Stack.Screen name="InicioSesion" component={PantallaInicioSesion} options={{ title: 'Iniciar sesión' }} />
-        <Stack.Screen name="Registro" component={PantallaRegistro} options={{ title: 'Crear cuenta' }} />
+        <Stack.Screen
+          name="InicioSesion"
+          component={PantallaInicioSesion}
+          options={{ title: 'Iniciar sesión' }}
+        />
+        <Stack.Screen
+          name="Registro"
+          component={PantallaRegistro}
+          options={{ title: 'Crear cuenta' }}
+        />
       </>
     ) : (
       <>
         <Stack.Screen name="Principal" component={NavegadorTabs} options={{ headerShown: false }} />
-        <Stack.Screen name="DetalleCancha" component={PantallaDetalleCancha} options={{ title: 'Cancha' }} />
-        <Stack.Screen name="FormularioPartido" component={PantallaFormularioPartido} options={{ presentation: 'modal' }} />
-        <Stack.Screen name="TarjetaJugador" component={PantallaTarjetaJugador} options={{ presentation: 'modal', title: 'Tarjeta de jugador' }} />
+        <Stack.Screen
+          name="DetalleCancha"
+          component={PantallaDetalleCancha}
+          options={{ title: 'Cancha' }}
+        />
+        <Stack.Screen
+          name="FormularioPartido"
+          component={PantallaFormularioPartido}
+          options={{ presentation: 'modal' }}
+        />
+        <Stack.Screen
+          name="TarjetaJugador"
+          component={PantallaTarjetaJugador}
+          options={{ presentation: 'modal', title: 'Tarjeta de jugador' }}
+        />
       </>
     )}
   </Stack.Navigator>
@@ -203,7 +232,7 @@ return (
 - Después de iniciar sesión, deslizar hacia atrás **no puede** regresar al login, porque esa pantalla ya no existe.
 - No hace falta `navigation.reset` ni lógica extra. Es lo más fácil de explicar: "la navegación depende de una variable".
 
-> En el taller de la clase *Drawer Navigator* el botón "Cerrar sesión" navega a Login. Aquí no se hace así porque, con el patrón anterior, la ruta `InicioSesion` no existe mientras hay sesión y `navigate` fallaría. El resultado para el usuario es el mismo.
+> En el taller de la clase _Drawer Navigator_ el botón "Cerrar sesión" navega a Login. Aquí no se hace así porque, con el patrón anterior, la ruta `InicioSesion` no existe mientras hay sesión y `navigate` fallaría. El resultado para el usuario es el mismo.
 
 ### Al iniciar sesión o registrarse
 
@@ -218,7 +247,7 @@ return (
 4. Todas las pantallas del grupo con sesión se desmontan (incluido cualquier modal abierto) y se muestra `InicioSesion`.
 5. Si se vuelve a iniciar sesión, la app empieza **desde cero en Mapa**, no en la última tab visitada.
 
-**Requisito para F01 y F06 (no lo hace la navegación):** cerrar sesión debe terminar el check-in activo (RN04), y borrar también la caché del historial (RN11) y los stores con datos del usuario. Como dice la clase *Persistencia Local*: cerrar sesión no es solo borrar la sesión, es borrar todo lo asociado al usuario.
+**Requisito para F01 y F06 (no lo hace la navegación):** cerrar sesión debe terminar el check-in activo (RN04), y borrar también la caché del historial (RN11) y los stores con datos del usuario. Como dice la clase _Persistencia Local_: cerrar sesión no es solo borrar la sesión, es borrar todo lo asociado al usuario.
 
 ---
 
@@ -235,23 +264,23 @@ return (
    - Toca un partido → se abre el modal "Editar partido" (`navigate('FormularioPartido', { idPartido })`).
    - Toca el control de tarjeta de un partido → se abre el modal "Tarjeta de jugador" (`navigate('TarjetaJugador', { idPartido })`).
    - Al guardar, eliminar o cancelar, el modal se cierra con `goBack()` y se regresa al Historial.
-6. En **Perfil**, toca "Cerrar sesión" y confirma en la alerta → aparece "Iniciar sesión" (ver *Al cerrar sesión*).
+6. En **Perfil**, toca "Cerrar sesión" y confirma en la alerta → aparece "Iniciar sesión" (ver _Al cerrar sesión_).
 
 ### Resumen de movimientos
 
-| Desde | Hacia | Cómo | Método |
-|---|---|---|---|
-| InicioSesion | Registro | Botón/enlace "Crear cuenta" | `navigate('Registro')` |
-| Registro | InicioSesion | Flecha de regreso o enlace "Ya tengo cuenta" | `goBack()` |
-| Mapa | DetalleCancha | Tocar marcador | `navigate('DetalleCancha', { idCancha })` |
-| DetalleCancha | Mapa | Flecha de regreso | automático / `goBack()` |
-| Historial | FormularioPartido (crear) | Botón [+] del header | `navigate('FormularioPartido')` |
-| Historial | FormularioPartido (editar) | Tocar un partido | `navigate('FormularioPartido', { idPartido })` |
-| Historial | TarjetaJugador | Control de tarjeta del partido | `navigate('TarjetaJugador', { idPartido })` |
-| FormularioPartido | Historial | "Cancelar", deslizar hacia abajo, o tras guardar/eliminar | `goBack()` |
-| TarjetaJugador | Historial | "Cerrar" o deslizar hacia abajo | `goBack()` |
-| Perfil | InicioSesion | Cerrar sesión y confirmar en la alerta | Cambio del store (sin `navigate`) |
-| InicioSesion / Registro | Mapa | Sesión iniciada | Cambio del store (sin `navigate`) |
+| Desde                   | Hacia                      | Cómo                                                      | Método                                         |
+| ----------------------- | -------------------------- | --------------------------------------------------------- | ---------------------------------------------- |
+| InicioSesion            | Registro                   | Botón/enlace "Crear cuenta"                               | `navigate('Registro')`                         |
+| Registro                | InicioSesion               | Flecha de regreso o enlace "Ya tengo cuenta"              | `goBack()`                                     |
+| Mapa                    | DetalleCancha              | Tocar marcador                                            | `navigate('DetalleCancha', { idCancha })`      |
+| DetalleCancha           | Mapa                       | Flecha de regreso                                         | automático / `goBack()`                        |
+| Historial               | FormularioPartido (crear)  | Botón [+] del header                                      | `navigate('FormularioPartido')`                |
+| Historial               | FormularioPartido (editar) | Tocar un partido                                          | `navigate('FormularioPartido', { idPartido })` |
+| Historial               | TarjetaJugador             | Control de tarjeta del partido                            | `navigate('TarjetaJugador', { idPartido })`    |
+| FormularioPartido       | Historial                  | "Cancelar", deslizar hacia abajo, o tras guardar/eliminar | `goBack()`                                     |
+| TarjetaJugador          | Historial                  | "Cerrar" o deslizar hacia abajo                           | `goBack()`                                     |
+| Perfil                  | InicioSesion               | Cerrar sesión y confirmar en la alerta                    | Cambio del store (sin `navigate`)              |
+| InicioSesion / Registro | Mapa                       | Sesión iniciada                                           | Cambio del store (sin `navigate`)              |
 
 Se usa `navigate` y no `push`: si el usuario toca dos veces seguidas el mismo marcador, no se abren dos detalles iguales.
 
@@ -265,37 +294,39 @@ Estilo **minimalista**: fondos claros, texto casi negro y **un solo color de ace
 
 **Colores**
 
-| Nombre en `tema.ts` | Valor | Uso |
-|---|---|---|
-| `primario` | `#C2410C` | Acento: tab activa, botones del header ([+], Cancelar, Cerrar, flecha), botones principales |
-| `textoSobrePrimario` | `#FFFFFF` | Texto encima de un botón naranja |
-| `fondo` | `#F7F7F5` | Fondo de las pantallas (blanco cálido) |
-| `superficie` | `#FFFFFF` | Header, barra de tabs, tarjetas y campos de formulario |
-| `texto` | `#1C1C1E` | Títulos y texto principal |
-| `textoSecundario` | `#6B6B70` | Texto de apoyo (fechas, etiquetas) |
-| `inactivo` | `#8E8E93` | Iconos de tabs inactivas, controles deshabilitados |
-| `borde` | `#E5E5EA` | Líneas divisoras y bordes de campos |
-| `error` | `#C62828` | Mensajes de error y botón "Eliminar" |
-| `exito` | `#2E7D32` | Confirmaciones (por ejemplo, "Ganó") |
+| Nombre en `tema.ts`  | Valor     | Uso                                                                                         |
+| -------------------- | --------- | ------------------------------------------------------------------------------------------- |
+| `primario`           | `#C2410C` | Acento: tab activa, botones del header ([+], Cancelar, Cerrar, flecha), botones principales |
+| `textoSobrePrimario` | `#FFFFFF` | Texto encima de un botón naranja                                                            |
+| `fondo`              | `#F7F7F5` | Fondo de las pantallas (blanco cálido)                                                      |
+| `superficie`         | `#FFFFFF` | Header, barra de tabs, tarjetas y campos de formulario                                      |
+| `texto`              | `#1C1C1E` | Títulos y texto principal                                                                   |
+| `textoSecundario`    | `#6B6B70` | Texto de apoyo (fechas, etiquetas)                                                          |
+| `inactivo`           | `#8E8E93` | Iconos de tabs inactivas, controles deshabilitados                                          |
+| `borde`              | `#E5E5EA` | Líneas divisoras y bordes de campos                                                         |
+| `error`              | `#C62828` | Mensajes de error y botón "Eliminar"                                                        |
+| `exito`              | `#2E7D32` | Confirmaciones (por ejemplo, "Ganó")                                                        |
 
 Todos los textos cumplen el contraste mínimo recomendado para leerse bien (4.5 a 1): el naranja `#C2410C` funciona tanto como texto sobre blanco como fondo de botón con texto blanco. Por eso se eligió un naranja un poco oscuro y no uno brillante. Los colores de los niveles de afluencia (RN07) los agrega F02 a este mismo archivo.
 
 **Tipografía:** la fuente del sistema (San Francisco en iPhone). No se instala ninguna fuente, se ve nativa y es lo más minimalista.
 
-| Nombre | Tamaño | Peso | Uso |
-|---|---|---|---|
-| `titulo` | 28 | `'700'` | Título grande de una pantalla (por ejemplo, el de "Iniciar sesión") |
-| `subtitulo` | 20 | `'600'` | Encabezados de sección |
-| `cuerpo` | 16 | `'400'` | Texto normal y campos |
-| `pequeno` | 13 | `'400'` | Texto de apoyo |
+| Nombre      | Tamaño | Peso    | Uso                                                                 |
+| ----------- | ------ | ------- | ------------------------------------------------------------------- |
+| `titulo`    | 28     | `'700'` | Título grande de una pantalla (por ejemplo, el de "Iniciar sesión") |
+| `subtitulo` | 20     | `'600'` | Encabezados de sección                                              |
+| `cuerpo`    | 16     | `'400'` | Texto normal y campos                                               |
+| `pequeno`   | 13     | `'400'` | Texto de apoyo                                                      |
 
 Los títulos de los headers usan el tamaño estándar de iOS con peso `'600'`.
 
 **Espaciado y bordes:** `espaciado` = 4, 8, 16, 24, 32 (`xs`, `sm`, `md`, `lg`, `xl`); `radio` = 12 para tarjetas y botones.
 
+**Iconos:** `tamanoIcono` = 28 para los iconos del header (el [+] de Historial). Los iconos de las tabs usan el tamaño que manda la barra.
+
 ### Headers consistentes
 
-- Un solo objeto `opcionesHeader` (en `src/navegacion/opcionesHeader.ts`) con `headerStyle`, `headerTintColor` y `headerTitleStyle`, igual que el `screenOptions` de la clase *Stack Navigator*:
+- Un solo objeto `opcionesHeader` (en `src/navegacion/opcionesHeader.ts`) con `headerStyle`, `headerTintColor` y `headerTitleStyle`, igual que el `screenOptions` de la clase _Stack Navigator_:
   - `headerStyle`: fondo `superficie` (blanco).
   - `headerTintColor`: `primario` (flecha de regreso y botones del header en naranja).
   - `headerTitleStyle`: color `texto`, peso `'600'`.
@@ -305,19 +336,19 @@ Los títulos de los headers usan el tamaño estándar de iOS con peso `'600'`.
 
 ### Títulos
 
-| Pantalla | Título | Cómo se pone |
-|---|---|---|
-| InicioSesion, Registro, tabs, TarjetaJugador | Fijo (ver tabla de pantallas) | `options={{ title: '…' }}` |
-| DetalleCancha | Nombre de la cancha del catálogo (RN05); mientras tanto, "Cancha" | `navigation.setOptions` dentro de `useLayoutEffect` en la pantalla (actividad 3 de la clase *Stack Navigator*) |
-| FormularioPartido | "Editar partido" si llega `idPartido`; si no, "Nuevo partido" | `options` como función que lee `route.params` (ejemplo *Header Personalizado* de la clase) |
+| Pantalla                                     | Título                                                            | Cómo se pone                                                                                                   |
+| -------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| InicioSesion, Registro, tabs, TarjetaJugador | Fijo (ver tabla de pantallas)                                     | `options={{ title: '…' }}`                                                                                     |
+| DetalleCancha                                | Nombre de la cancha del catálogo (RN05); mientras tanto, "Cancha" | `navigation.setOptions` dentro de `useLayoutEffect` en la pantalla (actividad 3 de la clase _Stack Navigator_) |
+| FormularioPartido                            | "Editar partido" si llega `idPartido`; si no, "Nuevo partido"     | `options` como función que lee `route.params` (ejemplo _Header Personalizado_ de la clase)                     |
 
 ### Botones del header
 
-| Pantalla | Botón | Lado | Acción |
-|---|---|---|---|
-| Historial | Icono "+" (Ionicons `add`) | Derecha | Abre "Nuevo partido" |
-| FormularioPartido | Texto "Cancelar" | Izquierda | `goBack()` |
-| TarjetaJugador | Texto "Cerrar" | Izquierda | `goBack()` |
+| Pantalla          | Botón                      | Lado      | Acción               |
+| ----------------- | -------------------------- | --------- | -------------------- |
+| Historial         | Icono "+" (Ionicons `add`) | Derecha   | Abre "Nuevo partido" |
+| FormularioPartido | Texto "Cancelar"           | Izquierda | `goBack()`           |
+| TarjetaJugador    | Texto "Cerrar"             | Izquierda | `goBack()`           |
 
 En iPhone, un modal no trae flecha de regreso; por eso los dos modales llevan su botón para cerrar. También se cierran deslizando hacia abajo (comportamiento normal de iOS).
 
@@ -326,15 +357,15 @@ En iPhone, un modal no trae flecha de regreso; por eso los dos modales llevan su
 - Iconos de **Ionicons** (`@expo/vector-icons`), que se instala con `npx expo install @expo/vector-icons`.
 - Cada tab usa la versión rellena cuando está activa y la de contorno cuando no:
 
-| Tab | Etiqueta | Icono activo | Icono inactivo |
-|---|---|---|---|
-| Mapa | Mapa | `map` | `map-outline` |
-| Historial | Historial | `list` | `list-outline` |
-| Perfil | Perfil | `person` | `person-outline` |
+| Tab       | Etiqueta  | Icono activo | Icono inactivo   |
+| --------- | --------- | ------------ | ---------------- |
+| Mapa      | Mapa      | `map`        | `map-outline`    |
+| Historial | Historial | `list`       | `list-outline`   |
+| Perfil    | Perfil    | `person`     | `person-outline` |
 
 - `tabBarActiveTintColor` = `primario`; `tabBarInactiveTintColor` = `inactivo`; fondo de la barra = `superficie` (igual que en la clase, pero con colores de `tema.ts`).
 - La tab inicial es **Mapa** (es la feature central, F03).
-- No se usan *badges* (no hay nada que contar en el MVP).
+- No se usan _badges_ (no hay nada que contar en el MVP).
 
 ---
 
@@ -363,7 +394,7 @@ src/
     └── VistaVacia.tsx               ← mensaje cuando una lista no tiene datos
 ```
 
-**Regla de la clase *Tab Navigator* (reto "La navegación amnésica"):** cada pantalla se importa desde su archivo en `src/pantallas/`. Nunca se declara una pantalla **dentro** de un navegador o de `App`, ni con `component={() => …}`. Si se hace, la pantalla se vuelve a crear en cada render y pierde su estado (scroll, texto escrito).
+**Regla de la clase _Tab Navigator_ (reto "La navegación amnésica"):** cada pantalla se importa desde su archivo en `src/pantallas/`. Nunca se declara una pantalla **dentro** de un navegador o de `App`, ni con `component={() => …}`. Si se hace, la pantalla se vuelve a crear en cada render y pierde su estado (scroll, texto escrito).
 
 ---
 
@@ -372,26 +403,26 @@ src/
 - **Parámetros tipados:** TypeScript no deja compilar un `navigate` con parámetros incorrectos (por ejemplo, `navigate('DetalleCancha')` sin `idCancha`, o `idCancha` como número).
 - **`idCancha` válido:** `PantallaDetalleCancha` busca el id en el catálogo de canchas (RN05). Si no existe → caso E1.
 - **`idPartido` válido:** `PantallaFormularioPartido` (modo editar) y `PantallaTarjetaJugador` buscan el id entre **los partidos del usuario** (RN10). Si no está → casos E2 y E3. Un id de un partido de otra persona se trata igual que uno inexistente.
-- **Pantallas protegidas:** las rutas con sesión solo existen si hay usuario (ver *Decisión de sesión*). Es una ayuda de experiencia de usuario; la seguridad real está en las reglas de Firestore (RN10), como dice la clase *Autenticación y Seguridad*.
+- **Pantallas protegidas:** las rutas con sesión solo existen si hay usuario (ver _Decisión de sesión_). Es una ayuda de experiencia de usuario; la seguridad real está en las reglas de Firestore (RN10), como dice la clase _Autenticación y Seguridad_.
 
 ---
 
 ## Casos de error y casos límite
 
-| ID | Situación | Comportamiento esperado |
-|---|---|---|
-| E1 | Se abre `DetalleCancha` con un `idCancha` que no está en el catálogo (por ejemplo, la cancha de prueba de RN05 ya no está en `.env`) | Header "Cancha". `VistaError` con "No encontramos esta cancha" y botón "Volver al mapa" (`goBack()`). Nunca pantalla en blanco ni cierre de la app. |
-| E2 | Se abre "Editar partido" con un `idPartido` que no existe (se borró desde otro teléfono, o no es del usuario, RN10) | `VistaError` con "Este partido ya no existe" y botón "Cerrar" (`goBack()`). No se muestra el formulario vacío. |
-| E3 | Se abre `TarjetaJugador` con un `idPartido` que no existe | Igual que E2. |
-| E4 | El usuario desliza hacia abajo el modal del formulario con datos escritos | El modal se cierra y los datos **se descartan sin preguntar** (comportamiento normal de iOS). Pedir confirmación es una mejora fuera del MVP. |
-| E5 | La sesión termina mientras hay un modal abierto (cerró sesión o Firebase invalidó la sesión) | El modal desaparece y se muestra "Iniciar sesión". Lo no guardado se pierde. |
-| E6 | Se abre la app **sin internet** y **con** sesión guardada | Firebase recupera la sesión guardada → se muestra Mapa. Se puede navegar por todas las pantallas; los datos que falten los manejan F02–F07 (Historial desde caché, RN11). |
-| E7 | Se abre la app **sin internet** y **sin** sesión | Se muestra "Iniciar sesión". El error al intentar entrar lo maneja F01. |
-| E8 | Se abre el formulario o se intenta crear/editar **sin internet** | La navegación no lo bloquea. F05/F06 deciden si el botón se deshabilita o se muestra error (RN11: crear y editar requieren conexión). |
-| E9 | Permisos de ubicación o cámara negados | No afectan la navegación: todas las pantallas abren. Mapa (F02) y Tarjeta (F07) muestran su explicación; nunca se queda una pantalla en blanco. |
-| E10 | Doble toque rápido en un marcador o en un partido | Se abre **una sola** pantalla (se usa `navigate`, no `push`). |
-| E11 | El usuario cambia de tab y regresa | La tab conserva su estado (por ejemplo, la posición del scroll en Historial). |
-| E12 | Firebase tarda en responder al revisar la sesión | Se mantiene `VistaCargando`; no aparece el login por un instante y luego la app (sin "parpadeo"). |
+| ID  | Situación                                                                                                                            | Comportamiento esperado                                                                                                                                                   |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| E1  | Se abre `DetalleCancha` con un `idCancha` que no está en el catálogo (por ejemplo, la cancha de prueba de RN05 ya no está en `.env`) | Header "Cancha". `VistaError` con "No encontramos esta cancha" y botón "Volver al mapa" (`goBack()`). Nunca pantalla en blanco ni cierre de la app.                       |
+| E2  | Se abre "Editar partido" con un `idPartido` que no existe (se borró desde otro teléfono, o no es del usuario, RN10)                  | `VistaError` con "Este partido ya no existe" y botón "Cerrar" (`goBack()`). No se muestra el formulario vacío.                                                            |
+| E3  | Se abre `TarjetaJugador` con un `idPartido` que no existe                                                                            | Igual que E2.                                                                                                                                                             |
+| E4  | El usuario desliza hacia abajo el modal del formulario con datos escritos                                                            | El modal se cierra y los datos **se descartan sin preguntar** (comportamiento normal de iOS). Pedir confirmación es una mejora fuera del MVP.                             |
+| E5  | La sesión termina mientras hay un modal abierto (cerró sesión o Firebase invalidó la sesión)                                         | El modal desaparece y se muestra "Iniciar sesión". Lo no guardado se pierde.                                                                                              |
+| E6  | Se abre la app **sin internet** y **con** sesión guardada                                                                            | Firebase recupera la sesión guardada → se muestra Mapa. Se puede navegar por todas las pantallas; los datos que falten los manejan F02–F07 (Historial desde caché, RN11). |
+| E7  | Se abre la app **sin internet** y **sin** sesión                                                                                     | Se muestra "Iniciar sesión". El error al intentar entrar lo maneja F01.                                                                                                   |
+| E8  | Se abre el formulario o se intenta crear/editar **sin internet**                                                                     | La navegación no lo bloquea. F05/F06 deciden si el botón se deshabilita o se muestra error (RN11: crear y editar requieren conexión).                                     |
+| E9  | Permisos de ubicación o cámara negados                                                                                               | No afectan la navegación: todas las pantallas abren. Mapa (F02) y Tarjeta (F07) muestran su explicación; nunca se queda una pantalla en blanco.                           |
+| E10 | Doble toque rápido en un marcador o en un partido                                                                                    | Se abre **una sola** pantalla (se usa `navigate`, no `push`).                                                                                                             |
+| E11 | El usuario cambia de tab y regresa                                                                                                   | La tab conserva su estado (por ejemplo, la posición del scroll en Historial).                                                                                             |
+| E12 | Firebase tarda en responder al revisar la sesión                                                                                     | Se mantiene `VistaCargando`; no aparece el login por un instante y luego la app (sin "parpadeo").                                                                         |
 
 ---
 
@@ -453,14 +484,14 @@ Probados en el iPhone con Expo Go.
 Cada task ≈ un commit.
 
 - [x] **N1 — Instalar dependencias de navegación.** `npx expo install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs react-native-screens react-native-safe-area-context`. Son los mismos paquetes de la clase, pero con `npx expo install` en lugar de `npm install`, para que Expo elija versiones compatibles con Expo Go.
-- [x] **N2 — Crear `src/constantes/tema.ts` y `opcionesHeader.ts`.** `tema.ts` con la paleta, tipografía, espaciado y radio de la sección *Paleta y tipografía*; `opcionesHeader.ts` con el estilo de header de esta spec.
+- [x] **N2 — Crear `src/constantes/tema.ts` y `opcionesHeader.ts`.** `tema.ts` con la paleta, tipografía, espaciado y radio de la sección _Paleta y tipografía_; `opcionesHeader.ts` con el estilo de header de esta spec.
 - [x] **N3 — Crear `src/navegacion/tipos.ts`** con `ParametrosStackRaiz`, `ParametrosTabs` y las props de las 8 pantallas.
 - [x] **N4 — Crear las 8 pantallas provisionales** en `src/pantallas/` (solo un texto con su nombre, tipadas con sus props) y `VistaCargando` en `src/componentes/`.
 - [x] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
 - [x] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
 - [x] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales.
-- [ ] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). *Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión).*
-- [ ] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. *Requiere Jest configurado.* El simulador de `servicioSesion` debe traer `escucharCambiosDeSesion: jest.fn(() => () => {})`: desde F01.6, `NavegadorRaiz` la llama al montarse y, con el simulador vacío (`() => ({})`), el test truena. Como nunca avisa, no cambia el estado que el test le puso al store.
+- [ ] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). _Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión)._
+- [ ] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. _Requiere Jest configurado._ El simulador de `servicioSesion` debe traer `escucharCambiosDeSesion: jest.fn(() => () => {})`: desde F01.6, `NavegadorRaiz` la llama al montarse y, con el simulador vacío (`() => ({})`), el test truena. Como nunca avisa, no cambia el estado que el test le puso al store.
 - [ ] **N10 — Probar los criterios de aceptación en el iPhone** y marcar los que ya se pueden probar. Los que dependen de otras features se marcan cuando esas features estén listas.
 
 ### Tasks que se implementan en otras features
@@ -477,13 +508,13 @@ Esta spec define el comportamiento, pero el código va con la feature que tiene 
 
 ## Diferencias con lo visto en clase (para la defensa)
 
-| En clase | En HoopsMap | Por qué |
-|---|---|---|
-| `npm install` | `npx expo install` | Elige versiones de los paquetes nativos compatibles con Expo Go. |
-| `RootStackParamList`, `TabParamList` | `ParametrosStackRaiz`, `ParametrosTabs` | Regla de nombres en español de 00-project.md; el patrón es el mismo. |
-| Iconos con emoji en `<Text>` | Ionicons de `@expo/vector-icons` | Cambian de color con la tab activa; se instalan con `npx expo install`. |
-| `navigation: any` en pantallas de tab | `CompositeScreenProps` | El proyecto prohíbe `any`; el profesor pide revisar que `navigate` no sea `as any`. |
-| "Cerrar sesión" navega a Login | La navegación cambia sola según el store | Patrón de autenticación recomendado por React Navigation; impide regresar al login con el gesto. |
+| En clase                              | En HoopsMap                              | Por qué                                                                                          |
+| ------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `npm install`                         | `npx expo install`                       | Elige versiones de los paquetes nativos compatibles con Expo Go.                                 |
+| `RootStackParamList`, `TabParamList`  | `ParametrosStackRaiz`, `ParametrosTabs`  | Regla de nombres en español de 00-project.md; el patrón es el mismo.                             |
+| Iconos con emoji en `<Text>`          | Ionicons de `@expo/vector-icons`         | Cambian de color con la tab activa; se instalan con `npx expo install`.                          |
+| `navigation: any` en pantallas de tab | `CompositeScreenProps`                   | El proyecto prohíbe `any`; el profesor pide revisar que `navigate` no sea `as any`.              |
+| "Cerrar sesión" navega a Login        | La navegación cambia sola según el store | Patrón de autenticación recomendado por React Navigation; impide regresar al login con el gesto. |
 
 ---
 

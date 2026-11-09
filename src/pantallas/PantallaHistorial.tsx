@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import { colores, espaciado, radio, tipografia } from '../constantes/tema';
+import { colores, espaciado, radio, tamanoIcono, tipografia } from '../constantes/tema';
 import type { PropsPantallaHistorial } from '../navegacion/tipos';
 
 // PROVISIONAL (N7): id falso para probar los modales; se quita cuando F06 ponga la lista real
@@ -22,8 +22,7 @@ export const PantallaHistorial: FC<PropsPantallaHistorial> = ({ navigation }) =>
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('FormularioPartido')}>
-          {/* tema.ts no tiene tamaño de icono: se usa el del título (28) */}
-          <Ionicons name="add" size={tipografia.titulo.fontSize} color={colores.primario} />
+          <Ionicons name="add" size={tamanoIcono} color={colores.primario} />
         </TouchableOpacity>
       ),
     });

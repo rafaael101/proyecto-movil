@@ -14,25 +14,25 @@ Guía de consulta para escribir el código de HoopsMap (a mano o con Claude Code
 2. **Spec primero.** Nada se implementa sin su spec en `specs/`. Una task de la spec ≈ un commit.
 3. **Una responsabilidad por archivo.** Una pantalla, un componente, un servicio, un store.
 4. **Ninguna pantalla en blanco.** Toda pantalla con datos contempla cargando, error, vacío y datos; los permisos negados y la falta de internet tienen su mensaje.
-5. **Como en clase.** Si nos apartamos de lo que enseñó el profesor, se deja un comentario que dice por qué (igual que la tabla *Diferencias con lo visto en clase* de las specs).
+5. **Como en clase.** Si nos apartamos de lo que enseñó el profesor, se deja un comentario que dice por qué (igual que la tabla _Diferencias con lo visto en clase_ de las specs).
 6. **El mínimo de la rúbrica, sin extras.** Nada que no esté en `00-project.md`.
 
 ---
 
 ## 1. Idioma
 
-| Qué | Idioma | Ejemplo |
-|---|---|---|
+| Qué                                                                                                  | Idioma                       | Ejemplo                                                    |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------- |
 | Lo que nombramos (variables, funciones, tipos, componentes, archivos, carpetas, variables de `.env`) | Español **sin acentos ni ñ** | `calcularPromedios`, `PantallaMapa.tsx`, `anio`, `esDueno` |
-| APIs de librerías | Inglés (no se tocan) | `useState`, `navigate`, `onPress`, `setDoc` |
-| Textos que ve el usuario | Español **con** acentos y ñ | `"Iniciar sesión"`, `"Año"` |
-| Comentarios, specs, documentación | Español | `// RN03: setDoc reemplaza el check-in anterior` |
-| Descripciones de tests (`describe`, `it`) | Español | `it('devuelve 0 si el check-in ya venció')` |
-| Mensajes de commit | Español | `agrega tipos de las entidades (D3)` |
+| APIs de librerías                                                                                    | Inglés (no se tocan)         | `useState`, `navigate`, `onPress`, `setDoc`                |
+| Textos que ve el usuario                                                                             | Español **con** acentos y ñ  | `"Iniciar sesión"`, `"Año"`                                |
+| Comentarios, specs, documentación                                                                    | Español                      | `// RN03: setDoc reemplaza el check-in anterior`           |
+| Descripciones de tests (`describe`, `it`)                                                            | Español                      | `it('devuelve 0 si el check-in ya venció')`                |
+| Mensajes de commit                                                                                   | Español                      | `agrega tipos de las entidades (D3)`                       |
 
 "Check-in" se queda como en las specs: `CheckIn`, `crearCheckIn`, `CHECK_IN_DURACION_MINUTOS`.
 
-**Excepción para las specs:** la carpeta `specs/` y sus archivos conservan los nombres de *Estructura de specs* de 00-project (`00-project.md`, `01-navigation.md`, `F03-check-in.md`). Lo que va dentro de cada spec sí va en español.
+**Excepción para las specs:** la carpeta `specs/` y sus archivos conservan los nombres de _Estructura de specs_ de 00-project (`00-project.md`, `01-navigation.md`, `F03-check-in.md`). Lo que va dentro de cada spec sí va en español.
 La carpeta `docs/` y este archivo (`coding-standards.md`) también conservan su nombre.
 
 ---
@@ -64,17 +64,17 @@ HoopsMap/
 
 > **Excepciones de nombre:** `hooks/` y `stores/` conservan la palabra de la herramienta, igual que el prefijo `use`. Son vocabulario de React y Zustand (como `navigate`), no nombres que inventamos. `CLAUDE.md` se llama así porque es el nombre que busca Claude Code. Los archivos de `specs/` tienen su propia excepción (sección 1).
 
-| Carpeta | Qué va | Ejemplos (de las specs) | Qué **no** va |
-|---|---|---|---|
-| `navegacion/` | Navegadores, `tipos.ts` y `opcionesHeader.ts` | `NavegadorRaiz.tsx`, `NavegadorTabs.tsx` | Pantallas declaradas dentro del navegador |
-| `pantallas/` | Una pantalla: lee stores, arma componentes, navega, maneja los 4 estados | `PantallaMapa.tsx`, `PantallaFormularioPartido.tsx` | Llamadas a servicios o a Firebase |
-| `componentes/` | UI que recibe datos por props y avisa con callbacks | `VistaCargando.tsx`, `VistaError.tsx`, `VistaVacia.tsx` | Stores, servicios, `navigate` |
-| `hooks/` | Lógica reutilizable con estado **local** | `useFormulario.ts` | Estado que comparten varias pantallas (eso es un store) |
-| `stores/` | Un store de Zustand por tema | `useStoreSesion.ts` (F01) | Componentes o imports de Firebase |
-| `servicios/` | Firebase, AsyncStorage, NetInfo y módulos nativos | `firebase.ts`, `servicioConexion.ts`, `servicioCheckIns.ts`, `servicioPartidos.ts`, `servicioCache.ts` | Textos para el usuario, estado |
-| `utilidades/` | Funciones **puras**: mismo resultado para los mismos datos | `fechas.ts`, `errores.ts`, `validacionesPartido.ts`, `afluencia.ts`, `promedios.ts`, `canchas.ts` | Firebase, AsyncStorage, `new Date()` adentro (la fecha llega como parámetro) |
-| `constantes/` | Valores fijos | `tema.ts`, `configuracion.ts`, `canchas.ts` | Funciones con lógica |
-| `tipos/` | Tipos de las entidades | `cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts` | Tipos de navegación (van en `navegacion/tipos.ts`) o de Firebase |
+| Carpeta        | Qué va                                                                   | Ejemplos (de las specs)                                                                                | Qué **no** va                                                                |
+| -------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| `navegacion/`  | Navegadores, `tipos.ts` y `opcionesHeader.ts`                            | `NavegadorRaiz.tsx`, `NavegadorTabs.tsx`                                                               | Pantallas declaradas dentro del navegador                                    |
+| `pantallas/`   | Una pantalla: lee stores, arma componentes, navega, maneja los 4 estados | `PantallaMapa.tsx`, `PantallaFormularioPartido.tsx`                                                    | Llamadas a servicios o a Firebase                                            |
+| `componentes/` | UI que recibe datos por props y avisa con callbacks                      | `VistaCargando.tsx`, `VistaError.tsx`, `VistaVacia.tsx`                                                | Stores, servicios, `navigate`                                                |
+| `hooks/`       | Lógica reutilizable con estado **local**                                 | `useFormulario.ts`                                                                                     | Estado que comparten varias pantallas (eso es un store)                      |
+| `stores/`      | Un store de Zustand por tema                                             | `useStoreSesion.ts` (F01)                                                                              | Componentes o imports de Firebase                                            |
+| `servicios/`   | Firebase, AsyncStorage, NetInfo y módulos nativos                        | `firebase.ts`, `servicioConexion.ts`, `servicioCheckIns.ts`, `servicioPartidos.ts`, `servicioCache.ts` | Textos para el usuario, estado                                               |
+| `utilidades/`  | Funciones **puras**: mismo resultado para los mismos datos               | `fechas.ts`, `errores.ts`, `validacionesPartido.ts`, `afluencia.ts`, `promedios.ts`, `canchas.ts`      | Firebase, AsyncStorage, `new Date()` adentro (la fecha llega como parámetro) |
+| `constantes/`  | Valores fijos                                                            | `tema.ts`, `configuracion.ts`, `canchas.ts`                                                            | Funciones con lógica                                                         |
+| `tipos/`       | Tipos de las entidades                                                   | `cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts`                                                  | Tipos de navegación (van en `navegacion/tipos.ts`) o de Firebase             |
 
 ---
 
@@ -84,39 +84,39 @@ HoopsMap/
 
 **Regla general:** si el archivo exporta una cosa principal, se llama igual que ella. Si exporta varias funciones, se llama por su tema.
 
-| Tipo de archivo | Convención | Ejemplo |
-|---|---|---|
-| Pantalla | `Pantalla` + nombre, PascalCase | `PantallaHistorial.tsx` |
-| Componente | PascalCase, igual que el componente | `VistaError.tsx`, `TarjetaPartido.tsx` |
-| Navegador | `Navegador` + nombre | `NavegadorTabs.tsx` |
-| Hook | `use` + qué hace | `useFormulario.ts` |
-| Store | `useStore` + tema | `useStoreSesion.ts` |
-| Servicio | `servicio` + tema, camelCase | `servicioPartidos.ts` |
-| Utilidades | tema en camelCase | `fechas.ts`, `validacionesPartido.ts` |
-| Tipos | entidad en camelCase | `partido.ts`, `checkIn.ts` |
-| Test | mismo nombre + `.test` | `promedios.test.ts`, `NavegadorRaiz.test.tsx` |
-| Spec | El de *Estructura de specs* de 00-project (excepción, sección 1) | `02-data-model.md`, `F05-game-crud.md` |
+| Tipo de archivo | Convención                                                       | Ejemplo                                       |
+| --------------- | ---------------------------------------------------------------- | --------------------------------------------- |
+| Pantalla        | `Pantalla` + nombre, PascalCase                                  | `PantallaHistorial.tsx`                       |
+| Componente      | PascalCase, igual que el componente                              | `VistaError.tsx`, `TarjetaPartido.tsx`        |
+| Navegador       | `Navegador` + nombre                                             | `NavegadorTabs.tsx`                           |
+| Hook            | `use` + qué hace                                                 | `useFormulario.ts`                            |
+| Store           | `useStore` + tema                                                | `useStoreSesion.ts`                           |
+| Servicio        | `servicio` + tema, camelCase                                     | `servicioPartidos.ts`                         |
+| Utilidades      | tema en camelCase                                                | `fechas.ts`, `validacionesPartido.ts`         |
+| Tipos           | entidad en camelCase                                             | `partido.ts`, `checkIn.ts`                    |
+| Test            | mismo nombre + `.test`                                           | `promedios.test.ts`, `NavegadorRaiz.test.tsx` |
+| Spec            | El de _Estructura de specs_ de 00-project (excepción, sección 1) | `02-data-model.md`, `F05-game-crud.md`        |
 
 `.tsx` solo si el archivo tiene JSX; si no, `.ts`.
 
 ### 3.2 Dentro del código
 
-| Qué | Convención | Ejemplo |
-|---|---|---|
-| Componente / pantalla | PascalCase | `PantallaMapa`, `VistaError` |
-| Props | `Props` + componente | `PropsVistaError`, `PropsPantallaMapa` |
-| Tipo | PascalCase, sustantivo | `Partido`, `ResumenAfluencia` |
-| Función | verbo en infinitivo + objeto | `crearCheckIn`, `calcularPromedios`, `validarFecha` |
-| Manejador de evento (en la pantalla) | `manejar` + acción | `manejarGuardar`, `manejarCerrarSesion` |
-| Prop de callback (en un componente) | `al` + evento | `alPresionar`, `alPresionarBoton` |
-| Booleano | `es` / `esta` / `hay` / `puede` / `tiene`, o gerundio si es algo en curso | `estaActivo`, `hayMas`, `esDueno`, `cargando`, `revisandoSesion` |
-| Id | `id` + entidad | `idCancha`, `idUsuario`, `idPartido` |
-| Hook | `use` + qué hace (React lo exige) | `useFormulario` |
-| Store | `useStore` + tema | `useStoreSesion` |
-| Tipo del estado de un store | `Estado` + tema | `EstadoSesion` |
-| Constante de configuración | `MAYUSCULAS_CON_GUION_BAJO` | `PARTIDOS_POR_PAGINA` |
-| Objeto de estilos | `estilos` | `const estilos = StyleSheet.create({...})` |
-| Ruta de navegación | PascalCase, sin "Pantalla" | `'DetalleCancha'`, `'Historial'` |
+| Qué                                  | Convención                                                                | Ejemplo                                                          |
+| ------------------------------------ | ------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Componente / pantalla                | PascalCase                                                                | `PantallaMapa`, `VistaError`                                     |
+| Props                                | `Props` + componente                                                      | `PropsVistaError`, `PropsPantallaMapa`                           |
+| Tipo                                 | PascalCase, sustantivo                                                    | `Partido`, `ResumenAfluencia`                                    |
+| Función                              | verbo en infinitivo + objeto                                              | `crearCheckIn`, `calcularPromedios`, `validarFecha`              |
+| Manejador de evento (en la pantalla) | `manejar` + acción                                                        | `manejarGuardar`, `manejarCerrarSesion`                          |
+| Prop de callback (en un componente)  | `al` + evento                                                             | `alPresionar`, `alPresionarBoton`                                |
+| Booleano                             | `es` / `esta` / `hay` / `puede` / `tiene`, o gerundio si es algo en curso | `estaActivo`, `hayMas`, `esDueno`, `cargando`, `revisandoSesion` |
+| Id                                   | `id` + entidad                                                            | `idCancha`, `idUsuario`, `idPartido`                             |
+| Hook                                 | `use` + qué hace (React lo exige)                                         | `useFormulario`                                                  |
+| Store                                | `useStore` + tema                                                         | `useStoreSesion`                                                 |
+| Tipo del estado de un store          | `Estado` + tema                                                           | `EstadoSesion`                                                   |
+| Constante de configuración           | `MAYUSCULAS_CON_GUION_BAJO`                                               | `PARTIDOS_POR_PAGINA`                                            |
+| Objeto de estilos                    | `estilos`                                                                 | `const estilos = StyleSheet.create({...})`                       |
+| Ruta de navegación                   | PascalCase, sin "Pantalla"                                                | `'DetalleCancha'`, `'Historial'`                                 |
 
 ```ts
 // ✅ Así sí
@@ -126,12 +126,12 @@ function obtenerNivelAfluencia(jugadores: number): NivelAfluencia {}
 const manejarGuardar = () => {};
 
 // ❌ Así no
-const data = [];                 // inglés y no dice qué es
-const isLoading = true;          // inglés → cargando
-function getGames() {}           // inglés → obtenerPartidos
-const año = 2026;                // ñ → anio
-type IPartido = {};              // sin prefijos → Partido
-const calcProm = () => {};       // abreviatura → calcularPromedios
+const data = []; // inglés y no dice qué es
+const isLoading = true; // inglés → cargando
+function getGames() {} // inglés → obtenerPartidos
+const año = 2026; // ñ → anio
+type IPartido = {}; // sin prefijos → Partido
+const calcProm = () => {}; // abreviatura → calcularPromedios
 ```
 
 ---
@@ -147,14 +147,14 @@ Pantalla ──usa──► Store (Zustand) ──llama──► Servicio ──
 Cualquier capa puede usar: utilidades (puras), constantes y tipos.
 ```
 
-| Capa | Puede importar | **No** puede importar |
-|---|---|---|
-| Pantallas | componentes, hooks, stores, utilidades, constantes, tipos | servicios, `firebase/*`, AsyncStorage |
-| Componentes | otros componentes, constantes, tipos, utilidades | stores, servicios, navegación |
-| Hooks | utilidades, constantes, tipos; un servicio solo si la spec de la feature lo dice | componentes, pantallas, Firebase directo |
-| Stores | servicios, utilidades, constantes, tipos | componentes, pantallas, Firebase directo |
-| Servicios | `firebase/*`, AsyncStorage, NetInfo, módulos `expo-*`, utilidades, constantes, tipos | stores, pantallas, componentes |
-| Utilidades | constantes, tipos | todo lo demás |
+| Capa        | Puede importar                                                                       | **No** puede importar                    |
+| ----------- | ------------------------------------------------------------------------------------ | ---------------------------------------- |
+| Pantallas   | componentes, hooks, stores, utilidades, constantes, tipos                            | servicios, `firebase/*`, AsyncStorage    |
+| Componentes | otros componentes, constantes, tipos, utilidades                                     | stores, servicios, navegación            |
+| Hooks       | utilidades, constantes, tipos; un servicio solo si la spec de la feature lo dice     | componentes, pantallas, Firebase directo |
+| Stores      | servicios, utilidades, constantes, tipos                                             | componentes, pantallas, Firebase directo |
+| Servicios   | `firebase/*`, AsyncStorage, NetInfo, módulos `expo-*`, utilidades, constantes, tipos | stores, pantallas, componentes           |
+| Utilidades  | constantes, tipos                                                                    | todo lo demás                            |
 
 **Excepciones (y solo estas):**
 
@@ -211,15 +211,15 @@ navigation.navigate('DetalleCancha' as any);     // apaga justo la revisión que
 navigation.navigate('DetalleCancha', { idCancha: cancha.idCancha });
 
 // ❌ Así no
-navigation.navigate('DetalleCancha', { cancha });   // objeto completo: queda viejo si cambia
-navigation.push('DetalleCancha', { idCancha });     // doble toque abre dos pantallas (01-navigation E10)
+navigation.navigate('DetalleCancha', { cancha }); // objeto completo: queda viejo si cambia
+navigation.push('DetalleCancha', { idCancha }); // doble toque abre dos pantallas (01-navigation E10)
 ```
 
 ---
 
 ## 6. Componentes y pantallas
 
-- **Componentes funcionales con `FC`**, como en la clase *TypeScript Básico*, y **exportación con nombre**. Única excepción: `App.tsx` usa `export default`, como en la plantilla.
+- **Componentes funcionales con `FC`**, como en la clase _TypeScript Básico_, y **exportación con nombre**. Única excepción: `App.tsx` usa `export default`, como en la plantilla.
 - **Props con un `type`** arriba del componente, en el mismo archivo.
 - **Todos los hooks arriba**, antes de cualquier `return` (regla de los hooks de React).
 - **Condiciones en JSX siempre booleanas:** `{lista.length > 0 && ...}`, no `{lista.length && ...}` (un `0` se dibujaría en pantalla).
@@ -244,7 +244,11 @@ type PropsVistaError = {
 };
 
 // Pantalla de error compartida: mismo aspecto en toda la app
-export const VistaError: FC<PropsVistaError> = ({ mensaje, textoBoton = 'Reintentar', alPresionarBoton }) => {
+export const VistaError: FC<PropsVistaError> = ({
+  mensaje,
+  textoBoton = 'Reintentar',
+  alPresionarBoton,
+}) => {
   return (
     <View style={estilos.contenedor}>
       <Text style={estilos.mensaje}>{mensaje}</Text>
@@ -296,7 +300,7 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
 
 ## 7. Tema y estilos
 
-Todo color, tamaño de letra, espaciado y radio sale de `src/constantes/tema.ts`. Los valores y su uso están en *Paleta y tipografía* de 01-navigation; los colores de afluencia (RN07) los agrega F02.
+Todo color, tamaño de letra, espaciado y radio sale de `src/constantes/tema.ts`. Los valores y su uso están en _Paleta y tipografía_ de 01-navigation; los colores de afluencia (RN07) los agrega F02.
 
 ```ts
 // src/constantes/tema.ts
@@ -324,6 +328,8 @@ export const tipografia = {
 export const espaciado = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 } as const;
 
 export const radio = 12;
+
+export const tamanoIcono = 28; // iconos del header (01-navigation)
 ```
 
 **Reglas**
@@ -332,7 +338,7 @@ export const radio = 12;
 - Estilo en línea (`style={{ ... }}`) solo para valores que cambian en tiempo de ejecución, por ejemplo el color de un nivel de afluencia.
 - Números permitidos fuera del tema: los de layout (`flex: 1`, `borderWidth: 1`, porcentajes). Todo lo que sea una decisión de diseño va al tema.
 - Fuente del sistema; no se instalan fuentes.
-- Nada de medidas fijas de pantalla (`width: 390`): se usa Flexbox, como en la clase *StyleSheet y Flexbox*.
+- Nada de medidas fijas de pantalla (`width: 390`): se usa Flexbox, como en la clase _StyleSheet y Flexbox_.
 
 ```ts
 // ✅ Así sí
@@ -423,13 +429,13 @@ return <FlatList data={partidos} /* ... */ />;
 
 ## 10. Errores, conexión y permisos
 
-| Capa | Qué hace con los errores |
-|---|---|
-| Servicio | Llama a `verificarConexion()` antes de Firebase y **lanza** el error. No muestra nada |
-| Store | `try/catch`: `console.error` con el detalle técnico y `obtenerMensajeError(error)` para el usuario |
+| Capa     | Qué hace con los errores                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| Servicio | Llama a `verificarConexion()` antes de Firebase y **lanza** el error. No muestra nada                        |
+| Store    | `try/catch`: `console.error` con el detalle técnico y `obtenerMensajeError(error)` para el usuario           |
 | Pantalla | Muestra `mensajeError` (`VistaError`, texto en `colores.error` o `Alert.alert`, según la spec de la feature) |
 
-- Los mensajes son los de la tabla *Errores* de 02-data-model. El usuario **nunca** ve textos técnicos como `permission-denied`.
+- Los mensajes son los de la tabla _Errores_ de 02-data-model. El usuario **nunca** ve textos técnicos como `permission-denied`.
 - `console.error` sí; `console.log` no se queda en el código.
 - **Permisos de ubicación y cámara:** se piden desde el servicio correspondiente. Si se niegan, la pantalla explica para qué sirve el permiso y cómo activarlo en Ajustes, y deshabilita lo que dependa de él. La app nunca se cierra ni se queda en blanco (01-navigation E9; 02-data-model E20–E21).
 
@@ -449,7 +455,7 @@ return <FlatList data={partidos} /* ... */ />;
 
 ## 11. Formularios
 
-Como en las clases *Validación de Formularios* y *Custom Hook de Formulario*: **validaciones manuales** + un **custom hook** que maneja valores, errores, campos tocados y envío. No se usan Formik ni Yup.
+Como en las clases _Validación de Formularios_ y _Custom Hook de Formulario_: **validaciones manuales** + un **custom hook** que maneja valores, errores, campos tocados y envío. No se usan Formik ni Yup.
 
 ### Validaciones: funciones puras
 
@@ -464,16 +470,16 @@ Como en las clases *Validación de Formularios* y *Custom Hook de Formulario*: *
 
 Es el `useForm` de la clase con nombres en español y **sin `any`**:
 
-| Devuelve | Equivale en clase a | Para qué |
-|---|---|---|
-| `valores` | `values` | Lo que escribió el usuario |
-| `errores` | `errors` | Un mensaje por campo con error |
-| `tocados` | `touched` | Campos que el usuario ya dejó |
-| `enviando` | `isSubmitting` | Deshabilita botón y campos mientras se guarda |
-| `manejarCambio(campo)` | `handleChange` | Para `onChangeText` |
-| `manejarSalida(campo)` | `handleBlur` | Para `onBlur`: marca tocado y valida |
-| `manejarEnvio()` | `handleSubmit` | Marca todo como tocado, valida y, si no hay errores, llama a `alEnviar` |
-| `reiniciar()` | `reset` | Vuelve a los valores iniciales |
+| Devuelve               | Equivale en clase a | Para qué                                                                |
+| ---------------------- | ------------------- | ----------------------------------------------------------------------- |
+| `valores`              | `values`            | Lo que escribió el usuario                                              |
+| `errores`              | `errors`            | Un mensaje por campo con error                                          |
+| `tocados`              | `touched`           | Campos que el usuario ya dejó                                           |
+| `enviando`             | `isSubmitting`      | Deshabilita botón y campos mientras se guarda                           |
+| `manejarCambio(campo)` | `handleChange`      | Para `onChangeText`                                                     |
+| `manejarSalida(campo)` | `handleBlur`        | Para `onBlur`: marca tocado y valida                                    |
+| `manejarEnvio()`       | `handleSubmit`      | Marca todo como tocado, valida y, si no hay errores, llama a `alEnviar` |
+| `reiniciar()`          | `reset`             | Vuelve a los valores iniciales                                          |
 
 ```ts
 type OpcionesFormulario<T> = {
@@ -482,13 +488,19 @@ type OpcionesFormulario<T> = {
   alEnviar: (valores: T) => Promise<void>;
 };
 
-export function useFormulario<T extends object>({ valoresIniciales, validar, alEnviar }: OpcionesFormulario<T>) {
+export function useFormulario<T extends object>({
+  valoresIniciales,
+  validar,
+  alEnviar,
+}: OpcionesFormulario<T>) {
   // ... igual que en clase
 
   // T[K] = "el tipo de ese campo". Así no hace falta any (la clase usa value: any)
-  const manejarCambio = <K extends keyof T>(campo: K) => (valor: T[K]) => {
-    // ...
-  };
+  const manejarCambio =
+    <K extends keyof T>(campo: K) =>
+    (valor: T[K]) => {
+      // ...
+    };
   // ...
 }
 ```
@@ -498,7 +510,7 @@ export function useFormulario<T extends object>({ valoresIniciales, validar, alE
 - El error de un campo se muestra **solo si está tocado** (como en clase).
 - El botón de guardar se deshabilita con `enviando`. Esto evita guardar dos veces con un doble toque (02-data-model E10).
 - `alEnviar` llama a la acción del store, nunca al servicio directo.
-- El formulario va dentro de `KeyboardAvoidingView` con `behavior="padding"` en iOS (clase *Custom Hook de Formulario*).
+- El formulario va dentro de `KeyboardAvoidingView` con `behavior="padding"` en iOS (clase _Custom Hook de Formulario_).
 - Lo que escribe el usuario siempre es texto; se convierte a número **después** de validar (`convertirAPartido`, 02-data-model).
 
 ```tsx
@@ -529,10 +541,10 @@ const formulario = useFormulario<ValoresFormularioPartido>({
 
 ### Qué se prueba (12 unitarios + 4 de integración)
 
-| Tipo | Qué | De dónde salen |
-|---|---|---|
-| Unitario | Funciones puras de `utilidades/` y `servicioCache` con AsyncStorage simulado | CAD16–CAD27 de 02-data-model (12 criterios, mínimo un `it` cada uno) |
-| Integración | Una pantalla o navegador con stores reales y **servicios simulados** | 2: N9 de 01-navigation y F01.14 de F01. Los otros 2 los declara la spec de la feature que los aporte |
+| Tipo        | Qué                                                                          | De dónde salen                                                                                       |
+| ----------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Unitario    | Funciones puras de `utilidades/` y `servicioCache` con AsyncStorage simulado | CAD16–CAD27 de 02-data-model (12 criterios, mínimo un `it` cada uno)                                 |
+| Integración | Una pantalla o navegador con stores reales y **servicios simulados**         | 2: N9 de 01-navigation y F01.14 de F01. Los otros 2 los declara la spec de la feature que los aporte |
 
 Las reglas de Firestore **no** se prueban con Jest: se prueban en el Rules Playground de la consola (CAD01–CAD05).
 
@@ -590,12 +602,12 @@ describe('Integración — NavegadorRaiz', () => {
 
 ### Cómo simular
 
-| Qué | Cómo |
-|---|---|
-| Un servicio | `jest.mock('../servicios/servicioX', () => ({ funcion: jest.fn() }))` **con fábrica**, para que nunca se cargue Firebase. Se programa la respuesta con `jest.mocked(funcion).mockResolvedValue(...)` (o `mockRejectedValue` para probar errores) |
-| Un store | `useStoreX.setState({...})` en cada test, porque el store guarda su estado entre tests |
-| AsyncStorage | Una vez en `jest.setup.ts` con el simulador oficial: `jest.mock('@react-native-async-storage/async-storage', () => require('@react-native-async-storage/async-storage/jest/async-storage-mock'))` |
-| La fecha | Se pasa como parámetro (`hoy`, `ahora`); no hace falta simular el reloj |
+| Qué          | Cómo                                                                                                                                                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Un servicio  | `jest.mock('../servicios/servicioX', () => ({ funcion: jest.fn() }))` **con fábrica**, para que nunca se cargue Firebase. Se programa la respuesta con `jest.mocked(funcion).mockResolvedValue(...)` (o `mockRejectedValue` para probar errores) |
+| Un store     | `useStoreX.setState({...})` en cada test, porque el store guarda su estado entre tests                                                                                                                                                           |
+| AsyncStorage | Una vez en `jest.setup.ts` con el simulador oficial: `jest.mock('@react-native-async-storage/async-storage', () => require('@react-native-async-storage/async-storage/jest/async-storage-mock'))`                                                |
+| La fecha     | Se pasa como parámetro (`hoy`, `ahora`); no hace falta simular el reloj                                                                                                                                                                          |
 
 ---
 
@@ -632,21 +644,21 @@ contador = contador + 1;
 ## 14. Dependencias
 
 - **Siempre con `npx expo install <paquete>`**: elige versiones compatibles con Expo Go. Las de desarrollo: `npx expo install <paquete> -- --save-dev`.
-- **Solo las que aparecen en *Decisiones técnicas* de 00-project.** Una nueva se propone primero en la spec (con su porqué) y luego se instala.
+- **Solo las que aparecen en _Decisiones técnicas_ de 00-project.** Una nueva se propone primero en la spec (con su porqué) y luego se instala.
 - Se prefieren módulos de Expo y lo que ya trae la plantilla.
 
-| Para qué | Paquete(s) | Dónde se decidió |
-|---|---|---|
-| Navegación | `@react-navigation/native`, `@react-navigation/native-stack`, `@react-navigation/bottom-tabs`, `react-native-screens`, `react-native-safe-area-context` | 01-navigation N1 |
-| Estado global | `zustand` | 00-project |
-| Backend | `firebase` | 00-project, 02-data-model D2 |
-| Persistencia | `@react-native-async-storage/async-storage` | 02-data-model D2 |
-| Conectividad | `@react-native-community/netinfo` | 02-data-model D8 |
-| Mapa y ubicación | `react-native-maps`, `expo-location` | 00-project |
-| Foto y tarjeta | `expo-image-picker`, `react-native-view-shot`, `expo-sharing` | 00-project |
-| Iconos | `@expo/vector-icons` y `expo-font` (lo necesita vector-icons para cargar la fuente) | 01-navigation |
-| Tests (desarrollo) | `jest-expo`, `jest`, `@testing-library/react-native` | 00-project, 02-data-model D6 |
-| Lint (desarrollo) | ESLint con la configuración de Expo (lo instala `npx expo lint`) | Este documento |
+| Para qué           | Paquete(s)                                                                                                                                              | Dónde se decidió             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| Navegación         | `@react-navigation/native`, `@react-navigation/native-stack`, `@react-navigation/bottom-tabs`, `react-native-screens`, `react-native-safe-area-context` | 01-navigation N1             |
+| Estado global      | `zustand`                                                                                                                                               | 00-project                   |
+| Backend            | `firebase`                                                                                                                                              | 00-project, 02-data-model D2 |
+| Persistencia       | `@react-native-async-storage/async-storage`                                                                                                             | 02-data-model D2             |
+| Conectividad       | `@react-native-community/netinfo`                                                                                                                       | 02-data-model D8             |
+| Mapa y ubicación   | `react-native-maps`, `expo-location`                                                                                                                    | 00-project                   |
+| Foto y tarjeta     | `expo-image-picker`, `react-native-view-shot`, `expo-sharing`                                                                                           | 00-project                   |
+| Iconos             | `@expo/vector-icons` y `expo-font` (lo necesita vector-icons para cargar la fuente)                                                                     | 01-navigation                |
+| Tests (desarrollo) | `jest-expo`, `jest`, `@testing-library/react-native`                                                                                                    | 00-project, 02-data-model D6 |
+| Lint (desarrollo)  | ESLint con la configuración de Expo (lo instala `npx expo lint`)                                                                                        | Este documento               |
 
 ---
 
@@ -659,19 +671,19 @@ contador = contador + 1;
 - Después de cambiar `.env`, se reinicia `npx expo start`.
 - **Nada privado en código, specs, commits ni capturas:** coordenadas de tu casa, contraseñas, correos reales. El repositorio es público.
 - La llave de Firebase termina dentro de la app, así que no es un secreto; lo que protege los datos son las reglas de Firestore (02-data-model). Igual va en `.env`.
-- Si algo privado llega a un commit, borrarlo después **no** lo quita del historial (clase *Git y Deploy*): se cambia el dato o se revoca la llave.
+- Si algo privado llega a un commit, borrarlo después **no** lo quita del historial (clase _Git y Deploy_): se cambia el dato o se revoca la llave.
 
 ---
 
 ## 16. Herramientas de calidad
 
-| Herramienta | Comando | Cuándo |
-|---|---|---|
-| TypeScript | `npx tsc --noEmit` | Antes de cada commit |
-| ESLint (configuración de Expo) | `npx expo lint` | Antes de cada commit. La primera vez instala ESLint y crea `eslint.config.js`, que sí se sube |
-| Prettier | Formato al guardar en el editor | Siempre |
-| Tests | `npx jest` | Antes de cada commit, desde que Jest está configurado (task D6 de 02-data-model) |
-| Cobertura | `npx jest --coverage` | Al final, para el reporte que pide el checklist de entrega |
+| Herramienta                    | Comando                         | Cuándo                                                                                        |
+| ------------------------------ | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| TypeScript                     | `npx tsc --noEmit`              | Antes de cada commit                                                                          |
+| ESLint (configuración de Expo) | `npx expo lint`                 | Antes de cada commit. La primera vez instala ESLint y crea `eslint.config.js`, que sí se sube |
+| Prettier                       | Formato al guardar en el editor | Siempre                                                                                       |
+| Tests                          | `npx jest`                      | Antes de cada commit, desde que Jest está configurado (task D6 de 02-data-model)              |
+| Cobertura                      | `npx jest --coverage`           | Al final, para el reporte que pide el checklist de entrega                                    |
 
 **Prettier** se usa como extensión de VS Code (no se instala como paquete), con "Format on Save" activado y este `.prettierrc` en la raíz:
 
@@ -693,7 +705,7 @@ No se desactivan reglas de ESLint con comentarios (`// eslint-disable`). Si una 
 
 ## 17. Git
 
-**Flujo** (clase *Git y Deploy*): se trabaja **solo en `main`**.
+**Flujo** (clase _Git y Deploy_): se trabaja **solo en `main`**.
 
 ```bash
 git status                 # ¿qué cambió? Siempre antes de commitear
@@ -729,7 +741,7 @@ git push
 **Tamaño y ritmo**
 
 - Una task de la spec ≈ un commit.
-- Mínimo **3 commits por semana**, con fecha real (clase *Git y Deploy*). Nunca un commit gigante la noche antes.
+- Mínimo **3 commits por semana**, con fecha real (clase _Git y Deploy_). Nunca un commit gigante la noche antes.
 - Antes de commitear: `npx tsc --noEmit`, `npx expo lint` y `npx jest` sin errores (`npx jest` desde la task D6).
 
 **Reglas**
@@ -784,5 +796,5 @@ Una task o feature está terminada cuando:
 
 **Quién marca qué en la spec**
 
-- **La task** (`[x]` en *Tasks*): la marca Claude Code al terminar de implementarla.
+- **La task** (`[x]` en _Tasks_): la marca Claude Code al terminar de implementarla.
 - **Los criterios de aceptación** (CAxx, CADxx): los marcas tú, después de probarlos en el iPhone, en Jest o en la consola de Firebase, según diga el criterio. Los que dependen de otra feature se marcan cuando esa feature esté lista (como en la task N10 de 01-navigation).
