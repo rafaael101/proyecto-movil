@@ -798,7 +798,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 
 **Base (semana 1)**
 
-- [ ] **D1 — Crear proyecto de Firebase** (Auth correo/contraseña, Firestore en modo producción) y agregar `.env.example`. Revisar que `.env` esté en `.gitignore`.
+- [x] **D1 — Crear proyecto de Firebase** (Auth correo/contraseña, Firestore en modo producción) y agregar `.env.example`. Revisar que `.env` esté en `.gitignore`.
 - [ ] **D2 — Instalar Firebase y AsyncStorage** (`npx expo install firebase @react-native-async-storage/async-storage`) y crear `src/servicios/firebase.ts` (`initializeApp`, `initializeAuth` con persistencia en AsyncStorage, `getFirestore`).
 - [ ] **D3 — Crear los tipos** en `src/tipos/` (`cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts`).
 - [ ] **D4 — Crear `src/constantes/canchas.ts`** (RN05 + cancha de prueba desde `.env`), `src/constantes/configuracion.ts` y `buscarCancha`.
