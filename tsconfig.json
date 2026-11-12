@@ -1,6 +1,11 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    // TypeScript toma los tipos web de Firebase y ahí no está
+    // getReactNativePersistence; esto le indica usar los de React Native.
+    "paths": {
+      "@firebase/auth": ["./node_modules/@firebase/auth/dist/index.rn.d.ts"]
+    }
   }
 }
