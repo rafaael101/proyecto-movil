@@ -1,6 +1,6 @@
 # Modelo de datos — HoopsMap
 
-> **Estado:** v1.1 · **Última actualización:** 2026-11-05
+> **Estado:** v1.1 · **Última actualización:** 2026-11-12
 > **Depende de:** `specs/00-project.md` (RN01–RN11, *Cumplimiento de la rúbrica*, *Decisiones técnicas*) y `specs/01-navigation.md` (solo viajan `idCancha` e `idPartido`)
 > **Clases de referencia:** [Persistencia Local y Almacenamiento Seguro](https://academy.alvesc.com/clase/persistencia-y-almacenamiento-seguro) · [Autenticación y Seguridad](https://academy.alvesc.com/clase/autenticacion-y-seguridad) · [Offline y Conectividad](https://academy.alvesc.com/clase/offline-y-conectividad)
 
@@ -130,7 +130,7 @@ export type Usuario = {
 
 El servicio de sesión (F01) convierte el `User` de Firebase en `Usuario` con una función `convertirUsuario`. Las validaciones de nombre, correo y contraseña están en *Validaciones* de esta spec (las de correo y contraseña las definió F01).
 
-**Tipos de los formularios de sesión** (los usa F01 con `useFormulario`):
+**Tipos de los formularios de sesión** (los usa F01 con `useFormulario`; se crean en F01.2, no en D3):
 
 ```ts
 export type ValoresRegistro = {
@@ -256,17 +256,10 @@ export type ErroresPartido = Partial<Record<keyof ValoresFormularioPartido, stri
 
 ### Tipos derivados (no se guardan en Firestore)
 
-```ts
-// src/tipos/partido.ts
-export type Promedios = {
-  partidosJugados: number;
-  victorias: number;
-  puntos: number; // promedio por partido, 1 decimal
-  rebotes: number;
-  asistencias: number;
-};
+`PaginaPartidos` (una página del historial, F06) **no** va en `src/tipos/`: usa `CursorPartidos`, que es un tipo de Firestore, y los tipos de la app no importan nada de Firebase. Se declara en `servicioPartidos.ts`, junto a `CursorPartidos` (D14):
 
-// Una página del historial (F06)
+```ts
+// src/servicios/servicioPartidos.ts (D14)
 export type PaginaPartidos = {
   partidos: Partido[];
   cursor: CursorPartidos | null; // dónde continuar; null si no hay más
@@ -274,7 +267,7 @@ export type PaginaPartidos = {
 };
 ```
 
-`CursorPartidos` es el último documento que se leyó (un `QueryDocumentSnapshot` de Firestore). Es el **único** tipo de Firebase que sale del servicio: el store lo guarda tal cual y se lo regresa al servicio para pedir la siguiente página, sin leerlo. Se declara en `servicioPartidos.ts`.
+`CursorPartidos` es el último documento que se leyó (un `QueryDocumentSnapshot` de Firestore). Es el **único** tipo de Firebase que sale del servicio: el store lo guarda tal cual y se lo regresa al servicio para pedir la siguiente página, sin leerlo.
 
 ---
 
@@ -800,7 +793,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 
 - [x] **D1 — Crear proyecto de Firebase** (Auth correo/contraseña, Firestore en modo producción) y agregar `.env.example`. Revisar que `.env` esté en `.gitignore`.
 - [x] **D2 — Instalar Firebase y AsyncStorage** (`npx expo install firebase @react-native-async-storage/async-storage`) y crear `src/servicios/firebase.ts` (`initializeApp`, `initializeAuth` con persistencia en AsyncStorage, `getFirestore`).
-- [ ] **D3 — Crear los tipos** en `src/tipos/` (`cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts`).
+- [ ] **D3 — Crear los tipos** en `src/tipos/` (`cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts`). Los tipos de los formularios de sesión van en F01.2 y `PaginaPartidos` en D14.
 - [ ] **D4 — Crear `src/constantes/canchas.ts`** (RN05 + cancha de prueba desde `.env`), `src/constantes/configuracion.ts` y `buscarCancha`.
 - [ ] **D5 — Escribir `firestore.rules`**, publicarlas en la consola y probar CAD01–CAD05 en el Rules Playground.
 - [ ] **D6 — Configurar Jest** (`jest-expo` + React Native Testing Library) y el simulador de AsyncStorage para pruebas.
@@ -817,7 +810,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 
 - [ ] **D12 — Validaciones y conversiones de partido** + pruebas (CAD17–CAD21) **(con F05)**.
 - [ ] **D13 — `servicioPartidos`**: `crearPartido`, `editarPartido`, `eliminarPartido` **(con F05)**. Probar CAD10 y CAD12.
-- [ ] **D14 — `servicioPartidos`**: `obtenerPaginaPartidos` y `obtenerTodosLosPartidos` **(con F06)**. Probar CAD11.
+- [ ] **D14 — `servicioPartidos`**: `obtenerPaginaPartidos` y `obtenerTodosLosPartidos`, con los tipos CursorPartidos y PaginaPartidos. **(con F06)**. Probar CAD11. 
 - [ ] **D15 — `calcularPromedios`** + pruebas (CAD25) **(con F06)**.
 - [ ] **D16 — `servicioCache`** + pruebas (CAD15, CAD27) **(con F06)**. Probar CAD13–CAD14 en modo avión.
 
