@@ -56,6 +56,7 @@ Sigue `docs/coding-standards.md`. Lo crítico:
 
 Estoy aprendiendo React Native y defiendo el código línea por línea ante el profesor.
 
+- Respóndeme siempre en español, también en los mensajes mientras trabajas.
 - Escribe la solución más simple que cumpla la spec. Nada de patrones avanzados (§18).
 - Al terminar cada task, explícame en lenguaje sencillo:
   - qué archivos creaste o cambiaste y por qué;
