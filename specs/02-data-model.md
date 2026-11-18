@@ -810,7 +810,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - [x] **D6 — Configurar Jest** (`jest-expo` + React Native Testing Library + `@types/jest`) y el simulador de AsyncStorage para pruebas.
 - [x] **D7 — Utilidades de fechas y errores** + pruebas (CAD16, CAD26).
 - [x] **D8 — `servicioConexion`** (instalar NetInfo con `npx expo install @react-native-community/netinfo`).
-- [ ] **D9 — `validarNombre`** + prueba **(con F01)**.
+- [x] **D9 — `validarNombre`** + prueba **(con F01)**.
 
 **Check-ins**
 
