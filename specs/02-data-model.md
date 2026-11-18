@@ -748,11 +748,11 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Firestore y reglas** (Rules Playground de la consola de Firebase)
 
-- [ ] CAD01 — Como usuario A, leer `usuarios/B/partidos/x` → **denegado**. Leer `usuarios/A/partidos/x` → permitido.
+- [x] CAD01 — Como usuario A, leer `usuarios/B/partidos/x` → **denegado**. Leer `usuarios/A/partidos/x` → permitido.
 - [ ] CAD02 — Como usuario A, escribir en `checkins/B` → **denegado**. Escribir en `checkins/A` con `idCancha: 'sullivan'` y `creadoEn` = hora de la petición → permitido.
-- [ ] CAD03 — Escribir `checkins/A` con `idCancha: 'mi-casa'` → **denegado**.
-- [ ] CAD04 — Crear un partido con `puntos: 150`, o con un campo extra (`mvp: true`), o sin `rebotes` → **denegado**.
-- [ ] CAD05 — Sin sesión, cualquier lectura o escritura → **denegada**.
+- [x] CAD03 — Escribir `checkins/A` con `idCancha: 'mi-casa'` → **denegado**.
+- [x] CAD04 — Crear un partido con `puntos: 150`, o con un campo extra (`mvp: true`), o sin `rebotes` → **denegado**.
+- [x] CAD05 — Sin sesión, cualquier lectura o escritura → **denegada**.
 
 **Check-ins**
 
@@ -806,7 +806,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - [x] **D2 — Instalar Firebase y AsyncStorage** (`npx expo install firebase @react-native-async-storage/async-storage`) y crear `src/servicios/firebase.ts` (`initializeApp`, `initializeAuth` con persistencia en AsyncStorage, `getFirestore`).
 - [x] **D3 — Crear los tipos** en `src/tipos/` (`cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts`). Los tipos de los formularios de sesión van en F01.2 y `PaginaPartidos` en D14.
 - [x] **D4 — Crear `src/constantes/canchas.ts`** (RN05 + cancha de prueba desde `.env`), `src/constantes/configuracion.ts` y `buscarCancha`.
-- [ ] **D5 — Escribir `firestore.rules`**, publicarlas en la consola y probar CAD01–CAD05 en el Rules Playground.
+- [x] **D5 — Escribir `firestore.rules`**, publicarlas en la consola y probar CAD01–CAD05 en el Rules Playground.
 - [ ] **D6 — Configurar Jest** (`jest-expo` + React Native Testing Library) y el simulador de AsyncStorage para pruebas.
 - [ ] **D7 — Utilidades de fechas y errores** + pruebas (CAD16, CAD26).
 - [ ] **D8 — `servicioConexion`** (instalar NetInfo con `npx expo install @react-native-community/netinfo`).

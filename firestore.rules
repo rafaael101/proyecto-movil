@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Funciones de apoyo ----------
+    function haySesion() {
+      return request.auth != null;
+    }
+
+    function esDueno(idUsuario) {
+      return haySesion() && request.auth.uid == idUsuario;
+    }
+
+    // RN05: mismo catálogo que src/constantes/canchas.ts
+    // 'prueba' solo existe en desarrollo; se quita antes de la entrega
+    function canchasValidas() {
+      return ['sullivan', 'parque-morelos', 'siglo-xxi', 'uabc-sauzal',
+              'parque-hidalgo', 'gimnasio-municipal', 'parque-la-hoja', 'prueba'];
+    }
+
+    function esEnteroEntre(valor, minimo, maximo) {
+      return valor is int && valor >= minimo && valor <= maximo;
+    }
+
+    // ---------- Check-ins (RN01, RN03, RN04, RN05) ----------
+    function checkInValido() {
+      let datos = request.resource.data;
+      return datos.keys().hasOnly(['idCancha', 'creadoEn'])
+        && datos.idCancha in canchasValidas()
+        && datos.creadoEn == request.time; // hora del servidor (RN01)
+    }
+
+    match /checkins/{idUsuario} {
+      allow read: if haySesion();                        // para contar (RN06: la app solo muestra números)
+      allow create, update: if esDueno(idUsuario) && checkInValido();
+      allow delete: if esDueno(idUsuario);               // "Ya me voy" (RN04)
+    }
+
+    // ---------- Partidos (RN09, RN10) ----------
+    function partidoValido() {
+      let datos = request.resource.data;
+      let campos = ['fecha', 'idCancha', 'resultado', 'puntos', 'rebotes',
+                    'asistencias', 'marcadorPropio', 'marcadorRival'];
+      return datos.keys().hasOnly(campos)
+        && datos.keys().hasAll(campos)
+        && datos.fecha is string
+        && datos.fecha.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && (datos.idCancha == null || datos.idCancha in canchasValidas())
+        && datos.resultado in ['gano', 'perdio']
+        && esEnteroEntre(datos.puntos, 0, 100)
+        && esEnteroEntre(datos.rebotes, 0, 100)
+        && esEnteroEntre(datos.asistencias, 0, 100)
+        && (datos.marcadorPropio == null || esEnteroEntre(datos.marcadorPropio, 0, 200))
+        && (datos.marcadorRival == null || esEnteroEntre(datos.marcadorRival, 0, 200));
+    }
+
+    match /usuarios/{idUsuario}/partidos/{idPartido} {
+      allow read, delete: if esDueno(idUsuario);                      // RN10
+      allow create, update: if esDueno(idUsuario) && partidoValido(); // RN09, RN10
+    }
+
+    // Todo lo que no aparece aquí está prohibido (así empieza el modo producción).
+  }
+}
