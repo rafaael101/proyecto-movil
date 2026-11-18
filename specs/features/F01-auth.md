@@ -414,7 +414,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest, según 
 **Código**
 
 - [ ] F01-CA27 — `npx tsc --noEmit` pasa sin errores y no hay `any` en los archivos de F01.
-- [ ] F01-CA28 — Solo `servicioSesion.ts` importa `firebase/auth` (más `FirebaseError` en `errores.ts`, CAD29).
+- [ ] F01-CA28 — Solo `servicioSesion.ts` y `firebase.ts` importan `firebase/auth` (más `FirebaseError` en `errores.ts`, CAD29).
 - [ ] F01-CA29 — Ningún store importa `useStoreSesion`, y solo `cerrarSesion` llama a `limpiar()` de otros stores.
 
 ---
