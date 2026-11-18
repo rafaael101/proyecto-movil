@@ -101,7 +101,7 @@ npx jest
 
 - Haz un commit local por task (paso 4 del Flujo SDD). Nunca hagas `push`: yo reviso y subo.
 - Se trabaja solo en `main`. No crees ramas.
-- Al terminar cada task, propón el mensaje de commit:
+- Mensaje de cada commit:
   - en español, empieza con un verbo (`agrega`, `corrige`, `quita`…);
   - una sola idea (si necesita "y", son dos commits);
   - termina con el id de la task entre paréntesis.
@@ -117,10 +117,10 @@ npx jest
 
 ## Prohibido para Claude Code (§18)
 
-- Implementar algo sin spec, más de una task a la vez, o funcionalidades que la spec no pide (se proponen como texto).
+- Implementar algo sin spec, más tasks de las que te pedí, o funcionalidades que la spec no pide (se proponen como texto).
 - Inventar requisitos: si la spec es ambigua o contradice el código, pregunta.
 - Instalar paquetes sin preguntar, o con `npm install` en lugar de `npx expo install`.
-- Haz un commit local por task (paso 4 del Flujo SDD). Nunca hagas `push`: yo reviso y subo.
+- Hacer `push`.
 - Cambiar una spec sin proponer el cambio primero.
 - "Arreglar" un error de TypeScript o ESLint apagando la revisión (`any`, `@ts-ignore`, `eslint-disable`).
 
