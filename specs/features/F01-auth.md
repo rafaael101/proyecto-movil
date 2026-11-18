@@ -405,9 +405,9 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest, según 
 
 **Pruebas (Jest)**
 
-- [ ] F01-CA22 — `validarCorreo`: vacío, con solo espacios, `'ana@correo'` (inválido) y `' ana@correo.com '` (válido).
-- [ ] F01-CA23 — `validarContrasena`: vacía, `'abc12'`, `'abcdef'` y `'abc123'` (válida). `validarInicioSesion` con contraseña `'abc'` no da error de contraseña.
-- [ ] F01-CA24 — `obtenerMensajeError(new FirebaseError('auth/invalid-credential', ''))` devuelve "Correo o contraseña incorrectos." y `'auth/email-already-in-use'` devuelve "Ya existe una cuenta con este correo.".
+- [x] F01-CA22 — `validarCorreo`: vacío, con solo espacios, `'ana@correo'` (inválido) y `' ana@correo.com '` (válido).
+- [x] F01-CA23 — `validarContrasena`: vacía, `'abc12'`, `'abcdef'` y `'abc123'` (válida). `validarInicioSesion` con contraseña `'abc'` no da error de contraseña.
+- [x] F01-CA24 — `obtenerMensajeError(new FirebaseError('auth/invalid-credential', ''))` devuelve "Correo o contraseña incorrectos." y `'auth/email-already-in-use'` devuelve "Ya existe una cuenta con este correo.".
 - [ ] F01-CA25 — `obtenerNombreVisible('')` devuelve `'Jugador'` y `obtenerNombreVisible('Ana')` devuelve `'Ana'`.
 - [ ] F01-CA26 — **Integración — `PantallaInicioSesion`:** se dibuja `NavegadorRaiz` (como en N9) con el store en `usuario: null` y `revisandoSesion: false`. `servicioSesion` está simulado: `escucharCambiosDeSesion` devuelve una función vacía y nunca avisa, y `entrarConCorreo` rechaza con `auth/invalid-credential`. Al escribir un correo con espacios y una contraseña y tocar el **botón** "Iniciar sesión", aparece "Correo o contraseña incorrectos." y `entrarConCorreo` se llamó con el correo ya limpio.
 

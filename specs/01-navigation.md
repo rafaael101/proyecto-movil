@@ -438,7 +438,7 @@ Probados en el iPhone con Expo Go.
 
 **Sesión**
 
-- [ ] CA01 — Con la app recién instalada (sin sesión), lo primero que se ve después de la carga es "Iniciar sesión" y **no** se ve la barra de tabs.
+- [x] CA01 — Con la app recién instalada (sin sesión), lo primero que se ve después de la carga es "Iniciar sesión" y **no** se ve la barra de tabs.
 - [ ] CA02 — Desde "Iniciar sesión", "Crear cuenta" abre la pantalla "Crear cuenta" con flecha de regreso; la flecha vuelve a "Iniciar sesión".
 - [ ] CA03 — Al iniciar sesión correctamente aparece la tab Mapa sin tocar nada más.
 - [ ] CA04 — Después de iniciar sesión, deslizar desde el borde izquierdo **no** regresa a "Iniciar sesión".
