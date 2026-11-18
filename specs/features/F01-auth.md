@@ -429,7 +429,7 @@ Cada task ≈ un commit. El orden importa: algunas tasks de 01-navigation y de 0
 - [x] **F01.2 — Validaciones de correo y contraseña** + pruebas (F01-CA22, F01-CA23). Incluye `validarCorreo`, `validarContrasena`, `validarRegistro`, `validarInicioSesion`, los tipos `ValoresRegistro`, `ValoresInicioSesion`, `ErroresRegistro` y `ErroresInicioSesion`, y la constante `CONTRASENA_LONGITUD_MINIMA`. *Después de D9.*
 - [x] **F01.3 — Mensajes de los errores de Firebase Auth** en `obtenerMensajeError` + prueba (F01-CA24). *Después de D7.*
 - [x] **F01.4 — Crear `servicioSesion`** (`crearCuenta`, `entrarConCorreo`, `salirDeFirebase`, `escucharCambiosDeSesion`, `convertirUsuario`). Usa `firebase.ts` de D2, no lo vuelve a crear. *Después de D2 y D8.*
-- [ ] **F01.5 — Crear `useStoreSesion`** con `usuario`, `revisandoSesion`, `cerrandoSesion`, `escucharSesion`, `registrarse`, `iniciarSesion`, `limpiar` y `cerrarSesion` (por ahora solo `signOut` y `limpiar()` de este store).
+- [x] **F01.5 — Crear `useStoreSesion`** con `usuario`, `revisandoSesion`, `cerrandoSesion`, `escucharSesion`, `registrarse`, `iniciarSesion`, `limpiar` y `cerrarSesion` (por ahora solo `signOut` y `limpiar()` de este store).
 - [ ] **F01.6 — Escuchar la sesión desde `NavegadorRaiz`** con un `useEffect` que llama a `escucharSesion()` y deja de escuchar al desmontarse.
 - ➡️ **Después de F01.6: hacer N8 de 01-navigation** (decisión de sesión en `NavegadorRaiz`). Desde aquí la app muestra "Iniciar sesión" o Mapa según la sesión.
 - ➡️ **N9 de 01-navigation** (test de integración de la navegación) se puede hacer cuando existan D6 y F01.5.
