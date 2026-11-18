@@ -5,4 +5,5 @@ export const ESTADISTICA_MAXIMA = 100; // RN09: puntos, rebotes y asistencias
 export const MARCADOR_MAXIMO = 200; // RN09: marcador final
 export const NOMBRE_LONGITUD_MINIMA = 2; // F01
 export const NOMBRE_LONGITUD_MAXIMA = 30; // F01
+export const CONTRASENA_LONGITUD_MINIMA = 6; // F01 (igual al mínimo de Firebase)
 export const CLAVE_CACHE_HISTORIAL = 'hoopsmap.historial'; // RN11
