@@ -805,7 +805,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - [x] **D1 — Crear proyecto de Firebase** (Auth correo/contraseña, Firestore en modo producción) y agregar `.env.example`. Revisar que `.env` esté en `.gitignore`.
 - [x] **D2 — Instalar Firebase y AsyncStorage** (`npx expo install firebase @react-native-async-storage/async-storage`) y crear `src/servicios/firebase.ts` (`initializeApp`, `initializeAuth` con persistencia en AsyncStorage, `getFirestore`).
 - [x] **D3 — Crear los tipos** en `src/tipos/` (`cancha.ts`, `usuario.ts`, `checkIn.ts`, `partido.ts`). Los tipos de los formularios de sesión van en F01.2 y `PaginaPartidos` en D14.
-- [ ] **D4 — Crear `src/constantes/canchas.ts`** (RN05 + cancha de prueba desde `.env`), `src/constantes/configuracion.ts` y `buscarCancha`.
+- [x] **D4 — Crear `src/constantes/canchas.ts`** (RN05 + cancha de prueba desde `.env`), `src/constantes/configuracion.ts` y `buscarCancha`.
 - [ ] **D5 — Escribir `firestore.rules`**, publicarlas en la consola y probar CAD01–CAD05 en el Rules Playground.
 - [ ] **D6 — Configurar Jest** (`jest-expo` + React Native Testing Library) y el simulador de AsyncStorage para pruebas.
 - [ ] **D7 — Utilidades de fechas y errores** + pruebas (CAD16, CAD26).

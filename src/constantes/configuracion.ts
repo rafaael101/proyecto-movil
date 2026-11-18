@@ -1,0 +1,8 @@
+export const CHECK_IN_DURACION_MINUTOS = 90; // RN01
+export const CHECK_IN_DISTANCIA_MAXIMA_METROS = 150; // RN02 (la usa F03)
+export const PARTIDOS_POR_PAGINA = 10; // F06
+export const ESTADISTICA_MAXIMA = 100; // RN09: puntos, rebotes y asistencias
+export const MARCADOR_MAXIMO = 200; // RN09: marcador final
+export const NOMBRE_LONGITUD_MINIMA = 2; // F01
+export const NOMBRE_LONGITUD_MAXIMA = 30; // F01
+export const CLAVE_CACHE_HISTORIAL = 'hoopsmap.historial'; // RN11
