@@ -27,9 +27,8 @@ App móvil (React Native + Expo + TypeScript) para jugadores recreativos de bás
 
 1. No implementes nada sin spec. Si la feature no tiene spec en `specs/features/`, detente y avísame.
 2. Antes de escribir código, lee la spec completa, las RNxx que cita de `00-project.md` y lo que use de `01-navigation.md` y `02-data-model.md`.
-3. Implementa una sola task de la sección _Tasks_.
-4. Al terminar, márcala `[x]` en la spec y detente. No empieces la siguiente.
-   - Tú marcas solo la task. Los criterios de aceptación (CAxx, CADxx) los marco yo después de probarlos (§19).
+3. Implementa las tasks que te pida en el mensaje, en orden. Pueden ser una o un bloque (por ejemplo D7, D8 y D9).
+4. Al terminar cada task: márcala `[x]` en la spec, corre `npx tsc --noEmit`, `npx expo lint` y `npx jest`, y haz un commit local solo con los archivos de esa task (mensaje según la sección Git). Luego sigue con la siguiente. Si algo falla o la spec es ambigua, detente y pregunta. Al terminar el bloque, detente.
 5. No agregues nada que la spec no pida, aunque parezca útil. Propónlo como texto; yo decido.
 6. Si la spec es ambigua o contradice el código, pregunta antes de seguir. No inventes requisitos.
 7. Si algo debe cambiar, propón el cambio a la spec con el texto exacto y espera mi respuesta.
@@ -100,7 +99,7 @@ npx jest
 
 ## Git (§17)
 
-- Nunca hagas commits ni push. Yo reviso el diff y commiteo.
+- Haz un commit local por task (paso 4 del Flujo SDD). Nunca hagas `push`: yo reviso y subo.
 - Se trabaja solo en `main`. No crees ramas.
 - Al terminar cada task, propón el mensaje de commit:
   - en español, empieza con un verbo (`agrega`, `corrige`, `quita`…);
@@ -121,7 +120,7 @@ npx jest
 - Implementar algo sin spec, más de una task a la vez, o funcionalidades que la spec no pide (se proponen como texto).
 - Inventar requisitos: si la spec es ambigua o contradice el código, pregunta.
 - Instalar paquetes sin preguntar, o con `npm install` en lugar de `npx expo install`.
-- Hacer commits o push.
+- Haz un commit local por task (paso 4 del Flujo SDD). Nunca hagas `push`: yo reviso y subo.
 - Cambiar una spec sin proponer el cambio primero.
 - "Arreglar" un error de TypeScript o ESLint apagando la revisión (`any`, `@ts-ignore`, `eslint-disable`).
 
