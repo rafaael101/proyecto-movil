@@ -657,7 +657,7 @@ contador = contador + 1;
 | Mapa y ubicación   | `react-native-maps`, `expo-location`                                                                                                                    | 00-project                   |
 | Foto y tarjeta     | `expo-image-picker`, `react-native-view-shot`, `expo-sharing`                                                                                           | 00-project                   |
 | Iconos             | `@expo/vector-icons` y `expo-font` (lo necesita vector-icons para cargar la fuente)                                                                     | 01-navigation                |
-| Tests (desarrollo) | `jest-expo`, `jest`, `@testing-library/react-native`                                                                                                    | 00-project, 02-data-model D6 |
+| Tests (desarrollo) | `jest-expo`, `jest`, `@testing-library/react-native`, `@types/jest`                                                                                     | 00-project, 02-data-model D6 |
 | Lint (desarrollo)  | ESLint con la configuración de Expo (lo instala `npx expo lint`)                                                                                        | Este documento               |
 
 ---
