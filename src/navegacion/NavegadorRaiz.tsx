@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
@@ -7,6 +8,7 @@ import { colores, tipografia } from '../constantes/tema';
 import { PantallaDetalleCancha } from '../pantallas/PantallaDetalleCancha';
 import { PantallaFormularioPartido } from '../pantallas/PantallaFormularioPartido';
 import { PantallaTarjetaJugador } from '../pantallas/PantallaTarjetaJugador';
+import { useStoreSesion } from '../stores/useStoreSesion';
 import { NavegadorTabs } from './NavegadorTabs';
 import { opcionesHeader } from './opcionesHeader';
 import type { ParametrosStackRaiz } from './tipos';
@@ -18,6 +20,15 @@ const Stack = createNativeStackNavigator<ParametrosStackRaiz>();
 // se abren encima de ellas, por eso ahí no se ve la barra de tabs.
 // PROVISIONAL (N6): siempre muestra la parte con sesión; N8 agrega la decisión de sesión
 export const NavegadorRaiz: FC = () => {
+  const escucharSesion = useStoreSesion((estado) => estado.escucharSesion);
+
+  // Al montarse empieza a escuchar la sesión de Firebase (F01, flujo A).
+  // useEffect regresa la función que deja de escuchar: React la llama al desmontarse.
+  useEffect(() => {
+    const dejarDeEscuchar = escucharSesion();
+    return dejarDeEscuchar;
+  }, [escucharSesion]);
+
   return (
     <Stack.Navigator screenOptions={opcionesHeader}>
       {/* headerShown: false porque cada tab trae su propio header (CA11) */}
