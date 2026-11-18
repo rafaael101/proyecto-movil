@@ -24,3 +24,18 @@ describe('obtenerMensajeError', () => {
     expect(obtenerMensajeError(error)).toBe('Algo salió mal. Intenta de nuevo.');
   });
 });
+
+// F01-CA24
+describe('obtenerMensajeError con errores de Firebase Auth', () => {
+  it('traduce auth/invalid-credential', () => {
+    expect(obtenerMensajeError(new FirebaseError('auth/invalid-credential', ''))).toBe(
+      'Correo o contraseña incorrectos.',
+    );
+  });
+
+  it('traduce auth/email-already-in-use', () => {
+    expect(obtenerMensajeError(new FirebaseError('auth/email-already-in-use', ''))).toBe(
+      'Ya existe una cuenta con este correo.',
+    );
+  });
+});
