@@ -808,7 +808,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - [x] **D4 — Crear `src/constantes/canchas.ts`** (RN05 + cancha de prueba desde `.env`), `src/constantes/configuracion.ts` y `buscarCancha`.
 - [x] **D5 — Escribir `firestore.rules`**, publicarlas en la consola y probar CAD01–CAD05 en el Rules Playground.
 - [x] **D6 — Configurar Jest** (`jest-expo` + React Native Testing Library + `@types/jest`) y el simulador de AsyncStorage para pruebas.
-- [ ] **D7 — Utilidades de fechas y errores** + pruebas (CAD16, CAD26).
+- [x] **D7 — Utilidades de fechas y errores** + pruebas (CAD16, CAD26).
 - [ ] **D8 — `servicioConexion`** (instalar NetInfo con `npx expo install @react-native-community/netinfo`).
 - [ ] **D9 — `validarNombre`** + prueba **(con F01)**.
 
