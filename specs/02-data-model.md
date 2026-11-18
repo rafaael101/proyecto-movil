@@ -105,7 +105,7 @@ export type Cancha = {
 
 - `idCancha: 'prueba'`, `nombre: 'Cancha de prueba'`.
 - Latitud y longitud se leen de `EXPO_PUBLIC_CANCHA_PRUEBA_LAT` y `EXPO_PUBLIC_CANCHA_PRUEBA_LNG` y se convierten con `Number(...)`.
-- Si falta alguna variable o no es un número válido (`Number.isNaN`), la cancha **no se agrega**.
+- Si falta alguna variable, está vacía (`''`) o no es un número válido (`Number.isNaN`), la cancha **no se agrega**. Una variable vacía cuenta como faltante porque `Number('')` da `0`, no `NaN`.
 - Sus coordenadas nunca aparecen en el código, en las specs ni en los commits.
 
 **Función de apoyo (`src/utilidades/canchas.ts`):** `buscarCancha(idCancha: string): Cancha | undefined`. La usan F04 (caso E1 de navegación), F05 y las validaciones.
