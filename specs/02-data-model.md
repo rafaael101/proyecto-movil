@@ -256,6 +256,17 @@ export type ErroresPartido = Partial<Record<keyof ValoresFormularioPartido, stri
 
 ### Tipos derivados (no se guardan en Firestore)
 
+```ts
+// src/tipos/partido.ts
+export type Promedios = {
+  partidosJugados: number;
+  victorias: number;
+  puntos: number; // promedio por partido, 1 decimal
+  rebotes: number;
+  asistencias: number;
+};
+```
+
 `PaginaPartidos` (una página del historial, F06) **no** va en `src/tipos/`: usa `CursorPartidos`, que es un tipo de Firestore, y los tipos de la app no importan nada de Firebase. Se declara en `servicioPartidos.ts`, junto a `CursorPartidos` (D14):
 
 ```ts
