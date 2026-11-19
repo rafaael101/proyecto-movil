@@ -585,11 +585,11 @@ jest.mock('../servicios/servicioSesion', () => ({
 }));
 
 describe('Integración — NavegadorRaiz', () => {
-  it('sin usuario muestra "Iniciar sesión"', () => {
+  it('sin usuario muestra "Iniciar sesión"', async () => {
     // El store se "simula" poniéndole el estado que queremos probar
     useStoreSesion.setState({ usuario: null, revisandoSesion: false });
 
-    render(
+    await render(
       <NavigationContainer>
         <NavegadorRaiz />
       </NavigationContainer>,
@@ -599,6 +599,8 @@ describe('Integración — NavegadorRaiz', () => {
   });
 });
 ```
+
+> Desde Testing Library v14, `render` es asíncrono. El título del Stack nativo no es un `<Text>`: se busca en la prop `title` o en un elemento de la pantalla.
 
 ### Cómo simular
 
