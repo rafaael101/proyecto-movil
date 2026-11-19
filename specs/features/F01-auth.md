@@ -436,7 +436,7 @@ Cada task ≈ un commit. El orden importa: algunas tasks de 01-navigation y de 0
 
 **Formularios**
 
-- [ ] **F01.7 — Crear `useFormulario`** en `src/hooks/` como lo describe coding-standards §11.
+- [x] **F01.7 — Crear `useFormulario`** en `src/hooks/` como lo describe coding-standards §11.
 - [ ] **F01.8 — Crear el componente `CampoTexto`** (etiqueta, placeholder, borde y mensaje de error).
 - [ ] **F01.9 — Crear el componente `BotonPrincipal`** (deshabilitado, cargando y `accessibilityRole="button"`).
 - [ ] **F01.10 — Implementar `PantallaInicioSesion`**: formulario, error del servidor arriba del botón, enlace "Crear cuenta", `KeyboardAvoidingView` y cerrar el teclado al tocar fuera.
