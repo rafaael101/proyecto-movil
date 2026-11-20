@@ -1,14 +1,25 @@
 import type { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colores, tipografia } from '../constantes/tema';
+import { VistaCargando } from '../componentes/VistaCargando';
+import { colores, espaciado, tipografia } from '../constantes/tema';
 import type { PropsPantallaPerfil } from '../navegacion/tipos';
+import { useStoreSesion } from '../stores/useStoreSesion';
+import { obtenerNombreVisible } from '../utilidades/usuario';
 
-// PROVISIONAL (N4): el contenido real lo ponen F01 y F06
+// Pantalla "Mi perfil": la parte de F01 (nombre y correo). F06 agrega los promedios.
 export const PantallaPerfil: FC<PropsPantallaPerfil> = () => {
+  const usuario = useStoreSesion((estado) => estado.usuario);
+
+  // Solo pasa un instante al cerrar sesión, antes de que desaparezca la pantalla (F01)
+  if (usuario === null) {
+    return <VistaCargando />;
+  }
+
   return (
     <View style={estilos.contenedor}>
-      <Text style={estilos.texto}>PantallaPerfil</Text>
+      <Text style={estilos.nombre}>{obtenerNombreVisible(usuario.nombre)}</Text>
+      <Text style={estilos.correo}>{usuario.correo}</Text>
     </View>
   );
 };
@@ -16,12 +27,16 @@ export const PantallaPerfil: FC<PropsPantallaPerfil> = () => {
 const estilos = StyleSheet.create({
   contenedor: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: espaciado.lg,
     backgroundColor: colores.fondo,
   },
-  texto: {
-    ...tipografia.cuerpo,
+  nombre: {
+    ...tipografia.subtitulo,
     color: colores.texto,
+  },
+  correo: {
+    ...tipografia.cuerpo,
+    color: colores.textoSecundario,
+    marginTop: espaciado.xs,
   },
 });
