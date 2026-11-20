@@ -124,6 +124,8 @@ Todas usan colores, tipografía y espaciado de `tema.ts` (01-navigation, *Paleta
 | — | *(Promedios)* | Los agrega F06 entre el correo y el botón |
 | 3 | Botón "Cerrar sesión" | `BotonPrincipal`. Deshabilitado y con indicador mientras `cerrandoSesion` es `true` |
 
+Si `usuario` es `null` (solo pasa un instante al cerrar sesión, antes de que desaparezca la pantalla), se muestra `VistaCargando`.
+
 ### Componentes nuevos — `src/componentes/`
 
 Se crean aquí porque F01 tiene el primer formulario (coding-standards §6). F05 los reutiliza.
@@ -164,6 +166,19 @@ type PropsBotonPrincipal = {
 - Fondo `colores.primario` y texto `colores.textoSobrePrimario`, `radio`.
 - Deshabilitado (o cargando): fondo `colores.inactivo`.
 - `accessibilityRole="button"`, para que el test pueda encontrarlo como botón aunque el header tenga el mismo texto.
+
+**`ContenedorSesion.tsx`**
+
+```ts
+type PropsContenedorSesion = {
+  children: ReactNode; // campos, error del servidor y botón de la pantalla
+  textoEnlace: string; // "Crear cuenta" o "Ya tengo cuenta"
+  alPresionarEnlace: () => void;
+};
+```
+
+- Es la *Estructura común de Inicio de sesión y Registro*: `KeyboardAvoidingView`, `TouchableWithoutFeedback` con `Keyboard.dismiss`, título "HoopsMap" arriba, `children` en medio y el enlace en `colores.primario` abajo.
+- Se crea porque la misma pieza aparece en dos pantallas (coding-standards §6).
 
 ---
 
@@ -439,8 +454,8 @@ Cada task ≈ un commit. El orden importa: algunas tasks de 01-navigation y de 0
 - [x] **F01.7 — Crear `useFormulario`** en `src/hooks/` como lo describe coding-standards §11.
 - [x] **F01.8 — Crear el componente `CampoTexto`** (etiqueta, placeholder, borde y mensaje de error).
 - [x] **F01.9 — Crear el componente `BotonPrincipal`** (deshabilitado, cargando y `accessibilityRole="button"`).
-- [ ] **F01.10 — Implementar `PantallaInicioSesion`**: formulario, error del servidor arriba del botón, enlace "Crear cuenta", `KeyboardAvoidingView` y cerrar el teclado al tocar fuera.
-- [ ] **F01.11 — Implementar `PantallaRegistro`**: formulario, error del servidor, enlace "Ya tengo cuenta", teclado igual que F01.10.
+- [ ] **F01.10 — Implementar `PantallaInicioSesion`** con `ContenedorSesion` (se crea aquí): formulario, error del servidor arriba del botón y enlace "Crear cuenta".
+- [ ] **F01.11 — Implementar `PantallaRegistro`** con `ContenedorSesion`: formulario, error del servidor y enlace "Ya tengo cuenta".
 
 **Perfil**
 
