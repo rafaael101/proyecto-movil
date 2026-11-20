@@ -228,7 +228,7 @@ navigation.push('DetalleCancha', { idCancha }); // doble toque abre dos pantalla
 - **Si un archivo pasa de ~150 líneas, se divide.** Si la misma pieza aparece en dos pantallas, se vuelve componente.
 - **Cada pantalla en su archivo de `src/pantallas/`.** Nunca se declara dentro de un navegador ni con `component={() => ...}` (01-navigation, CA24).
 
-**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error) y `BotonPrincipal` (deshabilitado y cargando).
+**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error), `BotonPrincipal` (deshabilitado y cargando) y `ContenedorSesion` (estructura de Inicio de sesión y Registro).
 
 ```tsx
 // src/componentes/VistaError.tsx
