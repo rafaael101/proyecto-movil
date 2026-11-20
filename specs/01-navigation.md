@@ -472,9 +472,9 @@ Probados en el iPhone con Expo Go.
 
 **Código**
 
-- [ ] CA22 — `npx tsc --noEmit` pasa sin errores, y si escribo `navigate('DetalleCancha')` sin `idCancha`, TypeScript marca error.
-- [ ] CA23 — No hay `any` en `src/navegacion/` ni en `src/pantallas/`.
-- [ ] CA24 — Ninguna pantalla está declarada dentro de un navegador ni con `component={() => …}`.
+- [x] CA22 — `npx tsc --noEmit` pasa sin errores, y si escribo `navigate('DetalleCancha')` sin `idCancha`, TypeScript marca error.
+- [x] CA23 — No hay `any` en `src/navegacion/` ni en `src/pantallas/`.
+- [x] CA24 — Ninguna pantalla está declarada dentro de un navegador ni con `component={() => …}`.
 - [x] CA25 — El test de integración de navegación (Task N9) pasa.
 
 ---
