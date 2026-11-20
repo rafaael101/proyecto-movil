@@ -12,11 +12,6 @@ jest.mock('../servicios/servicioSesion', () => ({
   escucharCambiosDeSesion: jest.fn(() => () => {}),
 }));
 
-// Ionicons carga expo-font, que pide expo-asset; npm lo dejó dentro de la carpeta
-// de expo y Jest no lo encuentra (en el iPhone no pasa). El test no revisa iconos,
-// así que el icono se reemplaza por un componente que no dibuja nada.
-jest.mock('@expo/vector-icons/Ionicons', () => () => null);
-
 // Diferencia con el ejemplo de coding-standards §12: en la versión instalada de
 // Testing Library (v14) render es asíncrono, por eso cada it es async y usa await render
 describe('Integración — NavegadorRaiz', () => {
