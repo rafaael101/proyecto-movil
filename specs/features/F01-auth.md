@@ -460,7 +460,7 @@ Cada task ≈ un commit. El orden importa: algunas tasks de 01-navigation y de 0
 **Perfil**
 
 - [x] **F01.12 — Mostrar nombre y correo en `PantallaPerfil`** con `obtenerNombreVisible` + prueba (F01-CA25).
-- [ ] **F01.13 — Agregar "Cerrar sesión" en `PantallaPerfil`**: alerta de confirmación, botón deshabilitado con indicador mientras cierra, y `Alert.alert` si falla (E15).
+- [x] **F01.13 — Agregar "Cerrar sesión" en `PantallaPerfil`**: alerta de confirmación, botón deshabilitado con indicador mientras cierra, y `Alert.alert` si falla (E15).
 
 **Pruebas**
 
