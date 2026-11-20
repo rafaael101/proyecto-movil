@@ -387,34 +387,34 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest, según 
 
 **Registro**
 
-- [ ] F01-CA01 — En "Crear cuenta", tocar el botón con todo vacío muestra "Escribe tu nombre", "Escribe tu correo" y "Escribe tu contraseña" debajo de cada campo, con el borde en rojo. En la consola de Firebase (Authentication) no aparece ninguna cuenta nueva.
-- [ ] F01-CA02 — Escribir `ana@correo` en Correo y salir del campo muestra "Correo no válido". Antes de salir del campo no se ve ningún error.
-- [ ] F01-CA03 — En registro, la contraseña `abc12` muestra "Mínimo 6 caracteres" y `abcdef` muestra "Incluye al menos un número".
-- [ ] F01-CA04 — Con datos válidos, al tocar "Crear cuenta" la app pasa **sola** a la tab Mapa, sin tocar nada más. En la consola de Firebase aparece el correo nuevo.
-- [ ] F01-CA05 — Después de registrarme, Perfil muestra el nombre que escribí (sin espacios de más) y mi correo.
-- [ ] F01-CA06 — Registrarme con un correo que ya tiene cuenta muestra "Ya existe una cuenta con este correo." arriba del botón.
-- [ ] F01-CA07 — Tocar dos veces muy rápido "Crear cuenta" crea **una sola** cuenta. Mientras se envía, el botón se ve deshabilitado con indicador de carga.
-- [ ] F01-CA08 — Con el teclado abierto, tocar fuera de los campos cierra el teclado. El campo Correo no pone mayúscula inicial ni autocorrige.
+- [x] F01-CA01 — En "Crear cuenta", tocar el botón con todo vacío muestra "Escribe tu nombre", "Escribe tu correo" y "Escribe tu contraseña" debajo de cada campo, con el borde en rojo. En la consola de Firebase (Authentication) no aparece ninguna cuenta nueva.
+- [x] F01-CA02 — Escribir `ana@correo` en Correo y salir del campo muestra "Correo no válido". Antes de salir del campo no se ve ningún error.
+- [x] F01-CA03 — En registro, la contraseña `abc12` muestra "Mínimo 6 caracteres" y `abcdef` muestra "Incluye al menos un número".
+- [x] F01-CA04 — Con datos válidos, al tocar "Crear cuenta" la app pasa **sola** a la tab Mapa, sin tocar nada más. En la consola de Firebase aparece el correo nuevo.
+- [x] F01-CA05 — Después de registrarme, Perfil muestra el nombre que escribí (sin espacios de más) y mi correo.
+- [x] F01-CA06 — Registrarme con un correo que ya tiene cuenta muestra "Ya existe una cuenta con este correo." arriba del botón.
+- [x] F01-CA07 — Tocar dos veces muy rápido "Crear cuenta" crea **una sola** cuenta. Mientras se envía, el botón se ve deshabilitado con indicador de carga.
+- [x] F01-CA08 — Con el teclado abierto, tocar fuera de los campos cierra el teclado. El campo Correo no pone mayúscula inicial ni autocorrige.
 
 **Inicio de sesión**
 
-- [ ] F01-CA09 — Tocar "Iniciar sesión" con todo vacío muestra "Escribe tu correo" y "Escribe tu contraseña".
-- [ ] F01-CA10 — Con una contraseña de 3 caracteres **no** aparece "Mínimo 6 caracteres": se intenta entrar y aparece "Correo o contraseña incorrectos.".
-- [ ] F01-CA11 — Con contraseña incorrecta aparece "Correo o contraseña incorrectos." arriba del botón. Con un correo sin cuenta aparece el mismo mensaje.
-- [ ] F01-CA12 — Con correo y contraseña correctos (el correo con espacios al inicio y al final), la app pasa sola a la tab Mapa.
-- [ ] F01-CA13 — Si hay un error en "Iniciar sesión" y abro "Crear cuenta", ahí no se ve ese error.
+- [x] F01-CA09 — Tocar "Iniciar sesión" con todo vacío muestra "Escribe tu correo" y "Escribe tu contraseña".
+- [x] F01-CA10 — Con una contraseña de 3 caracteres **no** aparece "Mínimo 6 caracteres": se intenta entrar y aparece "Correo o contraseña incorrectos.".
+- [x] F01-CA11 — Con contraseña incorrecta aparece "Correo o contraseña incorrectos." arriba del botón. Con un correo sin cuenta aparece el mismo mensaje.
+- [x] F01-CA12 — Con correo y contraseña correctos (el correo con espacios al inicio y al final), la app pasa sola a la tab Mapa.
+- [x] F01-CA13 — Si hay un error en "Iniciar sesión" y abro "Crear cuenta", ahí no se ve ese error.
 
 **Sin internet**
 
-- [ ] F01-CA14 — En modo avión, al tocar "Iniciar sesión" o "Crear cuenta" con datos válidos aparece "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 segundos, y el botón se vuelve a habilitar.
+- [x] F01-CA14 — En modo avión, al tocar "Iniciar sesión" o "Crear cuenta" con datos válidos aparece "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 segundos, y el botón se vuelve a habilitar.
 - [ ] F01-CA15 — Con sesión iniciada, en modo avión, cerrar la app por completo y volver a abrirla muestra la vista de carga y luego Mapa (CA05 y CA21 de 01-navigation).
 
 **Perfil y cerrar sesión**
 
-- [ ] F01-CA16 — Perfil muestra mi nombre y mi correo.
-- [ ] F01-CA17 — Tocar "Cerrar sesión" muestra la alerta "¿Seguro que quieres cerrar sesión?". Con "Cancelar" sigo en Perfil con sesión (CA06 de 01-navigation).
-- [ ] F01-CA18 — Con "Cerrar sesión" en la alerta, el botón se ve deshabilitado con indicador y después aparece "Iniciar sesión"; deslizar hacia atrás no regresa a la app (CA06b de 01-navigation).
-- [ ] F01-CA19 — En modo avión, cerrar sesión también lleva a "Iniciar sesión".
+- [x] F01-CA16 — Perfil muestra mi nombre y mi correo.
+- [x] F01-CA17 — Tocar "Cerrar sesión" muestra la alerta "¿Seguro que quieres cerrar sesión?". Con "Cancelar" sigo en Perfil con sesión (CA06 de 01-navigation).
+- [x] F01-CA18 — Con "Cerrar sesión" en la alerta, el botón se ve deshabilitado con indicador y después aparece "Iniciar sesión"; deslizar hacia atrás no regresa a la app (CA06b de 01-navigation).
+- [x] F01-CA19 — En modo avión, cerrar sesión también lleva a "Iniciar sesión".
 - [ ] F01-CA20 — *(Después de F01.16)* Con un check-in activo, después de cerrar sesión el documento `checkins/{mi uid}` ya no existe en la consola de Firestore (RN04). En modo avión la sesión se cierra igual y el documento sigue ahí hasta vencer (RN01).
 - [ ] F01-CA21 — *(Después de F01.17 y F01.18)* Después de cerrar sesión e iniciar con **otra** cuenta, en Historial y Perfil no aparece nada de la cuenta anterior, ni con internet ni en modo avión (RN11).
 
@@ -423,8 +423,8 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest, según 
 - [x] F01-CA22 — `validarCorreo`: vacío, con solo espacios, `'ana@correo'` (inválido) y `' ana@correo.com '` (válido).
 - [x] F01-CA23 — `validarContrasena`: vacía, `'abc12'`, `'abcdef'` y `'abc123'` (válida). `validarInicioSesion` con contraseña `'abc'` no da error de contraseña.
 - [x] F01-CA24 — `obtenerMensajeError(new FirebaseError('auth/invalid-credential', ''))` devuelve "Correo o contraseña incorrectos." y `'auth/email-already-in-use'` devuelve "Ya existe una cuenta con este correo.".
-- [ ] F01-CA25 — `obtenerNombreVisible('')` devuelve `'Jugador'` y `obtenerNombreVisible('Ana')` devuelve `'Ana'`.
-- [ ] F01-CA26 — **Integración — `PantallaInicioSesion`:** se dibuja `NavegadorRaiz` (como en N9) con el store en `usuario: null` y `revisandoSesion: false`. `servicioSesion` está simulado: `escucharCambiosDeSesion` devuelve una función vacía y nunca avisa, y `entrarConCorreo` rechaza con `auth/invalid-credential`. Al escribir un correo con espacios y una contraseña y tocar el **botón** "Iniciar sesión", aparece "Correo o contraseña incorrectos." y `entrarConCorreo` se llamó con el correo ya limpio.
+- [x] F01-CA25 — `obtenerNombreVisible('')` devuelve `'Jugador'` y `obtenerNombreVisible('Ana')` devuelve `'Ana'`.
+- [x] F01-CA26 — **Integración — `PantallaInicioSesion`:** se dibuja `NavegadorRaiz` (como en N9) con el store en `usuario: null` y `revisandoSesion: false`. `servicioSesion` está simulado: `escucharCambiosDeSesion` devuelve una función vacía y nunca avisa, y `entrarConCorreo` rechaza con `auth/invalid-credential`. Al escribir un correo con espacios y una contraseña y tocar el **botón** "Iniciar sesión", aparece "Correo o contraseña incorrectos." y `entrarConCorreo` se llamó con el correo ya limpio.
 
 **Código**
 

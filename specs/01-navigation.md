@@ -439,13 +439,13 @@ Probados en el iPhone con Expo Go.
 **Sesión**
 
 - [x] CA01 — Con la app recién instalada (sin sesión), lo primero que se ve después de la carga es "Iniciar sesión" y **no** se ve la barra de tabs.
-- [ ] CA02 — Desde "Iniciar sesión", "Crear cuenta" abre la pantalla "Crear cuenta" con flecha de regreso; la flecha vuelve a "Iniciar sesión".
-- [ ] CA03 — Al iniciar sesión correctamente aparece la tab Mapa sin tocar nada más.
-- [ ] CA04 — Después de iniciar sesión, deslizar desde el borde izquierdo **no** regresa a "Iniciar sesión".
-- [ ] CA05 — Con sesión iniciada, cerrar la app por completo y volver a abrirla muestra la vista de carga y luego Mapa; **nunca** aparece "Iniciar sesión" por un instante.
-- [ ] CA06 — Tocar "Cerrar sesión" en Perfil muestra la alerta "¿Seguro que quieres cerrar sesión?". Con "Cancelar" sigo en Perfil con la sesión abierta.
-- [ ] CA06b — Con "Cerrar sesión" en la alerta se muestra "Iniciar sesión"; deslizar hacia atrás no regresa a la app.
-- [ ] CA07 — Después de cerrar sesión estando en Historial, al iniciar sesión de nuevo la app empieza en Mapa.
+- [x] CA02 — Desde "Iniciar sesión", "Crear cuenta" abre la pantalla "Crear cuenta" con flecha de regreso; la flecha vuelve a "Iniciar sesión".
+- [x] CA03 — Al iniciar sesión correctamente aparece la tab Mapa sin tocar nada más.
+- [x] CA04 — Después de iniciar sesión, deslizar desde el borde izquierdo **no** regresa a "Iniciar sesión".
+- [x] CA05 — Con sesión iniciada, cerrar la app por completo y volver a abrirla muestra la vista de carga y luego Mapa; **nunca** aparece "Iniciar sesión" por un instante.
+- [x] CA06 — Tocar "Cerrar sesión" en Perfil muestra la alerta "¿Seguro que quieres cerrar sesión?". Con "Cancelar" sigo en Perfil con la sesión abierta.
+- [x] CA06b — Con "Cerrar sesión" en la alerta se muestra "Iniciar sesión"; deslizar hacia atrás no regresa a la app.
+- [x] CA07 — Después de cerrar sesión estando en Historial, al iniciar sesión de nuevo la app empieza en Mapa.
 
 **Tabs y headers**
 
@@ -475,7 +475,7 @@ Probados en el iPhone con Expo Go.
 - [ ] CA22 — `npx tsc --noEmit` pasa sin errores, y si escribo `navigate('DetalleCancha')` sin `idCancha`, TypeScript marca error.
 - [ ] CA23 — No hay `any` en `src/navegacion/` ni en `src/pantallas/`.
 - [ ] CA24 — Ninguna pantalla está declarada dentro de un navegador ni con `component={() => …}`.
-- [ ] CA25 — El test de integración de navegación (Task N9) pasa.
+- [x] CA25 — El test de integración de navegación (Task N9) pasa.
 
 ---
 
