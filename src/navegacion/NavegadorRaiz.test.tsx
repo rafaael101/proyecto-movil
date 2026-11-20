@@ -12,8 +12,7 @@ jest.mock('../servicios/servicioSesion', () => ({
   escucharCambiosDeSesion: jest.fn(() => () => {}),
 }));
 
-// Diferencia con el ejemplo de coding-standards §12: en la versión instalada de
-// Testing Library (v14) render es asíncrono, por eso cada it es async y usa await render
+// Desde Testing Library v14 render es asíncrono: cada it es async y usa await render (§12)
 describe('Integración — NavegadorRaiz', () => {
   // CA25
   it('sin usuario muestra "Iniciar sesión"', async () => {
@@ -26,12 +25,8 @@ describe('Integración — NavegadorRaiz', () => {
       </NavigationContainer>,
     );
 
-    // Diferencia con §12: el header del Stack nativo no dibuja el título como <Text>,
-    // lo pasa como propiedad title al header de iOS; getAllByText no lo encontraría.
-    // queryAll recorre todos los elementos y se queda con los que cumplen la condición.
-    expect(
-      screen.container.queryAll((nodo) => nodo.props.title === 'Iniciar sesión').length,
-    ).toBeGreaterThan(0);
+    // Se busca el botón por su rol: el título del header nativo no es un <Text> (§12)
+    expect(screen.getByRole('button', { name: 'Iniciar sesión' })).toBeOnTheScreen();
   });
 
   // CA25
