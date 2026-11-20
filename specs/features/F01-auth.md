@@ -465,7 +465,7 @@ Cada task ≈ un commit. El orden importa: algunas tasks de 01-navigation y de 0
 **Pruebas**
 
 - [x] **F01.14 — Test de integración de `PantallaInicioSesion`** (F01-CA26; cuenta para los 4 de la rúbrica). *Después de D6.*
-- [ ] **F01.15 — Probar en el iPhone** F01-CA01 a F01-CA19 y los criterios de sesión de 01-navigation (CA01–CA07, CA21) que ya se puedan probar.
+- [x] **F01.15 — Probar en el iPhone** F01-CA01 a F01-CA19 y los criterios de sesión de 01-navigation (CA01–CA07, CA21) que ya se puedan probar.
 
 **Cierre de sesión completo (se hacen después, cuando exista lo que usan)**
 
