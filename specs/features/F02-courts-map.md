@@ -235,7 +235,7 @@ Cada task ≈ un commit.
 - [x] **F02.4 — Crear `MarcadorCancha`.**
 - [x] **F02.5 — Crear `AvisoMapa`.**
 - [x] **F02.6 — Simuladores de Jest para el mapa.** En `jest.setup.ts`: `react-native-maps` (fábrica que devuelve `View` como `default` y como `Marker`) y NetInfo con su simulador oficial (`@react-native-community/netinfo/jest/netinfo-mock.js`). En los tests que dibujan `NavegadorRaiz` con usuario (N9): fábrica de `servicioCheckIns` con `obtenerCheckInsActivos` que resuelve `{ jugadoresPorCancha: {}, miCheckIn: null }`, porque Mapa es la tab inicial.
-- [ ] **F02.7 — `PantallaMapa` real:** `MapView`, marcadores, avisos, indicador y "Actualizar". Quita el texto de N4 y el botón "Ver Sullivan" de N7.
+- [x] **F02.7 — `PantallaMapa` real:** `MapView`, marcadores, avisos, indicador y "Actualizar". Quita el texto de N4 y el botón "Ver Sullivan" de N7.
 - [ ] **F02.8 — Probar en el iPhone** F02-CA01–CA10 y CA13 (la parte del mapa) (CA11 se prueba en F03.9), CA18 y CA21 de 01-navigation.
 
 ---
