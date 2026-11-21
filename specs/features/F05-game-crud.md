@@ -236,7 +236,7 @@ Cada task ≈ un commit.
 - [x] **F05.2 — Crear `VistaError`** con el código de coding-standards §6.
 - [x] **F05.3 — Crear `SelectorOpciones`** (chips, marcado, error, deshabilitado y accesibilidad).
 - [x] **F05.4 — Crear `FormularioPartido` y usarlo en `PantallaFormularioPartido` en modo crear**: campos, chips, marcador, error del servidor y "Guardar". Quita el texto provisional de N4. Probar F05-CA01–CA06, CA11 y CA12.
-- [ ] **F05.5 — Modo editar** en `PantallaFormularioPartido`: `VistaCargando` sin usuario, E2 con `VistaError`, valores con `convertirAValores` y guardar con `actualizarPartido`. Probar F05-CA07.
+- [x] **F05.5 — Modo editar** en `PantallaFormularioPartido`: `VistaCargando` sin usuario, E2 con `VistaError`, valores con `convertirAValores` y guardar con `actualizarPartido`. Probar F05-CA07.
 - [ ] **F05.6 — Eliminar**: botón "Eliminar partido" solo en editar, alerta de confirmación y `borrarPartido`.
 - [ ] **F05.7 — Test de integración** (F05-CA13). Incluye agregar `accessibilityLabel="Nuevo partido"` al [+] de `PantallaHistorial`, para que el test lo encuentre (también lo lee VoiceOver).
 - [ ] **F05.8 — Probar en el iPhone** F05-CA01–CA07, CA11 y CA12. CA08–CA10 se marcan después de F06.

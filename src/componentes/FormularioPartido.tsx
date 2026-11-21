@@ -6,9 +6,13 @@ import { CANCHAS } from '../constantes/canchas';
 import { colores, espaciado, tipografia } from '../constantes/tema';
 import { useFormulario } from '../hooks/useFormulario';
 import { useStorePartidos } from '../stores/useStorePartidos';
-import type { ValoresFormularioPartido } from '../tipos/partido';
+import type { Partido, ValoresFormularioPartido } from '../tipos/partido';
 import { obtenerFechaHoy } from '../utilidades/fechas';
-import { convertirAPartido, validarPartido } from '../utilidades/validacionesPartido';
+import {
+  convertirAPartido,
+  convertirAValores,
+  validarPartido,
+} from '../utilidades/validacionesPartido';
 import { BotonPrincipal } from './BotonPrincipal';
 import { CampoTexto } from './CampoTexto';
 import { CamposMarcador } from './CamposMarcador';
@@ -17,6 +21,7 @@ import type { OpcionSelector } from './SelectorOpciones';
 
 type PropsFormularioPartido = {
   idUsuario: string;
+  partido?: Partido; // undefined = crear
   alTerminar: () => void; // navigation.goBack: cierra el modal
 };
 
@@ -36,27 +41,40 @@ const OPCIONES_RESULTADO: OpcionSelector[] = [
 // Formulario de partido (F05). Excepción a coding-standards §4: es un componente que usa
 // useFormulario y el store, porque así lo define F05. Va aparte de la pantalla por la
 // regla de los hooks: la pantalla puede regresar otra vista antes de llegar a useFormulario.
-export const FormularioPartido: FC<PropsFormularioPartido> = ({ idUsuario, alTerminar }) => {
+export const FormularioPartido: FC<PropsFormularioPartido> = ({
+  idUsuario,
+  partido,
+  alTerminar,
+}) => {
   // Error de Firebase o de conexión: solo lo muestra este modal (F05, Diseño)
   const [errorServidor, setErrorServidor] = useState<string | null>(null);
   const registrarPartido = useStorePartidos((estado) => estado.registrarPartido);
+  const actualizarPartido = useStorePartidos((estado) => estado.actualizarPartido);
 
   const formulario = useFormulario<ValoresFormularioPartido>({
-    valoresIniciales: {
-      fecha: obtenerFechaHoy(new Date()),
-      idCancha: null, // "Sin cancha"
-      resultado: null, // ninguno
-      puntos: '',
-      rebotes: '',
-      asistencias: '',
-      marcadorPropio: '',
-      marcadorRival: '',
-    },
+    // Crear: fecha de hoy y lo demás vacío. Editar: los datos del partido guardado
+    valoresIniciales:
+      partido === undefined
+        ? {
+            fecha: obtenerFechaHoy(new Date()),
+            idCancha: null, // "Sin cancha"
+            resultado: null, // ninguno
+            puntos: '',
+            rebotes: '',
+            asistencias: '',
+            marcadorPropio: '',
+            marcadorRival: '',
+          }
+        : convertirAValores(partido),
     // hoy se calcula al validar y se pasa como parámetro: validarPartido sigue siendo pura (RN09)
     validar: (valores) => validarPartido(valores, obtenerFechaHoy(new Date())),
     alEnviar: async (valores) => {
       setErrorServidor(null);
-      const mensaje = await registrarPartido(idUsuario, convertirAPartido(valores));
+      const datos = convertirAPartido(valores);
+      const mensaje =
+        partido === undefined
+          ? await registrarPartido(idUsuario, datos)
+          : await actualizarPartido(idUsuario, partido.idPartido, datos);
       if (mensaje === null) {
         alTerminar(); // se guardó: cierra el modal
       } else {
