@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import type { FC } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text } from 'react-native';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
 import { CANCHAS } from '../constantes/canchas';
 import { colores, espaciado, tipografia } from '../constantes/tema';
@@ -50,6 +58,9 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
   const [errorServidor, setErrorServidor] = useState<string | null>(null);
   const registrarPartido = useStorePartidos((estado) => estado.registrarPartido);
   const actualizarPartido = useStorePartidos((estado) => estado.actualizarPartido);
+  const borrarPartido = useStorePartidos((estado) => estado.borrarPartido);
+  // Como enviando, pero para eliminar: deshabilita todo mientras se borra (F05, flujo C)
+  const [eliminando, setEliminando] = useState(false);
 
   const formulario = useFormulario<ValoresFormularioPartido>({
     // Crear: fecha de hoy y lo demás vacío. Editar: los datos del partido guardado
@@ -84,6 +95,29 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
   });
 
   const { valores, errores, tocados, enviando } = formulario;
+  // Mientras guarda o elimina no se puede tocar nada: evita un doble envío (E8 de F05)
+  const ocupado = enviando || eliminando;
+
+  // "Eliminar" de la alerta: borra el partido y cierra el modal si salió bien
+  const eliminar = async (idPartido: string) => {
+    setErrorServidor(null);
+    setEliminando(true);
+    const mensaje = await borrarPartido(idUsuario, idPartido);
+    if (mensaje === null) {
+      alTerminar();
+    } else {
+      setErrorServidor(mensaje); // arriba de "Guardar", igual que al guardar
+      setEliminando(false);
+    }
+  };
+
+  // Pide confirmar antes de borrar, porque no se puede deshacer (F05, flujo C)
+  const confirmarEliminar = (idPartido: string) => {
+    Alert.alert('¿Eliminar este partido?', 'No se puede deshacer.', [
+      { text: 'Cancelar', style: 'cancel' },
+      { text: 'Eliminar', style: 'destructive', onPress: () => eliminar(idPartido) },
+    ]);
+  };
   // El error de un campo se muestra solo si está tocado (como en clase)
   const errorVisible = (campo: keyof ValoresFormularioPartido) =>
     tocados[campo] === true ? errores[campo] : undefined;
@@ -102,7 +136,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
           alSalir={formulario.manejarSalida('fecha')}
           error={errorVisible('fecha')}
           placeholder="AAAA-MM-DD"
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
           keyboardType="numbers-and-punctuation"
           autoCorrect={false}
         />
@@ -115,7 +149,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
             formulario.manejarCambio('idCancha')(valor === SIN_CANCHA ? null : valor)
           }
           error={errorVisible('idCancha')}
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
         />
         <SelectorOpciones
           etiqueta="Resultado"
@@ -126,7 +160,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
             formulario.manejarCambio('resultado')(valor === 'gano' ? 'gano' : 'perdio')
           }
           error={errorVisible('resultado')}
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
         />
         <CampoTexto
           etiqueta="Puntos"
@@ -135,7 +169,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
           alSalir={formulario.manejarSalida('puntos')}
           error={errorVisible('puntos')}
           placeholder="Tus puntos"
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
           keyboardType="number-pad"
         />
         <CampoTexto
@@ -145,7 +179,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
           alSalir={formulario.manejarSalida('rebotes')}
           error={errorVisible('rebotes')}
           placeholder="Tus rebotes"
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
           keyboardType="number-pad"
         />
         <CampoTexto
@@ -155,7 +189,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
           alSalir={formulario.manejarSalida('asistencias')}
           error={errorVisible('asistencias')}
           placeholder="Tus asistencias"
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
           keyboardType="number-pad"
         />
         <CamposMarcador
@@ -170,14 +204,25 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
               ? errores.marcadorPropio
               : undefined
           }
-          deshabilitado={enviando}
+          deshabilitado={ocupado}
         />
         {errorServidor !== null && <Text style={estilos.errorServidor}>{errorServidor}</Text>}
         <BotonPrincipal
           texto="Guardar"
           alPresionar={formulario.manejarEnvio}
+          deshabilitado={eliminando}
           cargando={enviando}
         />
+        {/* Solo en editar: en "Nuevo partido" no hay nada que borrar */}
+        {partido !== undefined && (
+          <TouchableOpacity
+            style={estilos.botonEliminar}
+            onPress={() => confirmarEliminar(partido.idPartido)}
+            disabled={ocupado}
+          >
+            <Text style={estilos.textoEliminar}>Eliminar partido</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -196,5 +241,14 @@ const estilos = StyleSheet.create({
     ...tipografia.pequeno,
     color: colores.error,
     marginBottom: espaciado.sm,
+  },
+  // Botón de texto rojo, centrado, debajo de "Guardar" (F05, Diseño)
+  botonEliminar: {
+    alignItems: 'center',
+    marginTop: espaciado.md,
+  },
+  textoEliminar: {
+    ...tipografia.cuerpo,
+    color: colores.error,
   },
 });
