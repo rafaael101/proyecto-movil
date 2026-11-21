@@ -21,7 +21,12 @@ export const PantallaHistorial: FC<PropsPantallaHistorial> = ({ navigation }) =>
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('FormularioPartido')}>
+        // accessibilityLabel: el botón solo tiene un icono; así VoiceOver lo lee
+        // y el test de F05 lo encuentra
+        <TouchableOpacity
+          accessibilityLabel="Nuevo partido"
+          onPress={() => navigation.navigate('FormularioPartido')}
+        >
           <Ionicons name="add" size={tamanoIcono} color={colores.primario} />
         </TouchableOpacity>
       ),
