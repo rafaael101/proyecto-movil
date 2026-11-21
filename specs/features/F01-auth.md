@@ -407,7 +407,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest, según 
 **Sin internet**
 
 - [x] F01-CA14 — En modo avión, al tocar "Iniciar sesión" o "Crear cuenta" con datos válidos aparece "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 segundos, y el botón se vuelve a habilitar.
-- [ ] F01-CA15 — Con sesión iniciada, en modo avión, cerrar la app por completo y volver a abrirla muestra la vista de carga y luego Mapa (CA05 y CA21 de 01-navigation).
+- [x] F01-CA15 — Con sesión iniciada, en modo avión, cerrar la app por completo y volver a abrirla muestra la vista de carga y luego Mapa (CA05 y CA21 de 01-navigation).
 
 **Perfil y cerrar sesión**
 
