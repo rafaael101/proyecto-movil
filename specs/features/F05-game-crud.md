@@ -193,12 +193,12 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Los mar
 
 **Crear**
 
-- [ ] F05-CA01 — [+] abre "Nuevo partido" con la fecha de hoy, "Sin cancha" marcado, ningún resultado y lo demás vacío.
-- [ ] F05-CA02 — "Guardar" sin llenar nada muestra "Indica si ganaste o perdiste", "Escribe tus puntos", "Escribe tus rebotes" y "Escribe tus asistencias". En Firestore no aparece nada.
-- [ ] F05-CA03 — Al salir del campo: puntos `4.5` → "Usa solo números enteros"; `101` → "Máximo 100"; fecha `2026-02-30` → "Fecha no válida"; la fecha de mañana → "La fecha no puede ser futura". Antes de salir no hay error.
-- [ ] F05-CA04 — Marcador: solo "Tu equipo" lleno → "Escribe los dos marcadores o deja ambos vacíos" (una sola vez, debajo de los dos). "Ganó" con 15–20 → "Si ganaste, tu marcador debe ser mayor". Puntos 25 con 21–17 → "Tus puntos no pueden ser más que los de tu equipo".
-- [ ] F05-CA05 — Con datos válidos y Sullivan marcada, el modal se cierra y en `usuarios/{mi uid}/partidos` aparece un documento con los 8 campos: números enteros, `idCancha: 'sullivan'` y marcador `null` si lo dejé vacío (CAD10).
-- [ ] F05-CA06 — Doble toque rápido en "Guardar" crea **un solo** documento; mientras guarda, el botón muestra el indicador y los campos no se pueden editar.
+- [x] F05-CA01 — [+] abre "Nuevo partido" con la fecha de hoy, "Sin cancha" marcado, ningún resultado y lo demás vacío.
+- [x] F05-CA02 — "Guardar" sin llenar nada muestra "Indica si ganaste o perdiste", "Escribe tus puntos", "Escribe tus rebotes" y "Escribe tus asistencias". En Firestore no aparece nada.
+- [x] F05-CA03 — Al salir del campo: puntos `4.5` → "Usa solo números enteros"; `101` → "Máximo 100"; fecha `2026-02-30` → "Fecha no válida"; la fecha de mañana → "La fecha no puede ser futura". Antes de salir no hay error.
+- [x] F05-CA04 — Marcador: solo "Tu equipo" lleno → "Escribe los dos marcadores o deja ambos vacíos" (una sola vez, debajo de los dos). "Ganó" con 15–20 → "Si ganaste, tu marcador debe ser mayor". Puntos 25 con 21–17 → "Tus puntos no pueden ser más que los de tu equipo".
+- [x] F05-CA05 — Con datos válidos y Sullivan marcada, el modal se cierra y en `usuarios/{mi uid}/partidos` aparece un documento con los 8 campos: números enteros, `idCancha: 'sullivan'` y marcador `null` si lo dejé vacío (CAD10).
+- [x] F05-CA06 — Doble toque rápido en "Guardar" crea **un solo** documento; mientras guarda, el botón muestra el indicador y los campos no se pueden editar.
 
 **Editar y eliminar**
 
@@ -209,12 +209,12 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Los mar
 
 **Sin internet y cancelar**
 
-- [ ] F05-CA11 — En modo avión, "Guardar" con datos válidos muestra "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 s; el botón se habilita y lo escrito sigue ahí (CAD13). *(Después de F06)* lo mismo con "Eliminar".
-- [ ] F05-CA12 — Escribo datos y toco "Cancelar" (o deslizo hacia abajo): el modal se cierra sin preguntar y, al abrir [+] otra vez, el formulario está como en F05-CA01.
+- [x] F05-CA11 — En modo avión, "Guardar" con datos válidos muestra "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 s; el botón se habilita y lo escrito sigue ahí (CAD13). *(Después de F06)* lo mismo con "Eliminar".
+- [x] F05-CA12 — Escribo datos y toco "Cancelar" (o deslizo hacia abajo): el modal se cierra sin preguntar y, al abrir [+] otra vez, el formulario está como en F05-CA01.
 
 **Pruebas (Jest)**
 
-- [ ] F05-CA13 — **Integración — `PantallaFormularioPartido`** (`src/pantallas/PantallaFormularioPartido.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`. `servicioSesion` simulado como en N9; `servicioPartidos` simulado con fábrica (`crearPartido`, `editarPartido`, `eliminarPartido`), y `crearPartido` rechaza con `new Error('sin-conexion')`. El test toca la tab "Historial" y el [+] (por su `accessibilityLabel`), y luego:
+- [ ] F05-CA13 — **Integración — `PantallaFormularioPartido`** (`src/pantallas/PantallaFormularioPartido.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`. `servicioSesion` simulado como en N9; `servicioCheckIns` simulado como en F02.6 (Mapa es la tab inicial); `servicioPartidos` simulado con fábrica (`crearPartido`, `editarPartido`, `eliminarPartido`), y `crearPartido` rechaza con `new Error('sin-conexion')`. El test toca la tab "Historial" y el [+] (por su `accessibilityLabel`), y luego:
   1. "Guardar" con todo vacío → aparece "Indica si ganaste o perdiste" y `crearPartido` **no** se llamó.
   2. Escribe puntos `12`, rebotes `5`, asistencias `3`, toca "Ganó" y "Guardar" → aparece "No hay conexión. Revisa tu internet e intenta de nuevo." y `crearPartido` se llamó con el uid y `puntos: 12` (número), `idCancha: null`, `marcadorPropio: null`.
 
