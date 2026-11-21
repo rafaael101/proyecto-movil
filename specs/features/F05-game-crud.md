@@ -202,7 +202,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Los mar
 
 **Editar y eliminar**
 
-- [ ] F05-CA07 — "Editar partido de prueba" (provisional de N7) muestra "Este partido ya no existe" y "Cerrar" regresa al Historial (CA20 de 01-navigation).
+- [x] F05-CA07 — "Editar partido de prueba" (provisional de N7) muestra "Este partido ya no existe" y "Cerrar" regresa al Historial (CA20 de 01-navigation).
 - [ ] F05-CA08 — *(después de F06)* Tocar un partido abre "Editar partido" con sus datos. Cambiar los puntos y guardar actualiza el **mismo** documento en la consola.
 - [ ] F05-CA09 — *(después de F06)* Con el modal abierto, borro el partido en la consola y toco "Guardar" → "Este partido ya no existe." (CAD12).
 - [ ] F05-CA10 — *(después de F06)* "Eliminar partido" muestra la alerta. "Cancelar" no hace nada; "Eliminar" cierra el modal y el documento ya no está en la consola. En "Nuevo partido" no aparece "Eliminar partido".
@@ -239,7 +239,7 @@ Cada task ≈ un commit.
 - [x] **F05.5 — Modo editar** en `PantallaFormularioPartido`: `VistaCargando` sin usuario, E2 con `VistaError`, valores con `convertirAValores` y guardar con `actualizarPartido`. Probar F05-CA07.
 - [x] **F05.6 — Eliminar**: botón "Eliminar partido" solo en editar, alerta de confirmación y `borrarPartido`.
 - [x] **F05.7 — Test de integración** (F05-CA13). Incluye agregar `accessibilityLabel="Nuevo partido"` al [+] de `PantallaHistorial`, para que el test lo encuentre (también lo lee VoiceOver).
-- [ ] **F05.8 — Probar en el iPhone** F05-CA01–CA07, CA11 y CA12. CA08–CA10 se marcan después de F06.
+- [x] **F05.8 — Probar en el iPhone** F05-CA01–CA07, CA11 y CA12. CA08–CA10 se marcan después de F06.
 
 **No se quita ningún botón provisional de N7:** "Editar partido de prueba" sirve para probar E2 (F05-CA07). F06 quita los dos cuando ponga la lista real.
 
