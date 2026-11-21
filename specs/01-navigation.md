@@ -468,7 +468,7 @@ Probados en el iPhone con Expo Go.
 
 - [ ] CA19 — Abrir `DetalleCancha` con un `idCancha` que no está en el catálogo muestra "No encontramos esta cancha" y el botón "Volver al mapa" funciona.
 - [ ] CA20 — Abrir "Editar partido" o "Tarjeta de jugador" con un `idPartido` inexistente muestra "Este partido ya no existe" y el botón "Cerrar" funciona.
-- [ ] CA21 — Con modo avión y sesión guardada, la app abre en Mapa y se puede entrar a las 3 tabs y al detalle de una cancha sin que se cierre.
+- [x] CA21 — Con modo avión y sesión guardada, la app abre en Mapa y se puede entrar a las 3 tabs y al detalle de una cancha sin que se cierre.
 
 **Código**
 
