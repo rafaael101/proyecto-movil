@@ -780,7 +780,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Pruebas unitarias (Jest)** — cubren los 12 unitarios de la rúbrica
 
-- [ ] CAD16 — `obtenerFechaHoy` y `esFechaReal` (incluye las 23:30 en Ensenada y `'2026-02-30'`).
+- [x] CAD16 — `obtenerFechaHoy` y `esFechaReal` (incluye las 23:30 en Ensenada y `'2026-02-30'`).
 - [ ] CAD17 — `validarFecha`: vacía, formato malo y fecha futura.
 - [ ] CAD18 — `validarEstadistica`: vacío, `'-3'`, `'4.5'`, `'101'` y `'12'`.
 - [ ] CAD19 — `validarMarcador`: ambos vacíos (válido) y solo uno lleno.
@@ -790,7 +790,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 - [ ] CAD23 — `contarJugadoresPorCancha` (incluye lista vacía).
 - [ ] CAD24 — `obtenerNivelAfluencia` en 0, 1, 5, 6, 9 y 10 (RN07).
 - [ ] CAD25 — `calcularPromedios` con 3 partidos y con 0 partidos (sin `NaN`).
-- [ ] CAD26 — `obtenerMensajeError` con `'sin-conexion'`, `permission-denied` y un error desconocido.
+- [x] CAD26 — `obtenerMensajeError` con `'sin-conexion'`, `permission-denied` y un error desconocido.
 - [ ] CAD27 — `leerCacheHistorial` con JSON roto y con caché de otro usuario → `null` y la clave se borra.
 
 **Código**
@@ -843,7 +843,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 |---|---|---|
 | El token de sesión va en **SecureStore** (clase *Persistencia*) | Firebase guarda su sesión en **AsyncStorage** (`getReactNativePersistence`), como dice 00-project | Es la persistencia que Firebase ofrece para React Native: guarda y renueva la sesión solo, sin código propio. Usar SecureStore exigiría un adaptador (SecureStore no acepta los `:` de las claves de Firebase y está pensado para valores de ~2 KB). La app no maneja datos financieros ni sensibles, y una sesión robada se puede revocar desde la consola de Firebase. La contraseña nunca se guarda en el teléfono |
 | Cola de acciones para **encolar** sin red | No se encola nada | Un check-in encolado mentiría (la hora y el lugar ya no serían reales). Encolar partidos está en *Funcionalidades futuras* de 00-project. La práctica de la clase pide justificarlo por escrito: esta tabla es esa justificación |
-| `NetInfo` en las pantallas con `useNetInfo` | `NetInfo.fetch()` dentro de un servicio | Los servicios son el único lugar que habla con módulos nativos.Las pantallas pueden usar además `useNetInfo` para el aviso de *Sin conexión* (F02). En F06 el store decide con `hayConexion()` y la pantalla solo lee `guardadoEn` |
+| `NetInfo` en las pantallas con `useNetInfo` | `NetInfo.fetch()` dentro de un servicio | Los servicios son el único lugar que habla con módulos nativos. Las pantallas pueden usar además `useNetInfo` para el aviso de *Sin conexión* (F02). En F06 el store decide con `hayConexion()` y la pantalla solo lee `guardadoEn` |
 | Caché con un hook `usePersistedState` | Caché en `servicioCache` llamada desde el store | Los datos vienen de Firebase y los usan dos pantallas (Historial y Perfil) |
 | "Cerrar sesión de verdad" | Se cumple: se borra la caché y se limpian los stores (F01) | Mismo principio de la clase |
 
