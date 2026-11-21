@@ -775,7 +775,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Partidos**
 
-- [ ] CAD10 — Un partido creado aparece en `usuarios/{mi uid}/partidos/{id}` con exactamente los 8 campos de la tabla.
+- [x] CAD10 — Un partido creado aparece en `usuarios/{mi uid}/partidos/{id}` con exactamente los 8 campos de la tabla.
 - [ ] CAD11 — Con 23 partidos, el historial llega en páginas de 10, 10 y 3; después de la tercera, `hayMas` es `false`.
 - [ ] CAD12 — Editar un partido borrado desde la consola muestra "Este partido ya no existe".
 
@@ -788,11 +788,11 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 **Pruebas unitarias (Jest)** — cubren los 12 unitarios de la rúbrica
 
 - [x] CAD16 — `obtenerFechaHoy` y `esFechaReal` (incluye las 23:30 en Ensenada y `'2026-02-30'`).
-- [ ] CAD17 — `validarFecha`: vacía, formato malo y fecha futura.
-- [ ] CAD18 — `validarEstadistica`: vacío, `'-3'`, `'4.5'`, `'101'` y `'12'`.
-- [ ] CAD19 — `validarMarcador`: ambos vacíos (válido) y solo uno lleno.
-- [ ] CAD20 — `validarMarcador`: empate, ganó con marcador menor, y puntos mayores que el marcador propio.
-- [ ] CAD21 — `convertirAPartido`: marcador vacío → `null`, textos → números.
+- [x] CAD17 — `validarFecha`: vacía, formato malo y fecha futura.
+- [x] CAD18 — `validarEstadistica`: vacío, `'-3'`, `'4.5'`, `'101'` y `'12'`.
+- [x] CAD19 — `validarMarcador`: ambos vacíos (válido) y solo uno lleno.
+- [x] CAD20 — `validarMarcador`: empate, ganó con marcador menor, y puntos mayores que el marcador propio.
+- [x] CAD21 — `convertirAPartido`: marcador vacío → `null`, textos → números.
 - [ ] CAD22 — `calcularExpiracion` y `minutosRestantes` (incluye vencido → 0).
 - [ ] CAD23 — `contarJugadoresPorCancha` (incluye lista vacía).
 - [ ] CAD24 — `obtenerNivelAfluencia` en 0, 1, 5, 6, 9 y 10 (RN07).
