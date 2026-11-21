@@ -83,13 +83,28 @@ type PropsSelectorOpciones = {
 
 **`VistaError.tsx`** — el código ya está en coding-standards §6. **No existe todavía en el repo**; F05 es la primera feature que lo usa (E2).
 
-**`FormularioPartido.tsx`** — el formulario completo. Va aparte de la pantalla por la regla de los hooks: la pantalla puede regresar `VistaError` antes de llegar a `useFormulario`. Si pasa de ~150 líneas, el marcador se separa en `CamposMarcador` (§6).
+**`FormularioPartido.tsx`** — el formulario completo. Va aparte de la pantalla por la regla de los hooks: la pantalla puede regresar `VistaError` antes de llegar a `useFormulario`. El marcador va en `CamposMarcador` y todos los campos en `CamposPartido` (§6: ningún componente pasa de ~150 líneas).
 
 ```ts
 type PropsFormularioPartido = {
   idUsuario: string;
   partido?: Partido; // undefined = crear
   alTerminar: () => void; // navigation.goBack
+};
+```
+
+**`CamposPartido.tsx`** — dibuja los campos del formulario: Fecha, Cancha, Resultado, Puntos, Rebotes, Asistencias y `CamposMarcador`. `FormularioPartido` maneja el estado, guardar y eliminar; `CamposPartido` solo dibuja. Aquí viven `SIN_CANCHA` y las opciones de los dos selectores.
+
+```ts
+type PropsCamposPartido = {
+  valores: ValoresFormularioPartido;
+  errores: ErroresPartido;
+  tocados: Partial<Record<keyof ValoresFormularioPartido, boolean>>;
+  manejarCambio: <K extends keyof ValoresFormularioPartido>(
+    campo: K,
+  ) => (valor: ValoresFormularioPartido[K]) => void;
+  manejarSalida: (campo: keyof ValoresFormularioPartido) => () => void;
+  deshabilitado: boolean;
 };
 ```
 
@@ -158,7 +173,7 @@ Todas son las de 02-data-model (`src/utilidades/validacionesPartido.ts`, task D1
 | Puntos, rebotes, asistencias | `validarEstadistica` | RN09, RN08: enteros de 0 a 100 |
 | Marcador | `validarMarcador` | RN09: los dos o ninguno, 0–200, sin empate, coherente con el resultado y ≥ puntos |
 
-Después de validar: `convertirAPartido`. Para editar: `convertirAValores`.
+Después de validar: `convertirAPartido`. Para editar: `convertirAValores`. Para crear: `crearValoresVacios(hoy)`.
 
 ---
 
@@ -240,6 +255,7 @@ Cada task ≈ un commit.
 - [x] **F05.6 — Eliminar**: botón "Eliminar partido" solo en editar, alerta de confirmación y `borrarPartido`.
 - [x] **F05.7 — Test de integración** (F05-CA13). Incluye agregar `accessibilityLabel="Nuevo partido"` al [+] de `PantallaHistorial`, para que el test lo encuentre (también lo lee VoiceOver).
 - [x] **F05.8 — Probar en el iPhone** F05-CA01–CA07, CA11 y CA12. CA08–CA10 se marcan después de F06.
+- [ ] **F05.9 — Separar** `CamposPartido` y `crearValoresVacios` para que `FormularioPartido` quede en ~150 líneas (§6). No cambia lo que se ve ni cómo funciona.
 
 **No se quita ningún botón provisional de N7:** "Editar partido de prueba" sirve para probar E2 (F05-CA07). F06 quita los dos cuando ponga la lista real.
 
