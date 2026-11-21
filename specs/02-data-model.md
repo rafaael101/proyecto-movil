@@ -845,7 +845,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 - [x] **D13 — `servicioPartidos`**: `crearPartido`, `editarPartido`, `eliminarPartido` **(con F05)**. Probar CAD10 (CAD12 después de F06, porque editar necesita la lista).
 - [x] **D14 — `servicioPartidos`**: `obtenerPaginaPartidos` y `obtenerTodosLosPartidos`, con los tipos CursorPartidos y PaginaPartidos. **(con F06)**. Probar CAD11. 
 - [x] **D15 — `calcularPromedios`** + pruebas (CAD25) **(con F06)**.
-- [ ] **D16 — `servicioCache`** + pruebas (CAD15, CAD27) **(con F06)**. Probar CAD13–CAD14 en modo avión.
+- [x] **D16 — `servicioCache`** + pruebas (CAD15, CAD27) **(con F06)**. Probar CAD13–CAD14 en modo avión.
 
 **Cierre**
 
