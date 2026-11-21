@@ -279,7 +279,7 @@ Cada task ≈ un commit.
 - [ ] **F06.7 — `ResumenPromedios` en `PantallaPerfil`**, entre el correo y "Cerrar sesión".
 - [ ] **F06.8 — Test de integración** (F06-CA14).
 - ➡️ **F01.17 de F01** — borrar la caché al cerrar sesión (ya existe D16).
-- ➡️ **F01.18 de F01, solo la parte de partidos** — `useStorePartidos.getState().limpiar()`. La parte de check-ins ya la hizo F02.
+- ➡️ **F01.18 de F01, solo la parte de partidos** — `useStorePartidos.getState().limpiar()`. La parte de check-ins ya la hizo F03.
 - [ ] **F06.9 — Probar en el iPhone** F06-CA01–CA12, F05-CA08–CA10 (y la parte de "Eliminar" de F05-CA11), CAD11–CAD14, y CA12, CA15 y CA16 de 01-navigation. Para los 23 partidos sirve el formulario o la consola.
 
 **Nota para los tests ya hechos (F06.6 y F06.7):** desde que Historial y Perfil usan `useStorePartidos`, los tests que dibujan `NavegadorRaiz` (N9, F01.14, F05.7) cargan ese store. Si truenan porque se cargan Firebase o NetInfo reales, se agrega en esos tests el simulador con fábrica de `servicioPartidos`, `servicioConexion` y `servicioCache` (§12). En el de F05.7, la fábrica de `servicioPartidos` también trae `obtenerPaginaPartidos` y `obtenerTodosLosPartidos`.
