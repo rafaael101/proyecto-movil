@@ -214,7 +214,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Los mar
 
 **Pruebas (Jest)**
 
-- [ ] F05-CA13 — **Integración — `PantallaFormularioPartido`** (`src/pantallas/PantallaFormularioPartido.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`. `servicioSesion` simulado como en N9; `servicioCheckIns` simulado como en F02.6 (Mapa es la tab inicial); `servicioPartidos` simulado con fábrica (`crearPartido`, `editarPartido`, `eliminarPartido`), y `crearPartido` rechaza con `new Error('sin-conexion')`. El test toca la tab "Historial" y el [+] (por su `accessibilityLabel`), y luego:
+- [ ] F05-CA13 — **Integración — `PantallaFormularioPartido`** (`src/pantallas/PantallaFormularioPartido.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`. `servicioSesion` simulado como en N9; `servicioCheckIns` simulado como en F02.6 (Mapa es la tab inicial) (este simulador lo agrega F02.6; antes de F02 el servicio no existe y el test no lo simula); `servicioPartidos` simulado con fábrica (`crearPartido`, `editarPartido`, `eliminarPartido`), y `crearPartido` rechaza con `new Error('sin-conexion')`. El test toca la tab "Historial" y el [+] (por su `accessibilityLabel`), y luego:
   1. "Guardar" con todo vacío → aparece "Indica si ganaste o perdiste" y `crearPartido` **no** se llamó.
   2. Escribe puntos `12`, rebotes `5`, asistencias `3`, toca "Ganó" y "Guardar" → aparece "No hay conexión. Revisa tu internet e intenta de nuevo." y `crearPartido` se llamó con el uid y `puntos: 12` (número), `idCancha: null`, `marcadorPropio: null`.
 
