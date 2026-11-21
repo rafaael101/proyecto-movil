@@ -502,7 +502,7 @@ Esta spec define el comportamiento, pero el código va con la feature que tiene 
 - **Casos E2 y E3** → F05 (formulario) y F07 (tarjeta).
 - **Alerta de confirmación y acción de cerrar sesión** → F01.
 - **Borrar caché y stores al cerrar sesión** → F01 y F06.
-- **Control para abrir la tarjeta en cada partido del Historial** → F06 define cómo se ve.
+- **Control para abrir la tarjeta en cada partido del Historial** → icono `id-card-outline` en cada fila (F06).
 
 ---
 
