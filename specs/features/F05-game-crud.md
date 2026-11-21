@@ -232,7 +232,7 @@ Cada task ≈ un commit.
 
 - ➡️ **D12 de 02-data-model** — validaciones y conversiones de partido + pruebas (CAD17–CAD21).
 - ➡️ **D13 de 02-data-model** — `servicioPartidos`: `crearPartido`, `editarPartido`, `eliminarPartido`. CAD10 se prueba en F05.4 y CAD12 después de F06.
-- [ ] **F05.1 — Crear `useStorePartidos`** mínimo: `partidos`, `registrarPartido`, `actualizarPartido`, `borrarPartido` y `limpiar`.
+- [x] **F05.1 — Crear `useStorePartidos`** mínimo: `partidos`, `registrarPartido`, `actualizarPartido`, `borrarPartido` y `limpiar`.
 - [ ] **F05.2 — Crear `VistaError`** con el código de coding-standards §6.
 - [ ] **F05.3 — Crear `SelectorOpciones`** (chips, marcado, error, deshabilitado y accesibilidad).
 - [ ] **F05.4 — Crear `FormularioPartido` y usarlo en `PantallaFormularioPartido` en modo crear**: campos, chips, marcador, error del servidor y "Guardar". Quita el texto provisional de N4. Probar F05-CA01–CA06, CA11 y CA12.
