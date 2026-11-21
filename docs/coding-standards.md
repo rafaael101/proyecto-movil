@@ -70,7 +70,7 @@ HoopsMap/
 | `pantallas/`   | Una pantalla: lee stores, arma componentes, navega, maneja los 4 estados | `PantallaMapa.tsx`, `PantallaFormularioPartido.tsx`                                                    | Llamadas a servicios o a Firebase                                            |
 | `componentes/` | UI que recibe datos por props y avisa con callbacks                      | `VistaCargando.tsx`, `VistaError.tsx`, `VistaVacia.tsx`                                                | Stores, servicios, `navigate`                                                |
 | `hooks/`       | Lógica reutilizable con estado **local**                                 | `useFormulario.ts`                                                                                     | Estado que comparten varias pantallas (eso es un store)                      |
-| `stores/`      | Un store de Zustand por tema                                             | `useStoreSesion.ts` (F01)                                                                              | Componentes o imports de Firebase                                            |
+| `stores/`      | Un store de Zustand por tema                                             | `useStoreSesion.ts` (F01), `useStoreCheckIns.ts` (F02).                                                                              | Componentes o imports de Firebase                                            |
 | `servicios/`   | Firebase, AsyncStorage, NetInfo y módulos nativos                        | `firebase.ts`, `servicioConexion.ts`, `servicioCheckIns.ts`, `servicioPartidos.ts`, `servicioCache.ts` | Textos para el usuario, estado                                               |
 | `utilidades/`  | Funciones **puras**: mismo resultado para los mismos datos               | `fechas.ts`, `errores.ts`, `validacionesPartido.ts`, `afluencia.ts`, `promedios.ts`, `canchas.ts`      | Firebase, AsyncStorage, `new Date()` adentro (la fecha llega como parámetro) |
 | `constantes/`  | Valores fijos                                                            | `tema.ts`, `configuracion.ts`, `canchas.ts`                                                            | Funciones con lógica                                                         |
@@ -227,7 +227,7 @@ navigation.push('DetalleCancha', { idCancha }); // doble toque abre dos pantalla
 - **Orden del archivo:** imports → tipos → componente → estilos.
 - **Orden de imports**, separados por una línea en blanco: 1) `react` y `react-native`, 2) otras librerías, 3) nuestros archivos con rutas relativas (`../componentes/VistaError`). Los imports que solo traen tipos usan `import type`.
 - **Si un archivo pasa de ~150 líneas, se divide.** Si la misma pieza aparece en dos pantallas, se vuelve componente.
-- **Cada pantalla en su archivo de `src/pantallas/`.** Nunca se declara dentro de un navegador ni con `component={() => ...}` (01-navigation, CA24).
+- **Cada pantalla en su archivo de `src/pantallas/`.** Nunca se declara dentro de un navegador ni con `component={() => ...}` (01-navigation, CA24).F02 agrega MarcadorCancha (burbuja de una cancha con su número y el color de su nivel) y AvisoMapa (tarjeta de aviso arriba del mapa, con botón opcional).
 
 **Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). `VistaError` lo crea F05 (F05.2) con el código de abajo; `VistaVacia`, F06 (F06.4). Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error), `BotonPrincipal` (deshabilitado y cargando) y `ContenedorSesion` (estructura de Inicio de sesión y Registro). F05 agrega `SelectorOpciones` (chips para elegir una opción) y `FormularioPartido` (el formulario de crear y editar partido). F06 agrega `FilaPartido` (una fila del Historial con su icono de tarjeta), `AvisoSinConexion` ("Sin conexión — datos guardados el…" + "Reintentar") y `ResumenPromedios` (la sección de promedios de Perfil).
 
@@ -301,7 +301,7 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
 
 ## 7. Tema y estilos
 
-Todo color, tamaño de letra, espaciado y radio sale de `src/constantes/tema.ts`. Los valores y su uso están en _Paleta y tipografía_ de 01-navigation; los colores de afluencia (RN07) los agrega F02.
+Todo color, tamaño de letra, espaciado y radio sale de `src/constantes/tema.ts`. Los valores y su uso están en _Paleta y tipografía_ de 01-navigation; los colores de afluencia (RN07) están en coloresAfluencia (F02).
 
 ```ts
 // src/constantes/tema.ts
@@ -331,6 +331,15 @@ export const espaciado = { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 } as const;
 export const radio = 12;
 
 export const tamanoIcono = 28; // iconos del header (01-navigation)
+// Colores de los niveles de afluencia (RN07), con texto blanco encima (F02)
+export const coloresAfluencia = {
+  vacia: '#6B6B70',
+  poca: '#2E7D32',
+  reta: '#C2410C',
+  llena: '#C62828',
+} as const;
+
+export const tamanoMarcador = 36; // burbuja del mapa (F02)
 ```
 
 **Reglas**
@@ -614,6 +623,8 @@ describe('Integración — NavegadorRaiz', () => {
 | Un servicio  | `jest.mock('../servicios/servicioX', () => ({ funcion: jest.fn() }))` **con fábrica**, para que nunca se cargue Firebase. Se programa la respuesta con `jest.mocked(funcion).mockResolvedValue(...)` (o `mockRejectedValue` para probar errores) |
 | Un store     | `useStoreX.setState({...})` en cada test, porque el store guarda su estado entre tests                                                                                                                                                           |
 | AsyncStorage | Una vez en `jest.setup.ts` con el simulador oficial: `jest.mock('@react-native-async-storage/async-storage', () => require('@react-native-async-storage/async-storage/jest/async-storage-mock'))`                                                |
+| Mapa y NetInfo | Una vez en `jest.setup.ts`: `react-native-maps` con una fábrica que devuelve `View` como `default` y como `Marker`, y NetInfo con su simulador oficial (`@react-native-community/netinfo/jest/netinfo-mock.js`) (F02) |
+| Mapa en tests de `NavegadorRaiz` con usuario | Mapa es la tab inicial: fábrica de `servicioCheckIns` con `obtenerCheckInsActivos: jest.fn(() => Promise.resolve({ jugadoresPorCancha: {}, miCheckIn: null }))` (F02) |
 | La fecha     | Se pasa como parámetro (`hoy`, `ahora`); no hace falta simular el reloj                                                                                                                                                                          |
 
 ---
