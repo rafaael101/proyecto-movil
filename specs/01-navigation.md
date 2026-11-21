@@ -498,7 +498,7 @@ Cada task ≈ un commit.
 
 Esta spec define el comportamiento, pero el código va con la feature que tiene los datos:
 
-- **Título con el nombre de la cancha y caso E1** → F04 (usa el catálogo de RN05).
+- **Título con el nombre de la cancha** → F04 (F04.3, usa el catálogo de RN05). **Vista del caso E1** → F03 (F03.8). CA13 y CA19 se prueban en F04.5.
 - **Casos E2 y E3** → F05 (formulario) y F07 (tarjeta).
 - **Alerta de confirmación y acción de cerrar sesión** → F01.
 - **Borrar caché y stores al cerrar sesión** → F01 y F06.
