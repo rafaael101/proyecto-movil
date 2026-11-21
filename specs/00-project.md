@@ -136,6 +136,7 @@ Una app móvil con dos módulos:
 | Git                | Solo rama `main`. Commits en español con el estilo de la clase, una idea por commit y el id de la task: `agrega dependencias de navegación (N1)` | Clase *Git y Deploy*; proyecto individual, lo más simple de defender |
 | Idioma del código  | **Español** para todo lo que nombramos nosotros (variables, funciones, tipos, componentes, archivos, **carpetas** y variables de `.env`), sin acentos ni ñ. Carpetas: `src/pantallas/`, `src/componentes/`, `src/navegacion/`, `src/constantes/`, etc. (`anio`, `ubicacion`). Excepciones: `src/hooks/` y `src/stores/` conservan la palabra de la herramienta, igual que el prefijo `use`; la carpeta `specs/` y sus archivos conservan los nombres de *Estructura de specs* (su contenido sí va en español); la carpeta `docs/` y `docs/coding-standards.md` también conservan su nombre. Las APIs de librerías se quedan en inglés (`useState`, `navigate`). Detalle en `docs/coding-standards.md` | Más fácil de leer y explicar |
 | Nivel del código y diseño | Ordenado y con buena presentación, sin patrones avanzados: componentes reutilizables, paleta y tipografía consistentes (`tema.ts`), estados de carga/error cuidados | Que se vea profesional y se pueda defender línea por línea |
+| Publicación | expo-updates + EAS Update, con runtimeVersion { "policy": "sdkVersion" } en app.json | La entrega pide una liga para abrir la app; Expo Go solo abre una actualización cuyo runtime es la versión del SDK |
 
 ### Por qué se necesita un backend
 
