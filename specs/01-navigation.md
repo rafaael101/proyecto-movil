@@ -90,7 +90,7 @@ Conteo para la rúbrica: **Stack** 3 (1, 2, 6) · **Tabs** 3 (3, 4, 5) · **Moda
 
 **Contenido de cada tab** (lo detalla la spec de cada feature):
 
-- **Mapa** → F02 (mapa y canchas) y F03 (check-in).
+- **Mapa** → F02 (mapa y canchas). El check-in (F03) está en DetalleCancha.
 - **Historial** → F06 (lista paginada y caché). Desde aquí se crea, edita (F05) y se abre la tarjeta (F07).
 - **Perfil** → nombre y correo del usuario, promedios (F06) y botón **Cerrar sesión** (F01).
 
@@ -419,7 +419,7 @@ src/
 | E6  | Se abre la app **sin internet** y **con** sesión guardada                                                                            | Firebase recupera la sesión guardada → se muestra Mapa. Se puede navegar por todas las pantallas; los datos que falten los manejan F02–F07 (Historial desde caché, RN11). |
 | E7  | Se abre la app **sin internet** y **sin** sesión                                                                                     | Se muestra "Iniciar sesión". El error al intentar entrar lo maneja F01.                                                                                                   |
 | E8  | Se abre el formulario o se intenta crear/editar **sin internet**                                                                     | La navegación no lo bloquea. F05 muestra el error 'No hay conexión…' arriba de 'Guardar'; no deshabilita nada (RN11).                                     |
-| E9  | Permisos de ubicación o cámara negados                                                                                               | No afectan la navegación: todas las pantallas abren. Mapa (F02) y Tarjeta (F07) muestran su explicación; nunca se queda una pantalla en blanco.                           |
+| E9  | Permisos de ubicación o cámara negados                                                                                               | No afectan la navegación: todas las pantallas abren. DetalleCancha (F03) y Tarjeta (F07) muestran su explicación; nunca se queda una pantalla en blanco.                           |
 | E10 | Doble toque rápido en un marcador o en un partido                                                                                    | Se abre **una sola** pantalla (se usa `navigate`, no `push`).                                                                                                             |
 | E11 | El usuario cambia de tab y regresa                                                                                                   | La tab conserva su estado (por ejemplo, la posición del scroll en Historial).                                                                                             |
 | E12 | Firebase tarda en responder al revisar la sesión                                                                                     | Se mantiene `VistaCargando`; no aparece el login por un instante y luego la app (sin "parpadeo").                                                                         |
