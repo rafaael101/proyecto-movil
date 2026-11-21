@@ -47,7 +47,7 @@ Una app móvil con dos módulos:
 | F02 | Mapa de canchas cercanas                        | Afluencia  | Alta        | pendiente |
 | F03 | Hacer y terminar check-in en cancha             | Afluencia  | **Central** | pendiente |
 | F04 | Detalle de cancha y su afluencia                | Afluencia  | Alta        | pendiente |
-| F05 | Registrar, editar y eliminar partido (CRUD)     | Bitácora   | Alta        | pendiente |
+| F05 | Registrar, editar y eliminar partido (CRUD)     | Bitácora   | Alta        | `features/F05-game-crud.md` |
 | F06 | Historial paginado, promedios y caché offline   | Bitácora   | Alta        | pendiente |
 | F07 | Tarjeta de jugador (foto + compartir)           | Social     | Media       | pendiente |
 
