@@ -170,7 +170,7 @@ Cualquier capa puede usar: utilidades (puras), constantes y tipos.
 import { addDoc, collection } from 'firebase/firestore';
 
 // ✅ Así sí: la pantalla le pide al store, el store al servicio
-const guardarPartido = useStorePartidos((estado) => estado.guardarPartido);
+const registrarPartido = useStorePartidos((estado) => estado.registrarPartido);
 ```
 
 ---
@@ -228,7 +228,7 @@ navigation.push('DetalleCancha', { idCancha }); // doble toque abre dos pantalla
 - **Si un archivo pasa de ~150 líneas, se divide.** Si la misma pieza aparece en dos pantallas, se vuelve componente.
 - **Cada pantalla en su archivo de `src/pantallas/`.** Nunca se declara dentro de un navegador ni con `component={() => ...}` (01-navigation, CA24).
 
-**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error), `BotonPrincipal` (deshabilitado y cargando) y `ContenedorSesion` (estructura de Inicio de sesión y Registro).
+**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). `VistaError` lo crea F05 (F05.2) con el código de abajo; `VistaVacia`, la primera feature que la use. Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error), `BotonPrincipal` (deshabilitado y cargando) y `ContenedorSesion` (estructura de Inicio de sesión y Registro). F05 agrega `SelectorOpciones` (chips para elegir una opción) y `FormularioPartido` (el formulario de crear y editar partido).
 
 ```tsx
 // src/componentes/VistaError.tsx
@@ -398,6 +398,7 @@ export const useStorePartidos = create<EstadoPartidos>((set) => ({
 - **Leer con selector:** `const partidos = useStorePartidos((estado) => estado.partidos);` La pantalla solo se vuelve a dibujar cuando cambia ese dato.
 - **Acciones que la pantalla necesita saber si salieron bien** (guardar, eliminar) devuelven `Promise<boolean>`: `true` si se guardó, `false` si falló (el mensaje queda en `mensajeError`). Así la pantalla decide si cierra el modal.
 - **Excepción, `useStoreSesion` (F01):** no lleva `cargando` ni `mensajeError`. `revisandoSesion` hace de `cargando`, y `registrarse`, `iniciarSesion` y `cerrarSesion` devuelven `Promise<string | null>` (el mensaje, o `null` si salió bien), porque el error solo lo muestra la pantalla que hizo la petición y se guarda en su `useState`.
+- **Excepción, `useStorePartidos` (F05):** `registrarPartido`, `actualizarPartido` y `borrarPartido` también devuelven `Promise<string | null>` y no `Promise<boolean>`, porque el error de guardar solo lo muestra el modal. Si quedara en `mensajeError`, el Historial mostraría `VistaError` detrás del modal. `cargando` y `mensajeError` (los de la lista) los agrega F06.
 
 ---
 
@@ -518,9 +519,12 @@ const formulario = useFormulario<ValoresFormularioPartido>({
   valoresIniciales,
   validar: (valores) => validarPartido(valores, obtenerFechaHoy(new Date())),
   alEnviar: async (valores) => {
-    const guardado = await guardarPartido(convertirAPartido(valores));
-    if (guardado) {
-      navigation.goBack();
+    setErrorServidor(null);
+    const mensaje = await registrarPartido(idUsuario, convertirAPartido(valores));
+    if (mensaje === null) {
+      navigation.goBack(); // se guardó: cierra el modal
+    } else {
+      setErrorServidor(mensaje); // falló: se muestra arriba de "Guardar"
     }
   },
 });
@@ -544,7 +548,7 @@ const formulario = useFormulario<ValoresFormularioPartido>({
 | Tipo        | Qué                                                                          | De dónde salen                                                                                       |
 | ----------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Unitario    | Funciones puras de `utilidades/` y `servicioCache` con AsyncStorage simulado | CAD16–CAD27 de 02-data-model (12 criterios, mínimo un `it` cada uno)                                 |
-| Integración | Una pantalla o navegador con stores reales y **servicios simulados**         | 2: N9 de 01-navigation y F01.14 de F01. Los otros 2 los declara la spec de la feature que los aporte |
+| Integración | Una pantalla o navegador con stores reales y **servicios simulados**         | 3: N9 de 01-navigation, F01.14 de F01 y F05.7 de F05. El 4.º lo declara la spec de la feature que lo aporte |
 
 Las reglas de Firestore **no** se prueban con Jest: se prueban en el Rules Playground de la consola (CAD01–CAD05).
 
