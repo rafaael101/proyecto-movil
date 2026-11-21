@@ -88,6 +88,7 @@ npx jest
 - Nunca "arregles" un error apagando la revisión (`any`, `@ts-ignore`, `eslint-disable`).
 - Repasa los criterios de aceptación de la spec y la _Definición de terminado_ (§19). Dime cuáles crees que ya se cumplen y cuáles debo probar en el iPhone, en Jest o en la consola de Firebase.
 - Al cerrar una feature no puede quedar `console.log`, código comentado ni código provisional.
+- Ningún componente ni pantalla pasa de ~150 líneas (§6). Si pasa, detente y propón cómo dividirlo antes del commit.
 
 ## Dependencias (§14)
 
