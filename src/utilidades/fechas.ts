@@ -27,3 +27,29 @@ export function esFechaReal(fecha: string): boolean {
     fechaArmada.getDate() === dia
   );
 }
+
+// Meses abreviados en español; el índice es el de getMonth() (enero = 0)
+const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+
+/**
+ * Convierte la fecha de un partido 'AAAA-MM-DD' en texto para la fila del Historial
+ * (F06). Ejemplo: '2026-11-02' → '2 nov 2026'.
+ * Separa el texto con split('-') y no usa new Date: new Date('2026-11-02') lo lee
+ * como medianoche en UTC, y en Ensenada daría el 1 de noviembre.
+ */
+export function formatearFecha(fecha: string): string {
+  const [anio, mes, dia] = fecha.split('-').map(Number);
+  return `${dia} ${MESES[mes - 1]} ${anio}`;
+}
+
+/**
+ * Convierte el instante ISO de la caché (guardadoEn) en fecha y hora local para el
+ * aviso sin conexión (F06). Ejemplo en Ensenada: '2026-11-03T02:40:00.000Z' → '2 nov, 18:40'.
+ * Aquí sí se usa new Date: el texto ISO trae la hora exacta y se quiere verla en hora local.
+ */
+export function formatearFechaHora(iso: string): string {
+  const fecha = new Date(iso);
+  // Minutos con 2 dígitos: 18:05, no 18:5
+  const minutos = String(fecha.getMinutes()).padStart(2, '0');
+  return `${fecha.getDate()} ${MESES[fecha.getMonth()]}, ${fecha.getHours()}:${minutos}`;
+}

@@ -270,7 +270,7 @@ Cada task ≈ un commit.
 - ➡️ **D14 de 02-data-model** — `obtenerPaginaPartidos` y `obtenerTodosLosPartidos` (CAD11 se prueba en F06.9).
 - ➡️ **D15 de 02-data-model** — `calcularPromedios` + pruebas (CAD25).
 - ➡️ **D16 de 02-data-model** — `servicioCache` + pruebas (CAD15, CAD27).
-- [ ] **F06.1 — `formatearFecha`, `formatearFechaHora` y `obtenerNombreCancha`** + pruebas (F06-CA13).
+- [x] **F06.1 — `formatearFecha`, `formatearFechaHora` y `obtenerNombreCancha`** + pruebas (F06-CA13).
 - [ ] **F06.2 — Ampliar `useStorePartidos`**: estado de la lista, `cargarHistorial` (con caché sin internet), `cargarMas` y `limpiar` completo.
 - [ ] **F06.3 — Recargar después de guardar**: las 3 acciones de F05 esperan `cargarHistorial` si salen bien.
 - [ ] **F06.4 — Crear `VistaVacia` y `AvisoSinConexion`.**
