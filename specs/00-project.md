@@ -45,7 +45,7 @@ Una app móvil con dos módulos:
 |-----|-------------------------------------------------|------------|-------------|------|
 | F01 | Registro, inicio y cierre de sesión             | Cuenta     | Alta        | `features/F01-auth.md` |
 | F02 | Mapa de canchas cercanas                        | Afluencia  | Alta        | `features/F02-courts-map.md` |
-| F03 | Hacer y terminar check-in en cancha             | Afluencia  | **Central** | pendiente |
+| F03 | Hacer y terminar check-in en cancha             | Afluencia  | **Central** | `features/F03-check-in.md` |
 | F04 | Detalle de cancha y su afluencia                | Afluencia  | Alta        | pendiente |
 | F05 | Registrar, editar y eliminar partido (CRUD)     | Bitácora   | Alta        | `features/F05-game-crud.md` |
 | F06 | Historial paginado, promedios y caché offline   | Bitácora   | Alta        | `features/F06-game-history.md` |
