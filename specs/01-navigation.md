@@ -307,7 +307,7 @@ Estilo **minimalista**: fondos claros, texto casi negro y **un solo color de ace
 | `error`              | `#C62828` | Mensajes de error y botón "Eliminar"                                                        |
 | `exito`              | `#2E7D32` | Confirmaciones (por ejemplo, "Ganó")                                                        |
 
-Todos los textos cumplen el contraste mínimo recomendado para leerse bien (4.5 a 1): el naranja `#C2410C` funciona tanto como texto sobre blanco como fondo de botón con texto blanco. Por eso se eligió un naranja un poco oscuro y no uno brillante. Los colores de los niveles de afluencia (RN07) los agrega F02 a este mismo archivo.
+Todos los textos cumplen el contraste mínimo recomendado para leerse bien (4.5 a 1): el naranja `#C2410C` funciona tanto como texto sobre blanco como fondo de botón con texto blanco. Por eso se eligió un naranja un poco oscuro y no uno brillante. Los colores de los niveles de afluencia (RN07) están en `coloresAfluencia` de este mismo archivo (F02).
 
 **Tipografía:** la fuente del sistema (San Francisco en iPhone). No se instala ninguna fuente, se ve nativa y es lo más minimalista.
 
@@ -489,7 +489,7 @@ Cada task ≈ un commit.
 - [x] **N4 — Crear las 8 pantallas provisionales** en `src/pantallas/` (solo un texto con su nombre, tipadas con sus props) y `VistaCargando` en `src/componentes/`.
 - [x] **N5 — Crear `NavegadorTabs`** con Mapa, Historial y Perfil, títulos, iconos Ionicons y colores del tema.
 - [x] **N6 — Crear `NavegadorRaiz` y conectarlo en `App.tsx`.** Stack con `Principal` (header oculto), `DetalleCancha` y los dos modales (`presentation: 'modal'`). Por ahora sin la decisión de sesión: siempre muestra la parte con sesión.
-- [x] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales.
+- [x] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales (“Ver Sullivan” lo quita F02.7).
 - [x] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). _Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión)._
 - [x] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. _Requiere Jest configurado._ El simulador de `servicioSesion` debe traer `escucharCambiosDeSesion: jest.fn(() => () => {})`: desde F01.6, `NavegadorRaiz` la llama al montarse y, con el simulador vacío (`() => ({})`), el test truena. Como nunca avisa, no cambia el estado que el test le puso al store.
 - [ ] **N10 — Probar los criterios de aceptación en el iPhone** y marcar los que ya se pueden probar. Los que dependen de otras features se marcan cuando esas features estén listas.
