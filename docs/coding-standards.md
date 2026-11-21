@@ -228,7 +228,7 @@ navigation.push('DetalleCancha', { idCancha }); // doble toque abre dos pantalla
 - **Si un archivo pasa de ~150 líneas, se divide.** Si la misma pieza aparece en dos pantallas, se vuelve componente.
 - **Cada pantalla en su archivo de `src/pantallas/`.** Nunca se declara dentro de un navegador ni con `component={() => ...}` (01-navigation, CA24).
 
-**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). `VistaError` lo crea F05 (F05.2) con el código de abajo; `VistaVacia`, la primera feature que la use. Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error), `BotonPrincipal` (deshabilitado y cargando) y `ContenedorSesion` (estructura de Inicio de sesión y Registro). F05 agrega `SelectorOpciones` (chips para elegir una opción) y `FormularioPartido` (el formulario de crear y editar partido).
+**Componentes compartidos ya definidos:** `VistaCargando`, `VistaError` (mensaje + botón opcional) y `VistaVacia` (mensaje). `VistaError` lo crea F05 (F05.2) con el código de abajo; `VistaVacia`, F06 (F06.4). Los de formulario los define F01: `CampoTexto` (etiqueta, placeholder y error), `BotonPrincipal` (deshabilitado y cargando) y `ContenedorSesion` (estructura de Inicio de sesión y Registro). F05 agrega `SelectorOpciones` (chips para elegir una opción) y `FormularioPartido` (el formulario de crear y editar partido). F06 agrega `FilaPartido` (una fila del Historial con su icono de tarjeta), `AvisoSinConexion` ("Sin conexión — datos guardados el…" + "Reintentar") y `ResumenPromedios` (la sección de promedios de Perfil).
 
 ```tsx
 // src/componentes/VistaError.tsx
@@ -398,7 +398,7 @@ export const useStorePartidos = create<EstadoPartidos>((set) => ({
 - **Leer con selector:** `const partidos = useStorePartidos((estado) => estado.partidos);` La pantalla solo se vuelve a dibujar cuando cambia ese dato.
 - **Acciones que la pantalla necesita saber si salieron bien** (guardar, eliminar) devuelven `Promise<boolean>`: `true` si se guardó, `false` si falló (el mensaje queda en `mensajeError`). Así la pantalla decide si cierra el modal.
 - **Excepción, `useStoreSesion` (F01):** no lleva `cargando` ni `mensajeError`. `revisandoSesion` hace de `cargando`, y `registrarse`, `iniciarSesion` y `cerrarSesion` devuelven `Promise<string | null>` (el mensaje, o `null` si salió bien), porque el error solo lo muestra la pantalla que hizo la petición y se guarda en su `useState`.
-- **Excepción, `useStorePartidos` (F05):** `registrarPartido`, `actualizarPartido` y `borrarPartido` también devuelven `Promise<string | null>` y no `Promise<boolean>`, porque el error de guardar solo lo muestra el modal. Si quedara en `mensajeError`, el Historial mostraría `VistaError` detrás del modal. `cargando` y `mensajeError` (los de la lista) los agrega F06.
+- **Excepción, `useStorePartidos` (F05):** `registrarPartido`, `actualizarPartido` y `borrarPartido` también devuelven `Promise<string | null>` y no `Promise<boolean>`, porque el error de guardar solo lo muestra el modal. Si quedara en `mensajeError`, el Historial mostraría `VistaError` detrás del modal. F06 agrega el estado de la lista: `cargando`, `mensajeError`, `cargandoMas`, `mensajeErrorMas` y `guardadoEn`. Además, si las 3 acciones de F05 salen bien, esperan `cargarHistorial` antes de devolver `null` (F06.3).
 
 ---
 
@@ -423,7 +423,7 @@ return <FlatList data={partidos} /* ... */ />;
 
 - **Historial y Perfil sin internet** (RN11): si hay caché, se muestran los datos con el aviso "Sin conexión — datos guardados el…" en lugar de `VistaError`. `null` (nunca se descargó) no es lo mismo que lista vacía (02-data-model).
 - **Mapa sin internet:** las canchas sí se ven, pero sin número de jugadores. **Nunca** se muestra "Vacía" (sería mentir).
-- **Lista paginada** (F06): `cargando` es la primera carga; el indicador de "cargando más" lo define F06.
+- **Lista paginada** (F06): `cargando` es la primera carga. "Cargando más" es un `ActivityIndicator` en `ListFooterComponent`; si falla, el mensaje y "Reintentar" van en el pie y la lista se queda.
 - **Ids que no existen** (01-navigation E1–E3): `VistaError` con su texto y su botón.
 
 ---
@@ -548,7 +548,7 @@ const formulario = useFormulario<ValoresFormularioPartido>({
 | Tipo        | Qué                                                                          | De dónde salen                                                                                       |
 | ----------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Unitario    | Funciones puras de `utilidades/` y `servicioCache` con AsyncStorage simulado | CAD16–CAD27 de 02-data-model (12 criterios, mínimo un `it` cada uno)                                 |
-| Integración | Una pantalla o navegador con stores reales y **servicios simulados**         | 3: N9 de 01-navigation, F01.14 de F01 y F05.7 de F05. El 4.º lo declara la spec de la feature que lo aporte |
+| Integración | Una pantalla o navegador con stores reales y **servicios simulados**         | 4: N9 de 01-navigation, F01.14 de F01, F05.7 de F05 y F06.8 de F06 |
 
 Las reglas de Firestore **no** se prueban con Jest: se prueban en el Rules Playground de la consola (CAD01–CAD05).
 
