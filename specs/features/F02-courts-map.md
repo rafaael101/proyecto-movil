@@ -218,7 +218,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Antes d
 
 **Código y pruebas**
 
-- [ ] F02-CA12 — CAD22, CAD23 y CAD24 pasan en Jest (D10).
+- [x] F02-CA12 — CAD22, CAD23 y CAD24 pasan en Jest (D10).
 - [ ] F02-CA13 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan (incluidos N9 y F01.14). `PantallaMapa` no importa servicios; NetInfo solo aparece como `useNetInfo` para el aviso (§4). No queda código provisional en `PantallaMapa`.
 
 ---
