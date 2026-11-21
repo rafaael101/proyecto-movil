@@ -643,6 +643,7 @@ Todas son **funciones puras** (mismo resultado para los mismos datos, sin Fireba
 | `hayErrores(errores)` | `true` si `ErroresPartido` tiene al menos un mensaje | — |
 | `convertirAPartido(valores)` | Convierte un formulario **ya válido** en `DatosPartido`: textos a número con `Number(...)`; marcador vacío → `null` | — |
 | `convertirAValores(partido)` | Al revés, para llenar el formulario en modo editar (F05) | — |
+| `crearValoresVacios(hoy)` | Valores iniciales del formulario en modo crear: `fecha = hoy`, `idCancha` y `resultado` en `null`, lo demás `''` (F05) | — |
 
 **Por qué `hoy` es parámetro y no se calcula dentro:** para que la función sea pura. En los tests se pasa una fecha fija (`'2026-11-02'`) y el resultado no cambia según el día en que se corra la prueba.
 
