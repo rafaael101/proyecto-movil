@@ -689,6 +689,13 @@ export const NOMBRE_LONGITUD_MINIMA = 2; // F01
 export const NOMBRE_LONGITUD_MAXIMA = 30; // F01
 export const CONTRASENA_LONGITUD_MINIMA = 6; // F01 (igual al mínimo de Firebase)
 export const CLAVE_CACHE_HISTORIAL = 'hoopsmap.historial'; // RN11
+// Región inicial del mapa (F02): centro y margen de las 7 canchas de RN05
+export const REGION_INICIAL: Region = {
+  latitude: 31.866,
+  longitude: -116.618,
+  latitudeDelta: 0.06,
+  longitudeDelta: 0.13,
+};
 ```
 
 Los límites 100 y 200 se repiten en `firestore.rules` (las reglas no pueden importar TypeScript). Si cambian, se cambian en los dos lugares.
@@ -820,7 +827,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 **Check-ins**
 
 - [ ] **D10 — Utilidades de check-in y afluencia** + pruebas (CAD22–CAD24) **(con F02/F03)**.
-- [ ] **D11 — `servicioCheckIns`**: `crearCheckIn`, `terminarCheckIn`, `obtenerCheckInsActivos` **(con F03)**. Probar CAD06–CAD09.
+- [ ] **D11 — `servicioCheckIns`**: `crearCheckIn`, `terminarCheckIn`, `obtenerCheckInsActivos` **(con F03)**. (al inicio del bloque de F02). CAD06–CAD09 se prueban con F03.
 
 **Partidos**
 
