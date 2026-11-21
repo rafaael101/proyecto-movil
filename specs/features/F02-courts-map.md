@@ -231,7 +231,7 @@ Cada task ≈ un commit.
 - ➡️ **D11 de 02-data-model** — `servicioCheckIns` completo (se adelanta de F03 a aquí). CAD06–CAD09 se prueban con F03.
 - [x] **F02.1 — Instalar `react-native-maps`** con `npx expo install react-native-maps` (§14). Revisar la documentación de `react-native-maps` para el SDK de `package.json`.
 - [x] **F02.2 — Constantes del mapa:** `coloresAfluencia` y `tamanoMarcador` en `tema.ts`, y `REGION_INICIAL` en `configuracion.ts`.
-- [ ] **F02.3 — Crear `useStoreCheckIns`** con `resumen`, `cargando`, `mensajeError`, `cargarResumen` y `limpiar`.
+- [x] **F02.3 — Crear `useStoreCheckIns`** con `resumen`, `cargando`, `mensajeError`, `cargarResumen` y `limpiar`.
 - [ ] **F02.4 — Crear `MarcadorCancha`.**
 - [ ] **F02.5 — Crear `AvisoMapa`.**
 - [ ] **F02.6 — Simuladores de Jest para el mapa.** En `jest.setup.ts`: `react-native-maps` (fábrica que devuelve `View` como `default` y como `Marker`) y NetInfo con su simulador oficial (`@react-native-community/netinfo/jest/netinfo-mock.js`). En los tests que dibujan `NavegadorRaiz` con usuario (N9): fábrica de `servicioCheckIns` con `obtenerCheckInsActivos` que resuelve `{ jugadoresPorCancha: {}, miCheckIn: null }`, porque Mapa es la tab inicial.
