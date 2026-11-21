@@ -837,7 +837,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 **Check-ins**
 
 - [x] **D10 — Utilidades de check-in y afluencia** + pruebas (CAD22–CAD24) **(con F02/F03)**.
-- [ ] **D11 — `servicioCheckIns`**: `crearCheckIn`, `terminarCheckIn`, `obtenerCheckInsActivos` **(con F03)**. (al inicio del bloque de F02). CAD06–CAD09 se prueban con F03.
+- [x] **D11 — `servicioCheckIns`**: `crearCheckIn`, `terminarCheckIn`, `obtenerCheckInsActivos` **(con F03)**. (al inicio del bloque de F02). CAD06–CAD09 se prueban con F03.
 
 **Partidos**
 
