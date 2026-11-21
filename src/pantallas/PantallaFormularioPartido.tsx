@@ -1,27 +1,21 @@
 import type { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-import { colores, tipografia } from '../constantes/tema';
+import { FormularioPartido } from '../componentes/FormularioPartido';
+import { VistaCargando } from '../componentes/VistaCargando';
 import type { PropsPantallaFormularioPartido } from '../navegacion/tipos';
+import { useStoreSesion } from '../stores/useStoreSesion';
 
-// PROVISIONAL (N4): el contenido real lo pone F05
-export const PantallaFormularioPartido: FC<PropsPantallaFormularioPartido> = () => {
+// Modal "Nuevo partido" (F05, flujo A). El modo editar llega en F05.5.
+export const PantallaFormularioPartido: FC<PropsPantallaFormularioPartido> = ({ navigation }) => {
+  const usuario = useStoreSesion((estado) => estado.usuario);
+
+  // Sin usuario no hay de quién guardar el partido. Pasa un instante al cerrar
+  // sesión con el modal abierto, antes de que desaparezca (E10 de F05)
+  if (usuario === null) {
+    return <VistaCargando />;
+  }
+
   return (
-    <View style={estilos.contenedor}>
-      <Text style={estilos.texto}>PantallaFormularioPartido</Text>
-    </View>
+    <FormularioPartido idUsuario={usuario.idUsuario} alTerminar={() => navigation.goBack()} />
   );
 };
-
-const estilos = StyleSheet.create({
-  contenedor: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colores.fondo,
-  },
-  texto: {
-    ...tipografia.cuerpo,
-    color: colores.texto,
-  },
-});

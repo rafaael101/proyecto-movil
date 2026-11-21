@@ -12,6 +12,14 @@ jest.mock('../servicios/servicioSesion', () => ({
   escucharCambiosDeSesion: jest.fn(() => () => {}),
 }));
 
+// El modal de partido (F05) usa el store de partidos, que carga este servicio:
+// también se simula con fábrica para que no se cargue Firebase (§12)
+jest.mock('../servicios/servicioPartidos', () => ({
+  crearPartido: jest.fn(),
+  editarPartido: jest.fn(),
+  eliminarPartido: jest.fn(),
+}));
+
 // Desde Testing Library v14 render es asíncrono: cada it es async y usa await render (§12)
 describe('Integración — NavegadorRaiz', () => {
   // CA25

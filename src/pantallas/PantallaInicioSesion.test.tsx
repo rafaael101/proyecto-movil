@@ -13,6 +13,14 @@ jest.mock('../servicios/servicioSesion', () => ({
   entrarConCorreo: jest.fn(),
 }));
 
+// El modal de partido (F05) usa el store de partidos, que carga este servicio:
+// también se simula con fábrica para que no se cargue Firebase (§12)
+jest.mock('../servicios/servicioPartidos', () => ({
+  crearPartido: jest.fn(),
+  editarPartido: jest.fn(),
+  eliminarPartido: jest.fn(),
+}));
+
 // En la v14 de Testing Library render y fireEvent son asíncronos: llevan await (§12)
 describe('Integración — PantallaInicioSesion', () => {
   // F01-CA26
