@@ -9,3 +9,15 @@ jest.mock('@react-native-async-storage/async-storage', () =>
 // En el iPhone no pasa. Los tests no revisan iconos: se reemplaza por un
 // componente que no dibuja nada. Lo usan los tests que dibujan NavegadorRaiz.
 jest.mock('@expo/vector-icons/Ionicons', () => () => null);
+
+// El mapa es nativo y no existe en las pruebas: MapView (default) y Marker se
+// reemplazan por un View normal, así se dibujan sus hijos sin el mapa (F02).
+jest.mock('react-native-maps', () => {
+  const { View } = require('react-native');
+  return { __esModule: true, default: View, Marker: View };
+});
+
+// NetInfo con su simulador oficial: responde que sí hay internet (F02)
+jest.mock('@react-native-community/netinfo', () =>
+  require('@react-native-community/netinfo/jest/netinfo-mock.js'),
+);

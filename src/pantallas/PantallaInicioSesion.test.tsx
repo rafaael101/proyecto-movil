@@ -21,6 +21,14 @@ jest.mock('../servicios/servicioPartidos', () => ({
   eliminarPartido: jest.fn(),
 }));
 
+// Aunque aquí no hay usuario, NavegadorRaiz importa Mapa, que usa el store de check-ins (F02):
+// el servicio se simula con fábrica para que no se cargue Firebase (§12)
+jest.mock('../servicios/servicioCheckIns', () => ({
+  obtenerCheckInsActivos: jest.fn(() =>
+    Promise.resolve({ jugadoresPorCancha: {}, miCheckIn: null }),
+  ),
+}));
+
 // En la v14 de Testing Library render y fireEvent son asíncronos: llevan await (§12)
 describe('Integración — PantallaInicioSesion', () => {
   // F01-CA26

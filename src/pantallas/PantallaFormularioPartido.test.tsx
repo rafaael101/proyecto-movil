@@ -17,6 +17,14 @@ jest.mock('../servicios/servicioPartidos', () => ({
   eliminarPartido: jest.fn(),
 }));
 
+// Mapa es la tab inicial y carga los check-ins al montarse (F02): el servicio se
+// simula con fábrica para que no se cargue Firebase y nadie esté jugando (§12)
+jest.mock('../servicios/servicioCheckIns', () => ({
+  obtenerCheckInsActivos: jest.fn(() =>
+    Promise.resolve({ jugadoresPorCancha: {}, miCheckIn: null }),
+  ),
+}));
+
 // En la v14 de Testing Library render y fireEvent son asíncronos: llevan await (§12)
 describe('Integración — PantallaFormularioPartido', () => {
   // F05-CA13
