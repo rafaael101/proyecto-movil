@@ -229,7 +229,7 @@ Cada task ≈ un commit.
 
 - ➡️ **D10 de 02-data-model** — `checkIns.ts` y `afluencia.ts` + pruebas (CAD22–CAD24).
 - ➡️ **D11 de 02-data-model** — `servicioCheckIns` completo (se adelanta de F03 a aquí). CAD06–CAD09 se prueban con F03.
-- [ ] **F02.1 — Instalar `react-native-maps`** con `npx expo install react-native-maps` (§14). Revisar la documentación de `react-native-maps` para el SDK de `package.json`.
+- [x] **F02.1 — Instalar `react-native-maps`** con `npx expo install react-native-maps` (§14). Revisar la documentación de `react-native-maps` para el SDK de `package.json`.
 - [ ] **F02.2 — Constantes del mapa:** `coloresAfluencia` y `tamanoMarcador` en `tema.ts`, y `REGION_INICIAL` en `configuracion.ts`.
 - [ ] **F02.3 — Crear `useStoreCheckIns`** con `resumen`, `cargando`, `mensajeError`, `cargarResumen` y `limpiar`.
 - [ ] **F02.4 — Crear `MarcadorCancha`.**
