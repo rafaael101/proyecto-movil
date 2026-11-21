@@ -346,7 +346,7 @@ Los títulos de los headers usan el tamaño estándar de iOS con peso `'600'`.
 
 | Pantalla          | Botón                      | Lado      | Acción               |
 | ----------------- | -------------------------- | --------- | -------------------- |
-| Historial         | Icono "+" (Ionicons `add`) | Derecha   | Abre "Nuevo partido" |
+| Historial         | Icono "+" (Ionicons `add`) | Derecha   | Abre "Nuevo partido". Lleva `accessibilityLabel="Nuevo partido"` para que lo encuentren el test de F05 (F05.7) y VoiceOver |
 | FormularioPartido | Texto "Cancelar"           | Izquierda | `goBack()`           |
 | TarjetaJugador    | Texto "Cerrar"             | Izquierda | `goBack()`           |
 
@@ -418,7 +418,7 @@ src/
 | E5  | La sesión termina mientras hay un modal abierto (cerró sesión o Firebase invalidó la sesión)                                         | El modal desaparece y se muestra "Iniciar sesión". Lo no guardado se pierde.                                                                                              |
 | E6  | Se abre la app **sin internet** y **con** sesión guardada                                                                            | Firebase recupera la sesión guardada → se muestra Mapa. Se puede navegar por todas las pantallas; los datos que falten los manejan F02–F07 (Historial desde caché, RN11). |
 | E7  | Se abre la app **sin internet** y **sin** sesión                                                                                     | Se muestra "Iniciar sesión". El error al intentar entrar lo maneja F01.                                                                                                   |
-| E8  | Se abre el formulario o se intenta crear/editar **sin internet**                                                                     | La navegación no lo bloquea. F05/F06 deciden si el botón se deshabilita o se muestra error (RN11: crear y editar requieren conexión).                                     |
+| E8  | Se abre el formulario o se intenta crear/editar **sin internet**                                                                     | La navegación no lo bloquea. F05 muestra el error 'No hay conexión…' arriba de 'Guardar'; no deshabilita nada (RN11).                                     |
 | E9  | Permisos de ubicación o cámara negados                                                                                               | No afectan la navegación: todas las pantallas abren. Mapa (F02) y Tarjeta (F07) muestran su explicación; nunca se queda una pantalla en blanco.                           |
 | E10 | Doble toque rápido en un marcador o en un partido                                                                                    | Se abre **una sola** pantalla (se usa `navigate`, no `push`).                                                                                                             |
 | E11 | El usuario cambia de tab y regresa                                                                                                   | La tab conserva su estado (por ejemplo, la posición del scroll en Historial).                                                                                             |
