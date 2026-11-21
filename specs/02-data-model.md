@@ -622,7 +622,7 @@ Todas son **funciones puras** (mismo resultado para los mismos datos, sin Fireba
 
 | Función | Regla | Mensajes |
 |---|---|---|
-| `validarFecha(fecha, hoy)` | Obligatoria. Formato `AAAA-MM-DD`. Día real (no `'2026-02-30'`). No puede ser después de `hoy` (RN09) | "Elige la fecha del partido" · "Fecha no válida" · "La fecha no puede ser futura" |
+| `validarFecha(fecha, hoy)` | Obligatoria. Formato `AAAA-MM-DD`. Día real (no `'2026-02-30'`). No puede ser después de `hoy` (RN09) | "Escribe la fecha del partido" · "Fecha no válida" · "La fecha no puede ser futura" |
 | `validarCancha(idCancha)` | Opcional. Si no es `null`, debe existir en el catálogo (RN05) | "Elige una cancha de la lista" |
 | `validarResultado(resultado)` | Obligatorio (RN09) | "Indica si ganaste o perdiste" |
 | `validarEstadistica(texto, nombreCampo)` | Obligatoria. Solo dígitos (sin negativos ni decimales). Máximo `ESTADISTICA_MAXIMA` (100) | "Escribe tus {nombreCampo}" · "Usa solo números enteros" · "Máximo 100" |
@@ -820,7 +820,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 **Partidos**
 
 - [ ] **D12 — Validaciones y conversiones de partido** + pruebas (CAD17–CAD21) **(con F05)**.
-- [ ] **D13 — `servicioPartidos`**: `crearPartido`, `editarPartido`, `eliminarPartido` **(con F05)**. Probar CAD10 y CAD12.
+- [ ] **D13 — `servicioPartidos`**: `crearPartido`, `editarPartido`, `eliminarPartido` **(con F05)**. Probar CAD10 (CAD12 después de F06, porque editar necesita la lista).
 - [ ] **D14 — `servicioPartidos`**: `obtenerPaginaPartidos` y `obtenerTodosLosPartidos`, con los tipos CursorPartidos y PaginaPartidos. **(con F06)**. Probar CAD11. 
 - [ ] **D15 — `calcularPromedios`** + pruebas (CAD25) **(con F06)**.
 - [ ] **D16 — `servicioCache`** + pruebas (CAD15, CAD27) **(con F06)**. Probar CAD13–CAD14 en modo avión.
