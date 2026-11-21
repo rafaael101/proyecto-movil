@@ -162,6 +162,7 @@ Cualquier capa puede usar: utilidades (puras), constantes y tipos.
 2. Los componentes **visuales** nativos (por ejemplo `MapView` de `react-native-maps`) se usan en pantallas o componentes, porque son UI.
 3. Una pantalla puede usar `useNetInfo` **solo** para mostrar el aviso de "Sin conexión" (02-data-model). La revisión antes de hablar con Firebase siempre es `verificarConexion()` en el servicio.
 4. Solo la acción `cerrarSesion` de `useStoreSesion` puede llamar a `limpiar()` de otros stores (`useStoreX.getState().limpiar()`), para cerrar sesión de verdad (F01). Los otros stores nunca importan `useStoreSesion`: reciben `idUsuario` como parámetro.
+5. `FormularioPartido` (F05) es un componente que usa `useFormulario` y `useStorePartidos`, porque así lo define su spec: va aparte de la pantalla por la regla de los hooks.
 
 **Por qué:** si mañana cambia el backend, solo cambia `servicios/`. Y en la defensa puedes señalar el único archivo que habla con Firestore.
 
