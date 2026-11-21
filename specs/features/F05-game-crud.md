@@ -209,7 +209,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Los mar
 
 **Sin internet y cancelar**
 
-- [] F05-CA11 — En modo avión, "Guardar" con datos válidos muestra "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 s; el botón se habilita y lo escrito sigue ahí (CAD13). *(Después de F06)* lo mismo con "Eliminar".
+- [ ] F05-CA11 — En modo avión, "Guardar" con datos válidos muestra "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 s; el botón se habilita y lo escrito sigue ahí (CAD13). *(Después de F06)* lo mismo con "Eliminar".
 - [x] F05-CA12 — Escribo datos y toco "Cancelar" (o deslizo hacia abajo): el modal se cierra sin preguntar y, al abrir [+] otra vez, el formulario está como en F05-CA01.
 
 **Pruebas (Jest)**
