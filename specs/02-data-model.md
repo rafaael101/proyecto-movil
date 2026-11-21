@@ -39,7 +39,7 @@ Esta spec **no** define pantallas: las features (F01–F07) usan lo que aquí se
 | `idUsuario` | Firebase Auth (el `uid`) | Sí | Lo genera Firebase |
 | Canchas (nombre y coordenadas) | Código de la app (RN05) | Ya está en el código | `src/constantes/canchas.ts` |
 | Coordenadas de la cancha de prueba | `.env` (solo desarrollo, RN05) | No se escriben en el código | `.env` |
-| Ubicación GPS del usuario | `expo-location` (F02/F03) | **No.** Solo se usa en el teléfono para revisar RN02 | Memoria |
+| Ubicación GPS del usuario | `expo-location` (F03) | **No.** Solo se usa en el teléfono para revisar RN02 | Memoria |
 | Cancha del check-in | Botón "Hacer check-in" (F03) | Sí | Firestore `checkins` |
 | Datos del partido | Formulario de partido (F05) | Sí | Firestore `usuarios/{idUsuario}/partidos` |
 | Foto de la tarjeta | Cámara o galería (F07) | **No.** Se usa para crear la imagen y compartirla | Memoria |
@@ -94,6 +94,14 @@ Vive en el código, no en Firestore (RN05).
 export type Cancha = {
   idCancha: string;
   nombre: string;
+  latitud: number;
+  longitud: number;
+};
+```
+
+```ts
+// Un punto en el mapa. Una Cancha ya tiene esta forma (F03, RN02)
+export type Coordenadas = {
   latitud: number;
   longitud: number;
 };
@@ -455,6 +463,7 @@ Errores: `'sin-conexion'`, `permission-denied`, `unavailable`.
 | `auth/too-many-requests` | "Demasiados intentos. Espera unos minutos e intenta de nuevo." |
 | `auth/network-request-failed` | "No hay conexión. Revisa tu internet e intenta de nuevo." |
 | Cualquier otro | "Algo salió mal. Intenta de nuevo." |
+| `Error('sin-ubicacion')` | "No pudimos obtener tu ubicación. Revisa que esté activada e intenta de nuevo." |
 
 Los códigos de Firestore se leen con `error instanceof FirebaseError` y `error.code`. Los errores de Auth (`auth/...`) también están en esta tabla (los definió F01).
 
@@ -609,7 +618,7 @@ Clasificación con las tres estrategias de la clase *Offline y Conectividad*:
 |---|---|---|
 | Ver canchas en el mapa | **Degradar** | Las canchas sí aparecen (catálogo local, RN05) |
 | Ver jugadores por cancha | **Bloquear** | "Sin conexión: no podemos ver quién está jugando". **Nunca** se muestra "Vacía" (sería mentir) |
-| Hacer / terminar check-in | **Bloquear** (RN11) | Botón deshabilitado + explicación |
+| Hacer / terminar check-in | **Bloquear** (RN11) | Mensaje "No hay conexión…" al tocar, antes de usar el GPS (CAD13) |
 | Ver historial | **Degradar** (RN11) | Caché con aviso "Sin conexión — datos guardados el 2 nov, 18:40". Solo lectura |
 | Ver promedios | **Degradar** | Se calculan con la caché, con el mismo aviso |
 | Crear / editar / eliminar partido | **Bloquear** (RN11) | Mensaje "No hay conexión…" |
@@ -652,7 +661,7 @@ Todas son **funciones puras** (mismo resultado para los mismos datos, sin Fireba
 |---|---|
 | `calcularExpiracion(creadoEn: Date): Date` | 18:00 → 19:30 |
 | `calcularLimiteActivos(ahora: Date): Date` | 19:30 → 18:00 |
-| `minutosRestantes(checkIn, ahora): number` | Expira 19:30, ahora 19:00 → 30. Nunca negativo (vencido → 0) |
+| `minutosRestantes(checkIn, ahora): number` | Expira 19:30, ahora 19:00 → 30. Redondea hacia arriba (`Math.ceil`): con 30 s restantes → 1. Nunca negativo (vencido → 0) |
 | `estaActivo(checkIn, ahora): boolean` | `expiraEn > ahora` |
 | `contarJugadoresPorCancha(idsCancha: string[])` | Lista vacía → `{}` |
 | `obtenerNivelAfluencia(jugadores: number)` | 0, 1, 5, 6, 9, 10 → vacia, poca, poca, reta, reta, llena |
