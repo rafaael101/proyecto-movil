@@ -1,6 +1,7 @@
 import type { ValoresFormularioPartido } from '../tipos/partido';
 import {
   convertirAPartido,
+  crearValoresVacios,
   validarCancha,
   validarEstadistica,
   validarFecha,
@@ -171,5 +172,21 @@ describe('convertirAPartido', () => {
     const datos = convertirAPartido(valores);
     expect(datos.marcadorPropio).toBe(15);
     expect(datos.marcadorRival).toBe(21);
+  });
+});
+
+// F05-CA01: "Nuevo partido" abre con la fecha de hoy, "Sin cancha", ningún resultado y lo demás vacío
+describe('crearValoresVacios', () => {
+  it('pone la fecha de hoy, sin cancha, sin resultado y lo demás vacío', () => {
+    expect(crearValoresVacios(HOY)).toEqual({
+      fecha: HOY,
+      idCancha: null,
+      resultado: null,
+      puntos: '',
+      rebotes: '',
+      asistencias: '',
+      marcadorPropio: '',
+      marcadorRival: '',
+    });
   });
 });

@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { CANCHAS } from '../constantes/canchas';
 import { colores, espaciado, tipografia } from '../constantes/tema';
 import { useFormulario } from '../hooks/useFormulario';
 import { useStorePartidos } from '../stores/useStorePartidos';
@@ -19,13 +18,11 @@ import { obtenerFechaHoy } from '../utilidades/fechas';
 import {
   convertirAPartido,
   convertirAValores,
+  crearValoresVacios,
   validarPartido,
 } from '../utilidades/validacionesPartido';
 import { BotonPrincipal } from './BotonPrincipal';
-import { CampoTexto } from './CampoTexto';
-import { CamposMarcador } from './CamposMarcador';
-import { SelectorOpciones } from './SelectorOpciones';
-import type { OpcionSelector } from './SelectorOpciones';
+import { CamposPartido } from './CamposPartido';
 
 type PropsFormularioPartido = {
   idUsuario: string;
@@ -33,22 +30,10 @@ type PropsFormularioPartido = {
   alTerminar: () => void; // navigation.goBack: cierra el modal
 };
 
-// Valor del chip "Sin cancha"; al elegirlo se guarda null (F05)
-const SIN_CANCHA = 'sin-cancha';
-
-const OPCIONES_CANCHA: OpcionSelector[] = [
-  { valor: SIN_CANCHA, etiqueta: 'Sin cancha' },
-  ...CANCHAS.map((cancha) => ({ valor: cancha.idCancha, etiqueta: cancha.nombre })),
-];
-
-const OPCIONES_RESULTADO: OpcionSelector[] = [
-  { valor: 'gano', etiqueta: 'Ganó' },
-  { valor: 'perdio', etiqueta: 'Perdió' },
-];
-
 // Formulario de partido (F05). Excepción a coding-standards §4: es un componente que usa
 // useFormulario y el store, porque así lo define F05. Va aparte de la pantalla por la
 // regla de los hooks: la pantalla puede regresar otra vista antes de llegar a useFormulario.
+// Los campos los dibuja CamposPartido; aquí quedan el estado, guardar, eliminar y los botones.
 export const FormularioPartido: FC<PropsFormularioPartido> = ({
   idUsuario,
   partido,
@@ -66,16 +51,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
     // Crear: fecha de hoy y lo demás vacío. Editar: los datos del partido guardado
     valoresIniciales:
       partido === undefined
-        ? {
-            fecha: obtenerFechaHoy(new Date()),
-            idCancha: null, // "Sin cancha"
-            resultado: null, // ninguno
-            puntos: '',
-            rebotes: '',
-            asistencias: '',
-            marcadorPropio: '',
-            marcadorRival: '',
-          }
+        ? crearValoresVacios(obtenerFechaHoy(new Date()))
         : convertirAValores(partido),
     // hoy se calcula al validar y se pasa como parámetro: validarPartido sigue siendo pura (RN09)
     validar: (valores) => validarPartido(valores, obtenerFechaHoy(new Date())),
@@ -94,9 +70,8 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
     },
   });
 
-  const { valores, errores, tocados, enviando } = formulario;
   // Mientras guarda o elimina no se puede tocar nada: evita un doble envío (E8 de F05)
-  const ocupado = enviando || eliminando;
+  const ocupado = formulario.enviando || eliminando;
 
   // "Eliminar" de la alerta: borra el partido y cierra el modal si salió bien
   const eliminar = async (idPartido: string) => {
@@ -118,9 +93,6 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
       { text: 'Eliminar', style: 'destructive', onPress: () => eliminar(idPartido) },
     ]);
   };
-  // El error de un campo se muestra solo si está tocado (como en clase)
-  const errorVisible = (campo: keyof ValoresFormularioPartido) =>
-    tocados[campo] === true ? errores[campo] : undefined;
 
   return (
     <KeyboardAvoidingView
@@ -129,81 +101,12 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
     >
       {/* "handled": tocar un chip con el teclado abierto sí lo marca, no solo cierra el teclado */}
       <ScrollView contentContainerStyle={estilos.contenido} keyboardShouldPersistTaps="handled">
-        <CampoTexto
-          etiqueta="Fecha"
-          valor={valores.fecha}
-          alCambiarTexto={formulario.manejarCambio('fecha')}
-          alSalir={formulario.manejarSalida('fecha')}
-          error={errorVisible('fecha')}
-          placeholder="AAAA-MM-DD"
-          deshabilitado={ocupado}
-          keyboardType="numbers-and-punctuation"
-          autoCorrect={false}
-        />
-        <SelectorOpciones
-          etiqueta="Cancha (opcional)"
-          opciones={OPCIONES_CANCHA}
-          // null se muestra como "Sin cancha"
-          valorSeleccionado={valores.idCancha ?? SIN_CANCHA}
-          alSeleccionar={(valor) =>
-            formulario.manejarCambio('idCancha')(valor === SIN_CANCHA ? null : valor)
-          }
-          error={errorVisible('idCancha')}
-          deshabilitado={ocupado}
-        />
-        <SelectorOpciones
-          etiqueta="Resultado"
-          opciones={OPCIONES_RESULTADO}
-          valorSeleccionado={valores.resultado}
-          // Se convierte sin "as" (§5): el chip solo puede mandar 'gano' o 'perdio'
-          alSeleccionar={(valor) =>
-            formulario.manejarCambio('resultado')(valor === 'gano' ? 'gano' : 'perdio')
-          }
-          error={errorVisible('resultado')}
-          deshabilitado={ocupado}
-        />
-        <CampoTexto
-          etiqueta="Puntos"
-          valor={valores.puntos}
-          alCambiarTexto={formulario.manejarCambio('puntos')}
-          alSalir={formulario.manejarSalida('puntos')}
-          error={errorVisible('puntos')}
-          placeholder="Tus puntos"
-          deshabilitado={ocupado}
-          keyboardType="number-pad"
-        />
-        <CampoTexto
-          etiqueta="Rebotes"
-          valor={valores.rebotes}
-          alCambiarTexto={formulario.manejarCambio('rebotes')}
-          alSalir={formulario.manejarSalida('rebotes')}
-          error={errorVisible('rebotes')}
-          placeholder="Tus rebotes"
-          deshabilitado={ocupado}
-          keyboardType="number-pad"
-        />
-        <CampoTexto
-          etiqueta="Asistencias"
-          valor={valores.asistencias}
-          alCambiarTexto={formulario.manejarCambio('asistencias')}
-          alSalir={formulario.manejarSalida('asistencias')}
-          error={errorVisible('asistencias')}
-          placeholder="Tus asistencias"
-          deshabilitado={ocupado}
-          keyboardType="number-pad"
-        />
-        <CamposMarcador
-          marcadorPropio={valores.marcadorPropio}
-          marcadorRival={valores.marcadorRival}
-          alCambiarPropio={formulario.manejarCambio('marcadorPropio')}
-          alCambiarRival={formulario.manejarCambio('marcadorRival')}
-          // Los dos campos validan con 'marcadorPropio', porque ahí vive el error del marcador
-          alSalir={formulario.manejarSalida('marcadorPropio')}
-          error={
-            tocados.marcadorPropio === true || tocados.marcadorRival === true
-              ? errores.marcadorPropio
-              : undefined
-          }
+        <CamposPartido
+          valores={formulario.valores}
+          errores={formulario.errores}
+          tocados={formulario.tocados}
+          manejarCambio={formulario.manejarCambio}
+          manejarSalida={formulario.manejarSalida}
           deshabilitado={ocupado}
         />
         {errorServidor !== null && <Text style={estilos.errorServidor}>{errorServidor}</Text>}
@@ -211,7 +114,7 @@ export const FormularioPartido: FC<PropsFormularioPartido> = ({
           texto="Guardar"
           alPresionar={formulario.manejarEnvio}
           deshabilitado={eliminando}
-          cargando={enviando}
+          cargando={formulario.enviando}
         />
         {/* Solo en editar: en "Nuevo partido" no hay nada que borrar */}
         {partido !== undefined && (

@@ -215,3 +215,21 @@ export function convertirAValores(partido: Partido): ValoresFormularioPartido {
     marcadorRival: convertirMarcadorATexto(partido.marcadorRival),
   };
 }
+
+/**
+ * Valores iniciales del formulario en modo crear (F05): la fecha de `hoy`,
+ * "Sin cancha", ningún resultado y lo demás vacío. `hoy` es parámetro para
+ * que la función sea pura.
+ */
+export function crearValoresVacios(hoy: string): ValoresFormularioPartido {
+  return {
+    fecha: hoy,
+    idCancha: null, // "Sin cancha"
+    resultado: null, // ninguno
+    puntos: '',
+    rebotes: '',
+    asistencias: '',
+    marcadorPropio: '',
+    marcadorRival: '',
+  };
+}

@@ -255,7 +255,7 @@ Cada task ≈ un commit.
 - [x] **F05.6 — Eliminar**: botón "Eliminar partido" solo en editar, alerta de confirmación y `borrarPartido`.
 - [x] **F05.7 — Test de integración** (F05-CA13). Incluye agregar `accessibilityLabel="Nuevo partido"` al [+] de `PantallaHistorial`, para que el test lo encuentre (también lo lee VoiceOver).
 - [x] **F05.8 — Probar en el iPhone** F05-CA01–CA07, CA11 y CA12. CA08–CA10 se marcan después de F06.
-- [ ] **F05.9 — Separar** `CamposPartido` y `crearValoresVacios` para que `FormularioPartido` quede en ~150 líneas (§6). No cambia lo que se ve ni cómo funciona.
+- [x] **F05.9 — Separar** `CamposPartido` y `crearValoresVacios` para que `FormularioPartido` quede en ~150 líneas (§6). No cambia lo que se ve ni cómo funciona.
 
 **No se quita ningún botón provisional de N7:** "Editar partido de prueba" sirve para probar E2 (F05-CA07). F06 quita los dos cuando ponga la lista real.
 
