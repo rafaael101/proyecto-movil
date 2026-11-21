@@ -251,7 +251,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 **Pruebas (Jest)**
 
 - [ ] F06-CA13 — `formatearFecha('2026-11-02')` da `'2 nov 2026'` (no `'1 nov'`). `formatearFechaHora(new Date(2026, 10, 2, 18, 5).toISOString())` da `'2 nov, 18:05'`. `obtenerNombreCancha`: `null`, `'no-existe'` y `'sullivan'`.
-- [ ] F06-CA14 — **Integración — `PantallaHistorial`** (`src/pantallas/PantallaHistorial.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`, y `useStorePartidos.getState().limpiar()` antes de cada `it`. Se simulan con fábrica: `servicioSesion` (como N9), `servicioPartidos` (las 5 funciones), `servicioConexion` (`hayConexion` resuelve `false`) y `servicioCache`. El test toca la tab "Historial" y:
+- [ ] F06-CA14 — **Integración — `PantallaHistorial`** (`src/pantallas/PantallaHistorial.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`, y `useStorePartidos.getState().limpiar()` antes de cada `it`. Se simulan con fábrica: `servicioSesion` (como N9), `servicioCheckIns` (como F02.6), `servicioPartidos` (las 5 funciones), `servicioConexion` (`hayConexion` resuelve `false`) y `servicioCache`. El test toca la tab "Historial" y:
   1. `leerCacheHistorial` resuelve una caché con el partido de F06-CA02 → aparecen "Sin conexión — datos guardados el" y "14 pts · 6 reb · 3 ast". `obtenerPaginaPartidos` **no** se llamó.
   2. `leerCacheHistorial` resuelve `null` → aparece "Sin conexión y sin datos guardados".
 
@@ -279,7 +279,7 @@ Cada task ≈ un commit.
 - [ ] **F06.7 — `ResumenPromedios` en `PantallaPerfil`**, entre el correo y "Cerrar sesión".
 - [ ] **F06.8 — Test de integración** (F06-CA14).
 - ➡️ **F01.17 de F01** — borrar la caché al cerrar sesión (ya existe D16).
-- ➡️ **F01.18 de F01, solo la parte de partidos** — `useStorePartidos.getState().limpiar()`. La parte de check-ins queda para F03.
+- ➡️ **F01.18 de F01, solo la parte de partidos** — `useStorePartidos.getState().limpiar()`. La parte de check-ins ya la hizo F02.
 - [ ] **F06.9 — Probar en el iPhone** F06-CA01–CA12, F05-CA08–CA10 (y la parte de "Eliminar" de F05-CA11), CAD11–CAD14, y CA12, CA15 y CA16 de 01-navigation. Para los 23 partidos sirve el formulario o la consola.
 
 **Nota para los tests ya hechos (F06.6 y F06.7):** desde que Historial y Perfil usan `useStorePartidos`, los tests que dibujan `NavegadorRaiz` (N9, F01.14, F05.7) cargan ese store. Si truenan porque se cargan Firebase o NetInfo reales, se agrega en esos tests el simulador con fábrica de `servicioPartidos`, `servicioConexion` y `servicioCache` (§12). En el de F05.7, la fábrica de `servicioPartidos` también trae `obtenerPaginaPartidos` y `obtenerTodosLosPartidos`.
@@ -310,19 +310,3 @@ Cada task ≈ un commit.
 - **F01.17 y F01.18 (partidos):** se hacen en este bloque.
 
 ---
-
-## Cambios propuestos a otras specs
-
-- **00-project.md:** tabla MVP, F06 → `features/F06-game-history.md`.
-- **01-navigation.md:** en *Tasks que se implementan en otras features*, "Control para abrir la tarjeta… → F06 define cómo se ve" pasa a "→ icono `id-card-outline` en cada fila (F06)".
-- **02-data-model.md:**
-  1. *Fechas → Partido*: "Mostrar la fecha bonita lo define F06" pasa a "`formatearFecha` de F06 (`'2 nov 2026'`)".
-  2. *Validaciones → Fechas*: agregar `formatearFecha` y `formatearFechaHora`. En `canchas.ts`, agregar `obtenerNombreCancha`.
-  3. *Diferencias con lo visto en clase*, fila de NetInfo: "Las pantallas pueden usar además `useNetInfo` para el aviso (F02/F06)" pasa a "(F02). En F06 el store decide con `hayConexion()`".
-- **coding-standards.md:**
-  1. §6: `VistaVacia` la crea F06. Agregar `FilaPartido`, `AvisoSinConexion` y `ResumenPromedios` (F06).
-  2. §8, excepción de `useStorePartidos`: agregar "F06 agrega `cargando`, `mensajeError`, `cargandoMas`, `mensajeErrorMas` y `guardadoEn`. Las 3 acciones de F05, si salen bien, esperan `cargarHistorial`".
-  3. §9: "el indicador de 'cargando más' lo define F06" pasa a "`ActivityIndicator` en `ListFooterComponent`; si falla, mensaje y 'Reintentar' en el pie (F06)".
-  4. §12: "El 4.º lo declara la spec de la feature que lo aporte" pasa a "y F06.8 de F06".
-- **F01-auth.md:** en F01.17 y F01.18 agregar "(se hacen en el bloque de F06; de F01.18, la parte de check-ins queda para F03)".
-- **F05-game-crud.md:** en *Store*, "F05 no actualiza `partidos` después de guardar" pasa a "F05 no actualiza `partidos`; F06.3 hace que las 3 acciones esperen `cargarHistorial` si salen bien".
