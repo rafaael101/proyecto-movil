@@ -234,7 +234,7 @@ Cada task ≈ un commit.
 - ➡️ **D13 de 02-data-model** — `servicioPartidos`: `crearPartido`, `editarPartido`, `eliminarPartido`. CAD10 se prueba en F05.4 y CAD12 después de F06.
 - [x] **F05.1 — Crear `useStorePartidos`** mínimo: `partidos`, `registrarPartido`, `actualizarPartido`, `borrarPartido` y `limpiar`.
 - [x] **F05.2 — Crear `VistaError`** con el código de coding-standards §6.
-- [ ] **F05.3 — Crear `SelectorOpciones`** (chips, marcado, error, deshabilitado y accesibilidad).
+- [x] **F05.3 — Crear `SelectorOpciones`** (chips, marcado, error, deshabilitado y accesibilidad).
 - [ ] **F05.4 — Crear `FormularioPartido` y usarlo en `PantallaFormularioPartido` en modo crear**: campos, chips, marcador, error del servidor y "Guardar". Quita el texto provisional de N4. Probar F05-CA01–CA06, CA11 y CA12.
 - [ ] **F05.5 — Modo editar** en `PantallaFormularioPartido`: `VistaCargando` sin usuario, E2 con `VistaError`, valores con `convertirAValores` y guardar con `actualizarPartido`. Probar F05-CA07.
 - [ ] **F05.6 — Eliminar**: botón "Eliminar partido" solo en editar, alerta de confirmación y `borrarPartido`.
