@@ -48,7 +48,7 @@ Una app móvil con dos módulos:
 | F03 | Hacer y terminar check-in en cancha             | Afluencia  | **Central** | pendiente |
 | F04 | Detalle de cancha y su afluencia                | Afluencia  | Alta        | pendiente |
 | F05 | Registrar, editar y eliminar partido (CRUD)     | Bitácora   | Alta        | `features/F05-game-crud.md` |
-| F06 | Historial paginado, promedios y caché offline   | Bitácora   | Alta        | pendiente |
+| F06 | Historial paginado, promedios y caché offline   | Bitácora   | Alta        | `features/F06-game-history.md` |
 | F07 | Tarjeta de jugador (foto + compartir)           | Social     | Media       | pendiente |
 
 **Por qué F03 es la central:** es la funcionalidad que resuelve el problema principal. Sin check-ins, el mapa no aporta nada nuevo frente a Google Maps.
