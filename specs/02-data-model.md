@@ -108,7 +108,10 @@ export type Cancha = {
 - Si falta alguna variable, está vacía (`''`) o no es un número válido (`Number.isNaN`), la cancha **no se agrega**. Una variable vacía cuenta como faltante porque `Number('')` da `0`, no `NaN`.
 - Sus coordenadas nunca aparecen en el código, en las specs ni en los commits.
 
-**Función de apoyo (`src/utilidades/canchas.ts`):** `buscarCancha(idCancha: string): Cancha | undefined`. La usan F04 (caso E1 de navegación), F05 y las validaciones.
+**Funciones de apoyo (`src/utilidades/canchas.ts`):**
+
+- `buscarCancha(idCancha: string): Cancha | undefined`. La usan F04 (caso E1 de navegación), F05 y las validaciones.
+- `obtenerNombreCancha(idCancha: string | null): string`. `null` → "Sin cancha"; si no está en el catálogo → "Cancha no disponible" (E16); si existe → su nombre. La usa la fila del Historial (F06).
 
 ### Usuario — `src/tipos/usuario.ts`
 
@@ -337,7 +340,7 @@ Alternativa descartada: ids automáticos + una transacción que busque y termine
 - **Por qué texto y no `Timestamp`:** no hay zonas horarias de por medio, se guarda igual en Firestore y en AsyncStorage (JSON), y se ordena bien como texto (`'2026-11-02' > '2026-10-30'`).
 - **Trampa clásica que evitamos:** `new Date().toISOString()` da la fecha en UTC. En Ensenada, después de las 4–5 p. m. ya marca **el día siguiente**. Por eso `obtenerFechaHoy` arma el texto con `getFullYear()`, `getMonth() + 1` y `getDate()`, que usan la hora local.
 - Partidos del mismo día: se ordenan por fecha y, entre ellos, Firestore desempata por id (orden estable pero no cronológico). Aceptable para el MVP.
-- Mostrar la fecha bonita ("2 nov 2026") lo define F06.
+- `formatearFecha` de F06 (`'2 nov 2026'`).
 
 ### Caché
 
@@ -640,6 +643,8 @@ Todas son **funciones puras** (mismo resultado para los mismos datos, sin Fireba
 |---|---|---|
 | `obtenerFechaHoy(ahora: Date): string` | Día local en `AAAA-MM-DD` (sin `toISOString`) | 2 nov 2026, 23:30 en Ensenada → `'2026-11-02'` |
 | `esFechaReal(fecha: string): boolean` | Que el día exista en el calendario | `'2026-02-30'` → `false` |
+| `formatearFecha(fecha: string): string` | Fecha del partido para la fila del Historial (F06). Separa el texto con `split('-')`, sin `new Date` (que lo leería como UTC) | `'2026-11-02'` → `'2 nov 2026'` |
+| `formatearFechaHora(iso: string): string` | Fecha y hora local de `guardadoEn` para el aviso sin conexión (F06). Minutos con 2 dígitos | `'2026-11-03T02:40:00.000Z'` → `'2 nov, 18:40'` en Ensenada |
 
 ### Check-in y afluencia — `src/utilidades/checkIns.ts` y `src/utilidades/afluencia.ts`
 
@@ -838,7 +843,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 |---|---|---|
 | El token de sesión va en **SecureStore** (clase *Persistencia*) | Firebase guarda su sesión en **AsyncStorage** (`getReactNativePersistence`), como dice 00-project | Es la persistencia que Firebase ofrece para React Native: guarda y renueva la sesión solo, sin código propio. Usar SecureStore exigiría un adaptador (SecureStore no acepta los `:` de las claves de Firebase y está pensado para valores de ~2 KB). La app no maneja datos financieros ni sensibles, y una sesión robada se puede revocar desde la consola de Firebase. La contraseña nunca se guarda en el teléfono |
 | Cola de acciones para **encolar** sin red | No se encola nada | Un check-in encolado mentiría (la hora y el lugar ya no serían reales). Encolar partidos está en *Funcionalidades futuras* de 00-project. La práctica de la clase pide justificarlo por escrito: esta tabla es esa justificación |
-| `NetInfo` en las pantallas con `useNetInfo` | `NetInfo.fetch()` dentro de un servicio | Los servicios son el único lugar que habla con módulos nativos. Las pantallas pueden usar además `useNetInfo` para el aviso de *Sin conexión* (F02/F06) |
+| `NetInfo` en las pantallas con `useNetInfo` | `NetInfo.fetch()` dentro de un servicio | Los servicios son el único lugar que habla con módulos nativos.Las pantallas pueden usar además `useNetInfo` para el aviso de *Sin conexión* (F02). En F06 el store decide con `hayConexion()` y la pantalla solo lee `guardadoEn` |
 | Caché con un hook `usePersistedState` | Caché en `servicioCache` llamada desde el store | Los datos vienen de Firebase y los usan dos pantallas (Historial y Perfil) |
 | "Cerrar sesión de verdad" | Se cumple: se borra la caché y se limpian los stores (F01) | Mismo principio de la clase |
 
