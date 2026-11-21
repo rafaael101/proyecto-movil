@@ -250,7 +250,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Pruebas (Jest)**
 
-- [ ] F06-CA13 — `formatearFecha('2026-11-02')` da `'2 nov 2026'` (no `'1 nov'`). `formatearFechaHora(new Date(2026, 10, 2, 18, 5).toISOString())` da `'2 nov, 18:05'`. `obtenerNombreCancha`: `null`, `'no-existe'` y `'sullivan'`.
+- [x] F06-CA13 — `formatearFecha('2026-11-02')` da `'2 nov 2026'` (no `'1 nov'`). `formatearFechaHora(new Date(2026, 10, 2, 18, 5).toISOString())` da `'2 nov, 18:05'`. `obtenerNombreCancha`: `null`, `'no-existe'` y `'sullivan'`.
 - [ ] F06-CA14 — **Integración — `PantallaHistorial`** (`src/pantallas/PantallaHistorial.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`, y `useStorePartidos.getState().limpiar()` antes de cada `it`. Se simulan con fábrica: `servicioSesion` (como N9), `servicioCheckIns` (como F02.6), `servicioPartidos` (las 5 funciones), `servicioConexion` (`hayConexion` resuelve `false`) y `servicioCache`. El test toca la tab "Historial" y:
   1. `leerCacheHistorial` resuelve una caché con el partido de F06-CA02 → aparecen "Sin conexión — datos guardados el" y "14 pts · 6 reb · 3 ast". `obtenerPaginaPartidos` **no** se llamó.
   2. `leerCacheHistorial` resuelve `null` → aparece "Sin conexión y sin datos guardados".
