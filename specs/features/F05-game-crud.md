@@ -111,7 +111,7 @@ type EstadoPartidos = {
 
 - Cada acción llama a su servicio (`crearPartido`, `editarPartido`, `eliminarPartido` de D13) en `try/catch`: `console.error` + `obtenerMensajeError` (§10). Devuelve `null` si salió bien o el mensaje si falló.
 - **Por qué `string | null` y no `Promise<boolean>` (§8):** el error de guardar solo lo muestra el modal. Si quedara en el `mensajeError` del store, el Historial (F06) mostraría `VistaError` detrás del modal. Es el mismo patrón de `useStoreSesion` (F01).
-- F05 **no** actualiza `partidos` después de guardar: F06 recarga desde la primera página (02-data-model, operación 5).
+- F05 **no** actualiza `partidos` a mano. F06.3 hace que, si las 3 acciones salen bien, esperen `cargarHistorial` (que recarga desde la primera página, operación 5 de 02-data-model) antes de devolver `null`.
 - Los nombres no repiten los del servicio para no chocar en los imports (como `iniciarSesion` / `entrarConCorreo` en F01).
 
 ---
