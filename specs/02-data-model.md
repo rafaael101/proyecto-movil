@@ -793,7 +793,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 - [ ] CAD13 — En modo avión, intentar guardar un partido o hacer check-in muestra "No hay conexión…" en menos de 2 segundos (sin spinner eterno).
 - [ ] CAD14 — Después de abrir el Historial con internet, en modo avión el Historial y los promedios se ven desde la caché con el aviso y la fecha de guardado.
-- [ ] CAD15 — Después de cerrar sesión, `leerCacheHistorial` devuelve `null` (prueba de Jest con AsyncStorage simulado).
+- [x] CAD15 — Después de cerrar sesión, `leerCacheHistorial` devuelve `null` (prueba de Jest con AsyncStorage simulado).
 
 **Pruebas unitarias (Jest)** — cubren los 12 unitarios de la rúbrica
 
@@ -806,9 +806,9 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 - [ ] CAD22 — `calcularExpiracion` y `minutosRestantes` (incluye vencido → 0).
 - [ ] CAD23 — `contarJugadoresPorCancha` (incluye lista vacía).
 - [ ] CAD24 — `obtenerNivelAfluencia` en 0, 1, 5, 6, 9 y 10 (RN07).
-- [ ] CAD25 — `calcularPromedios` con 3 partidos y con 0 partidos (sin `NaN`).
+- [x] CAD25 — `calcularPromedios` con 3 partidos y con 0 partidos (sin `NaN`).
 - [x] CAD26 — `obtenerMensajeError` con `'sin-conexion'`, `permission-denied` y un error desconocido.
-- [ ] CAD27 — `leerCacheHistorial` con JSON roto y con caché de otro usuario → `null` y la clave se borra.
+- [x] CAD27 — `leerCacheHistorial` con JSON roto y con caché de otro usuario → `null` y la clave se borra.
 
 **Código**
 
