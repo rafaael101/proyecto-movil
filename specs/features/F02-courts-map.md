@@ -214,7 +214,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Antes d
 - [ ] F02-CA08 — Con números en pantalla activo el modo avión: pasan a "?" y aparece el aviso sin tocar nada. Quito el modo avión, toco "Reintentar" y vuelven los números.
 - [ ] F02-CA09 — En la consola cambio por un momento la lectura de `checkins` a `allow read: if false;`. Al tocar "Actualizar" aparece "No tienes permiso para hacer esto." + "Reintentar" y burbujas "?". **Regreso la regla original** (D5).
 - [ ] F02-CA10 — Con el permiso de ubicación negado en Ajustes, el mapa se ve y funciona igual.
-- [ ] F02-CA11 — Cierro sesión y entro con otra cuenta: el Mapa muestra el indicador y carga de nuevo (F01.18).
+- [ ] F02-CA11 — *(Después de F03)* Cierro sesión y entro con otra cuenta: el Mapa muestra el indicador y carga de nuevo (F01.18).
 
 **Código y pruebas**
 
@@ -236,8 +236,7 @@ Cada task ≈ un commit.
 - [ ] **F02.5 — Crear `AvisoMapa`.**
 - [ ] **F02.6 — Simuladores de Jest para el mapa.** En `jest.setup.ts`: `react-native-maps` (fábrica que devuelve `View` como `default` y como `Marker`) y NetInfo con su simulador oficial (`@react-native-community/netinfo/jest/netinfo-mock.js`). En los tests que dibujan `NavegadorRaiz` con usuario (N9): fábrica de `servicioCheckIns` con `obtenerCheckInsActivos` que resuelve `{ jugadoresPorCancha: {}, miCheckIn: null }`, porque Mapa es la tab inicial.
 - [ ] **F02.7 — `PantallaMapa` real:** `MapView`, marcadores, avisos, indicador y "Actualizar". Quita el texto de N4 y el botón "Ver Sullivan" de N7.
-- ➡️ **F01.18 de F01, parte de check-ins** — `useStoreCheckIns.getState().limpiar()` en `cerrarSesion`.
-- [ ] **F02.8 — Probar en el iPhone** F02-CA01–CA11 y CA13 (la parte del mapa), CA18 y CA21 de 01-navigation.
+- [ ] **F02.8 — Probar en el iPhone** F02-CA01–CA10 y CA13 (la parte del mapa) (CA11 se prueba en F03.9), CA18 y CA21 de 01-navigation.
 
 ---
 
@@ -256,4 +255,4 @@ Cada task ≈ un commit.
 - **Colores de afluencia:** gris, verde, naranja y rojo (`coloresAfluencia`).
 - **Recarga:** al montar Mapa, con "Actualizar" y cuando F03 cambia el check-in (mismo store). Sin recarga por tiempo ni al volver a la tab.
 - **Nadie jugando:** aviso "Nadie está jugando ahora. Sé el primero en hacer check-in." arriba del mapa.
-- **Store:** F02 crea `useStoreCheckIns`; D11 se adelanta al inicio de F02; F02 hace la parte de check-ins de F01.18.
+- **Store:** F02 crea `useStoreCheckIns`; D11 se adelanta al inicio de F02; la parte de check-ins de F01.18 se hace en F03.
