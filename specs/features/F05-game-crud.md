@@ -130,7 +130,7 @@ type EstadoPartidos = {
 ### B. Editar
 
 1. En Historial toca un partido → `navigate('FormularioPartido', { idPartido })` (F06).
-2. La pantalla, en este orden: si `usuario` es `null` → `VistaCargando` (pasa un instante al cerrar sesión). Si `idPartido` no está en `partidos` → **E2**: `VistaError` "Este partido ya no existe" con botón "Cerrar" (`goBack()`).
+2. La pantalla, en este orden: si `usuario` es `null` → `VistaCargando` (pasa un instante al cerrar sesión). Si `idPartido` no está en `partidos` → **E5**: `VistaError` "Este partido ya no existe" con botón "Cerrar" (`goBack()`).
 3. Si existe, el formulario se llena con `convertirAValores(partido)`.
 4. "Guardar" sigue los pasos A.3–A.6, pero con `actualizarPartido(idUsuario, idPartido, datos)` (`updateDoc`).
 
