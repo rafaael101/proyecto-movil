@@ -37,3 +37,5 @@ export const coloresAfluencia = {
 } as const;
 
 export const tamanoMarcador = 36; // diámetro de la burbuja del mapa (F02)
+
+export const tamanoFotoTarjeta = 160; // diámetro de la foto de la tarjeta de jugador (F07)
