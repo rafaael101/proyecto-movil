@@ -464,6 +464,7 @@ Errores: `'sin-conexion'`, `permission-denied`, `unavailable`.
 | `auth/network-request-failed` | "No hay conexión. Revisa tu internet e intenta de nuevo." |
 | Cualquier otro | "Algo salió mal. Intenta de nuevo." |
 | `Error('sin-ubicacion')` | "No pudimos obtener tu ubicación. Revisa que esté activada e intenta de nuevo." |
+| `Error('sin-compartir')` | "Compartir no está disponible en este teléfono." |
 
 Los códigos de Firestore se leen con `error instanceof FirebaseError` y `error.code`. Los errores de Auth (`auth/...`) también están en esta tabla (los definió F01).
 
