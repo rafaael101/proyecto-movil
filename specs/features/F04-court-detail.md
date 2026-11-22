@@ -148,7 +148,7 @@ Probados en el iPhone con Expo Go y en la consola de Firebase. Los documentos `p
 Cada task ≈ un commit. Se hacen después de F03.
 
 - [x] **F04.1 — `NOMBRES_AFLUENCIA`** en `configuracion.ts`.
-- [ ] **F04.2 — Crear `TarjetaAfluencia`.**
+- [x] **F04.2 — Crear `TarjetaAfluencia`.**
 - [ ] **F04.3 — Título con el nombre de la cancha** (`useLayoutEffect` en `PantallaDetalleCancha`).
 - [ ] **F04.4 — `TarjetaAfluencia` en `PantallaDetalleCancha`**, arriba del `PanelCheckIn`, con `useNetInfo` y la regla del "?".
 - [ ] **F04.5 — Probar en el iPhone** F04-CA01–CA09, CA13 y CA19 de 01-navigation.
