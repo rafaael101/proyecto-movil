@@ -259,7 +259,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Código**
 
-- [ ] F06-CA15 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan. `PantallaHistorial` y `PantallaPerfil` no importan servicios (§4). No queda código provisional en `PantallaHistorial`.
+- [x] F06-CA15 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan. `PantallaHistorial` y `PantallaPerfil` no importan servicios (§4). No queda código provisional en `PantallaHistorial`.
 
 ---
 
