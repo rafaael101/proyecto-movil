@@ -75,7 +75,7 @@ Una app móvil con dos módulos:
   | `gimnasio-municipal`| Gimnasio Municipal Óscar "Tigre" García       | 31.868311 | -116.613094 |
   | `parque-la-hoja`    | Parque De La Hoja                             | 31.881610 | -116.603568 |
 
-  **Cancha de prueba (solo desarrollo):** para probar RN02 sin salir de casa se agrega una cancha extra cuyas coordenadas se leen del `.env` (`EXPO_PUBLIC_CANCHA_PRUEBA_LAT`, `EXPO_PUBLIC_CANCHA_PRUEBA_LNG`). Si esas variables no existen, la cancha no aparece. Sus coordenadas **nunca** se escriben en el código ni en las specs, porque el repositorio es público. Se elimina antes de la entrega.
+  **Cancha de prueba (desarrollo y demostración en clase):** para probar RN02 sin salir de casa se agrega una cancha extra cuyas coordenadas se leen del `.env` (`EXPO_PUBLIC_CANCHA_PRUEBA_LAT`, `EXPO_PUBLIC_CANCHA_PRUEBA_LNG`). Si esas variables no existen, la cancha no aparece. Sus coordenadas **nunca** se escriben en el código ni en las specs, porque el repositorio es público. No se elimina: se usa en la demostración en clase, con las coordenadas del salón solo en el `.env` de la laptop.
 - **RN06 — Privacidad:** la app muestra **solo el número** de jugadores por cancha, nunca quiénes son ni su ubicación.
 - **RN07 — Niveles de afluencia** (pensados en básquet):
 
@@ -164,7 +164,7 @@ El check-in solo tiene sentido si **otros usuarios lo ven**. Si los datos se gua
 |--------|------------|
 | **Poco tiempo para un proyecto pensado para 3 personas** | Cumplir cada requisito en su mínimo; nada extra hasta terminar el MVP. |
 | **Mapa vacío** (nadie más usa la app todavía) | Mensaje "Sé el primero en hacer check-in". Para la demo, preparar 2–3 cuentas de prueba. |
-| **No poder probar el check-in desde casa** (RN02) | Cancha de prueba configurada desde `.env` (ver RN05); se quita antes de entregar. |
+| **No poder probar el check-in desde casa** (RN02) | Cancha de prueba configurada desde `.env` (ver RN05). En la demostración en clase se usan las coordenadas del salón. |
 | **Check-ins falsos** | RN02 (cercanía por GPS). |
 | **Permiso de ubicación negado** | El mapa se muestra centrado en la ciudad, el botón de check-in se deshabilita y se explica cómo activarlo en Ajustes. |
 | **Permiso de cámara negado** | Permitir elegir una foto de la galería o generar la tarjeta sin foto. |
