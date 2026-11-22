@@ -409,6 +409,7 @@ export const useStorePartidos = create<EstadoPartidos>((set) => ({
 - **Acciones que la pantalla necesita saber si salieron bien** (guardar, eliminar) devuelven `Promise<boolean>`: `true` si se guardó, `false` si falló (el mensaje queda en `mensajeError`). Así la pantalla decide si cierra el modal.
 - **Excepción, `useStoreSesion` (F01):** no lleva `cargando` ni `mensajeError`. `revisandoSesion` hace de `cargando`, y `registrarse`, `iniciarSesion` y `cerrarSesion` devuelven `Promise<string | null>` (el mensaje, o `null` si salió bien), porque el error solo lo muestra la pantalla que hizo la petición y se guarda en su `useState`.
 - **Excepción, `useStorePartidos` (F05):** `registrarPartido`, `actualizarPartido` y `borrarPartido` también devuelven `Promise<string | null>` y no `Promise<boolean>`, porque el error de guardar solo lo muestra el modal. Si quedara en `mensajeError`, el Historial mostraría `VistaError` detrás del modal. F06 agrega el estado de la lista: `cargando`, `mensajeError`, `cargandoMas`, `mensajeErrorMas` y `guardadoEn`. Además, si las 3 acciones de F05 salen bien, esperan `cargarHistorial` antes de devolver `null` (F06.3).
+- **Excepción, la tarjeta (F07):** no tiene store. `useTarjetaJugador` (`src/hooks/`) guarda la foto con `useState`, llama a `servicioTarjeta` y hace el `try/catch` con `console.error` y `obtenerMensajeError`, porque la foto solo la usa una pantalla y debe perderse al cerrar el modal.
 
 ---
 
