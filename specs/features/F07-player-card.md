@@ -214,25 +214,25 @@ Probados en el iPhone con Expo Go y con Jest. Para volver a probar el diálogo d
 
 **Tarjeta**
 
-- [ ] F07-CA01 — El icono de tarjeta del partido de F06-CA02 abre "Tarjeta de jugador" con: círculo gris con el icono, mi nombre, "2 nov 2026 · Ganó" (en verde), "14 pts · 6 reb · 3 ast", "Unidad Deportiva Juan A. Rodríguez Sullivan" y "HoopsMap". Debajo: "Tomar foto", "Elegir de la galería" y "Compartir". Con un partido sin cancha: "Sin cancha".
-- [ ] F07-CA02 — "Tomar foto": la primera vez iOS pide el permiso; acepto, tomo una foto y aparece en el círculo. Tomo otra y reemplaza a la primera.
-- [ ] F07-CA03 — "Elegir de la galería" abre la galería sin pedir permiso. La foto elegida aparece en el círculo.
+- [x] F07-CA01 — El icono de tarjeta del partido de F06-CA02 abre "Tarjeta de jugador" con: círculo gris con el icono, mi nombre, "2 nov 2026 · Ganó" (en verde), "14 pts · 6 reb · 3 ast", "Unidad Deportiva Juan A. Rodríguez Sullivan" y "HoopsMap". Debajo: "Tomar foto", "Elegir de la galería" y "Compartir". Con un partido sin cancha: "Sin cancha".
+- [x] F07-CA02 — "Tomar foto": la primera vez iOS pide el permiso; acepto, tomo una foto y aparece en el círculo. Tomo otra y reemplaza a la primera.
+- [x] F07-CA03 — "Elegir de la galería" abre la galería sin pedir permiso. La foto elegida aparece en el círculo.
 - [ ] F07-CA04 — Abro la cámara y cancelo, y luego la galería y cancelo: la tarjeta sigue igual y no aparece ningún mensaje.
-- [ ] F07-CA05 — Con foto, "Compartir" muestra el indicador y abre la hoja de compartir de iOS. Me la mando por Mensajes: la imagen es solo la tarjeta (sin botones) y se ve igual que en pantalla. Si cierro la hoja sin compartir, no aparece ningún mensaje.
-- [ ] F07-CA06 — Sin foto, "Compartir" manda la tarjeta con el círculo gris.
-- [ ] F07-CA07 — Con foto, toco "Cerrar" y vuelvo a abrir la misma tarjeta: está sin foto (E13). En la consola de Firebase no apareció nada nuevo.
+- [x] F07-CA05 — Con foto, "Compartir" muestra el indicador y abre la hoja de compartir de iOS. Me la mando por Mensajes: la imagen es solo la tarjeta (sin botones) y se ve igual que en pantalla. Si cierro la hoja sin compartir, no aparece ningún mensaje.
+- [x] F07-CA06 — Sin foto, "Compartir" manda la tarjeta con el círculo gris.
+- [x] F07-CA07 — Con foto, toco "Cerrar" y vuelvo a abrir la misma tarjeta: está sin foto (E13). En la consola de Firebase no apareció nada nuevo.
 
 **Negativos**
 
-- [ ] F07-CA08 — Niego el permiso de cámara: aparece la explicación y "Abrir Ajustes", y "Tomar foto" se ve deshabilitado. "Elegir de la galería" y "Compartir" funcionan. "Abrir Ajustes" abre los ajustes de Expo Go. Activo la cámara, regreso, cierro y abro la tarjeta: "Tomar foto" funciona.
-- [ ] F07-CA09 — En modo avión, con el Historial desde la caché: la tarjeta se abre con sus datos, puedo elegir una foto de la galería y "Compartir" abre la hoja.
-- [ ] F07-CA10 — Toco dos veces muy rápido "Elegir de la galería": se abre una sola galería.
-- [ ] F07-CA11 — CA20 de 01-navigation, parte de la tarjeta. Desde la app no se puede abrir la tarjeta con un id que no está en la lista: el icono siempre es de un partido de la lista. Se verifica en el código: `PantallaTarjetaJugador` busca con `partidos.find` y, si da `undefined`, regresa la misma `VistaError` de F05 ("Este partido ya no existe" + "Cerrar" con `goBack()`), ya probada en F05-CA07.
+- [x] F07-CA08 — Niego el permiso de cámara: aparece la explicación y "Abrir Ajustes", y "Tomar foto" se ve deshabilitado. "Elegir de la galería" y "Compartir" funcionan. "Abrir Ajustes" abre los ajustes de Expo Go. Activo la cámara, regreso, cierro y abro la tarjeta: "Tomar foto" funciona.
+- [x]  F07-CA09 — En modo avión, con el Historial desde la caché: la tarjeta se abre con sus datos, puedo elegir una foto de la galería y "Compartir" abre la hoja.
+- [x] F07-CA10 — Toco dos veces muy rápido "Elegir de la galería": se abre una sola galería.
+- [x] F07-CA11 — CA20 de 01-navigation, parte de la tarjeta. Desde la app no se puede abrir la tarjeta con un id que no está en la lista: el icono siempre es de un partido de la lista. Se verifica en el código: `PantallaTarjetaJugador` busca con `partidos.find` y, si da `undefined`, regresa la misma `VistaError` de F05 ("Este partido ya no existe" + "Cerrar" con `goBack()`), ya probada en F05-CA07.
 
 **Código y pruebas (Jest)**
 
-- [ ] F07-CA12 — `obtenerMensajeError(new Error('sin-compartir'))` da "Compartir no está disponible en este teléfono." (un `it` más en `errores.test.ts`).
-- [ ] F07-CA13 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan, incluidos N9, F01.14, F05.7 y F06.8. Solo `servicioTarjeta` importa las 3 librerías. Solo `useTarjetaJugador` importa `servicioTarjeta`. `PantallaTarjetaJugador`, `TarjetaJugador` y `AccionesTarjeta` no importan servicios (§4) y ninguno pasa de ~150 líneas (§6). No queda el texto provisional de N4. `uriFoto` no aparece en `src/stores/` ni en `servicioCache`.
+- [x] F07-CA12 — `obtenerMensajeError(new Error('sin-compartir'))` da "Compartir no está disponible en este teléfono." (un `it` más en `errores.test.ts`).
+- [x] F07-CA13 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan, incluidos N9, F01.14, F05.7 y F06.8. Solo `servicioTarjeta` importa las 3 librerías. Solo `useTarjetaJugador` importa `servicioTarjeta`. `PantallaTarjetaJugador`, `TarjetaJugador` y `AccionesTarjeta` no importan servicios (§4) y ninguno pasa de ~150 líneas (§6). No queda el texto provisional de N4. `uriFoto` no aparece en `src/stores/` ni en `servicioCache`.
 
 ---
 
@@ -251,7 +251,7 @@ Cada task ≈ un commit.
 - [x] **F07.6 — Crear `TarjetaJugador`** y agregar `tamanoFotoTarjeta = 160` a `tema.ts`.
 - [x] **F07.7 — Crear `AccionesTarjeta`.**
 - [x] **F07.8 — `PantallaTarjetaJugador` real**: `VistaCargando`, E3 de 01-navigation con `VistaError`, la tarjeta dentro del `View` con `ref`, `AccionesTarjeta` y "Abrir Ajustes". Quita el texto provisional de N4.
-- [ ] **F07.9 — Probar en el iPhone** F07-CA01–CA10 y revisar F07-CA11 en el código. Marcar CA20 de 01-navigation.
+- [x] **F07.9 — Probar en el iPhone** F07-CA01–CA10 y revisar F07-CA11 en el código. Marcar CA20 de 01-navigation.
 
 ---
 
