@@ -214,28 +214,28 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. "Cancha
 
 **Check-in**
 
-- [ ] F03-CA01 — En el Mapa no hay botón de check-in. En el detalle de cualquier cancha se ve "Hacer check-in".
-- [ ] F03-CA02 — Primera vez en la cancha de prueba: iOS pide el permiso; acepto. Mientras trabaja, el botón muestra el indicador. Luego: "Estás en esta cancha", "Te quedan 90 min" y "Ya me voy". En la consola, `checkins/{mi uid}` tiene **solo** `idCancha: 'prueba'` y `creadoEn` (CAD06; sin ubicación, RN06).
-- [ ] F03-CA03 — Regreso al Mapa: la burbuja de la cancha de prueba subió 1 sin tocar "Actualizar"; si era la única, desaparece "Nadie está jugando ahora…".
-- [ ] F03-CA04 — Desde casa, en Sullivan: "Estás a N m de la cancha. Acércate a 150 m o menos para hacer check-in." y no aparece ni cambia ningún documento (RN02).
-- [ ] F03-CA05 — "Ya me voy": vuelve "Hacer check-in", el documento ya no existe (CAD08) y la burbuja baja.
-- [ ] F03-CA06 — En la consola pongo `creadoEn` de mi documento 60 min antes; "Actualizar" en el Mapa y reabro el detalle: "Te quedan 30 min". Con 100 min antes: "Hacer check-in" (RN01).
-- [ ] F03-CA07 — En la consola cambio el `idCancha` de mi documento a `'sullivan'` y toco "Actualizar". En el detalle de la cancha de prueba veo "Ahora estás en Unidad Deportiva Juan A. Rodríguez Sullivan…"; hago check-in y sigue habiendo **un solo** documento con mi uid, ahora con `'prueba'` (RN03, CAD07).
-- [ ] F03-CA08 — Con mi check-in y un documento `prueba-1` en `'prueba'`, la burbuja dice "2" y la app no muestra ningún uid (CAD09, RN06). Doble toque rápido en "Hacer check-in" deja un solo documento mío (E9).
+- [x] F03-CA01 — En el Mapa no hay botón de check-in. En el detalle de cualquier cancha se ve "Hacer check-in".
+- [x] F03-CA02 — Primera vez en la cancha de prueba: iOS pide el permiso; acepto. Mientras trabaja, el botón muestra el indicador. Luego: "Estás en esta cancha", "Te quedan 90 min" y "Ya me voy". En la consola, `checkins/{mi uid}` tiene **solo** `idCancha: 'prueba'` y `creadoEn` (CAD06; sin ubicación, RN06).
+- [x] F03-CA03 — Regreso al Mapa: la burbuja de la cancha de prueba subió 1 sin tocar "Actualizar"; si era la única, desaparece "Nadie está jugando ahora…".
+- [x] F03-CA04 — Desde casa, en Sullivan: "Estás a N m de la cancha. Acércate a 150 m o menos para hacer check-in." y no aparece ni cambia ningún documento (RN02).
+- [x] F03-CA05 — "Ya me voy": vuelve "Hacer check-in", el documento ya no existe (CAD08) y la burbuja baja.
+- [x] F03-CA06 — En la consola pongo `creadoEn` de mi documento 60 min antes; "Actualizar" en el Mapa y reabro el detalle: "Te quedan 30 min". Con 100 min antes: "Hacer check-in" (RN01).
+- [x] F03-CA07 — En la consola cambio el `idCancha` de mi documento a `'sullivan'` y toco "Actualizar". En el detalle de la cancha de prueba veo "Ahora estás en Unidad Deportiva Juan A. Rodríguez Sullivan…"; hago check-in y sigue habiendo **un solo** documento con mi uid, ahora con `'prueba'` (RN03, CAD07).
+- [x] F03-CA08 — Con mi check-in y un documento `prueba-1` en `'prueba'`, la burbuja dice "2" y la app no muestra ningún uid (CAD09, RN06). Doble toque rápido en "Hacer check-in" deja un solo documento mío (E9).
 
 **Negativos**
 
-- [ ] F03-CA09 — Niego el permiso: explicación + "Abrir Ajustes" y botón deshabilitado; no se crea documento. "Abrir Ajustes" abre los ajustes de Expo Go. Activo la ubicación, regreso, salgo y vuelvo a entrar al detalle: el botón funciona.
-- [ ] F03-CA10 — En modo avión, "Hacer check-in" muestra "No hay conexión…" en menos de 2 s (CAD13). Con check-in ya hecho y luego modo avión, "Ya me voy" muestra el mismo mensaje y el documento sigue en la consola.
-- [ ] F03-CA11 — Con la ubicación del iPhone apagada en *Privacidad > Localización*, el panel no se queda cargando: muestra la explicación del permiso o "No pudimos obtener tu ubicación…".
-- [ ] F03-CA12 — En la consola cambio por un momento `allow create, update` de `checkins` a `if false;`: "No tienes permiso para hacer esto." debajo del botón. **Regreso la regla original** (D5).
-- [ ] F03-CA13 — Cierro sesión con check-in activo: el documento ya no existe (F01-CA20). Entro con otra cuenta: el Mapa carga desde cero (F01.18).
+- [x] F03-CA09 — Niego el permiso: explicación + "Abrir Ajustes" y botón deshabilitado; no se crea documento. "Abrir Ajustes" abre los ajustes de Expo Go. Activo la ubicación, regreso, salgo y vuelvo a entrar al detalle: el botón funciona.
+- [x] F03-CA10 — En modo avión, "Hacer check-in" muestra "No hay conexión…" en menos de 2 s (CAD13). Con check-in ya hecho y luego modo avión, "Ya me voy" muestra el mismo mensaje y el documento sigue en la consola.
+- [x] F03-CA11 — Con la ubicación del iPhone apagada en *Privacidad > Localización*, el panel no se queda cargando: muestra la explicación del permiso o "No pudimos obtener tu ubicación…".
+- [x] F03-CA12 — En la consola cambio por un momento `allow create, update` de `checkins` a `if false;`: "No tienes permiso para hacer esto." debajo del botón. **Regreso la regla original** (D5).
+- [x] F03-CA13 — Cierro sesión con check-in activo: el documento ya no existe (F01-CA20). Entro con otra cuenta: el Mapa carga desde cero (F01.18).
 
 **Código y pruebas (Jest)**
 
-- [ ] F03-CA14 — `src/utilidades/distancia.test.ts` pasa: mismo punto → 0; Sullivan y 0.001° más de latitud → ≈ 111 m; 0.001° más de longitud → ≈ 95 m (la corrección por coseno); Sullivan → Gimnasio Municipal entre 1 270 y 1 300 m. `estaDentroDelRadio`: 150 → `true`, 150.5 → `false`. Solo usa coordenadas del catálogo público (RN05).
-- [ ] F03-CA15 — `obtenerMensajeError(new Error('sin-ubicacion'))` da su mensaje (un `it` más en `errores.test.ts`).
-- [ ] F03-CA16 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan (N9, F01.14, F05.7 y los de F06 si ya están). Solo `servicioUbicacion` importa `expo-location`; `PantallaDetalleCancha` y `PanelCheckIn` no importan servicios (§4). Buscar las coordenadas de la cancha de prueba no da resultados (CAD30).
+- [x] F03-CA14 — `src/utilidades/distancia.test.ts` pasa: mismo punto → 0; Sullivan y 0.001° más de latitud → ≈ 111 m; 0.001° más de longitud → ≈ 95 m (la corrección por coseno); Sullivan → Gimnasio Municipal entre 1 270 y 1 300 m. `estaDentroDelRadio`: 150 → `true`, 150.5 → `false`. Solo usa coordenadas del catálogo público (RN05).
+- [x] F03-CA15 — `obtenerMensajeError(new Error('sin-ubicacion'))` da su mensaje (un `it` más en `errores.test.ts`).
+- [x] F03-CA16 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan (N9, F01.14, F05.7 y los de F06 si ya están). Solo `servicioUbicacion` importa `expo-location`; `PantallaDetalleCancha` y `PanelCheckIn` no importan servicios (§4). Buscar las coordenadas de la cancha de prueba no da resultados (CAD30).
 
 ---
 
@@ -253,7 +253,7 @@ Cada task ≈ un commit. D10, D11 y CAD02 ya se hicieron en el bloque de F02.
 - [x] **F03.8 — `PanelCheckIn` en `PantallaDetalleCancha`**: `VistaCargando`, E1 de 01-navigation, revisar el permiso al montar, `trabajando`/`mensaje` y "Abrir Ajustes". Quita el texto provisional de N4.
 - ➡️ **F01.16 de F01** — `cerrarSesion` llama siempre a `terminarCheckIn` antes de `signOut`.
 - ➡️ **F01.18 de F01, parte de check-ins** — `useStoreCheckIns.getState().limpiar()` en `cerrarSesion`.
-- [ ] **F03.9 — Probar en el iPhone** F03-CA01–CA13, CAD06–CAD09, CAD13 (check-in), F01-CA20 y CA19 de 01-navigation.
+- [x] **F03.9 — Probar en el iPhone** F03-CA01–CA13, CAD06–CAD09, CAD13 (check-in), F01-CA20 y CA19 de 01-navigation.
 
 ---
 
