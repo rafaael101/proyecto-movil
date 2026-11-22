@@ -467,7 +467,7 @@ Probados en el iPhone con Expo Go.
 **Errores**
 
 - [x] CA19 — Abrir `DetalleCancha` con un `idCancha` que no está en el catálogo muestra "No encontramos esta cancha" y el botón "Volver al mapa" funciona.
-- [ ] CA20 — Abrir "Editar partido" o "Tarjeta de jugador" con un `idPartido` inexistente muestra "Este partido ya no existe" y el botón "Cerrar" funciona. La parte de la tarjeta se verifica en el código (F07-CA11): desde la app no se puede abrir con un id que no esté en la lista.
+- [x] CA20 — Abrir "Editar partido" o "Tarjeta de jugador" con un `idPartido` inexistente muestra "Este partido ya no existe" y el botón "Cerrar" funciona. La parte de la tarjeta se verifica en el código (F07-CA11): desde la app no se puede abrir con un id que no esté en la lista.
 - [x] CA21 — Con modo avión y sesión guardada, la app abre en Mapa y se puede entrar a las 3 tabs y al detalle de una cancha sin que se cierre.
 
 **Código**
@@ -492,7 +492,7 @@ Cada task ≈ un commit.
 - [x] **N7 — Agregar títulos dinámicos, botones del header y botones provisionales de navegación.** Título del formulario según `idPartido`; "Cancelar" y "Cerrar" en los modales; [+] en Historial; botones provisionales en Mapa ("Ver Sullivan" → `idCancha: 'sullivan'`) y en Historial (editar/tarjeta con un id de prueba) para probar CA13–CA18. Los provisionales se quitan cuando F02 y F06 pongan los reales (“Ver Sullivan” lo quita F02.7).
 - [x] **N8 — Agregar la decisión de sesión** en `NavegadorRaiz` (grupos sin sesión / con sesión y `VistaCargando`). _Se hace después de F01.5 y F01.6 (store de sesión y escucha de la sesión)._
 - [x] **N9 — Test de integración de navegación** (cuenta para los 4 de la rúbrica): con el store simulado sin usuario se ve "Iniciar sesión"; con usuario se ve la tab Mapa. _Requiere Jest configurado._ El simulador de `servicioSesion` debe traer `escucharCambiosDeSesion: jest.fn(() => () => {})`: desde F01.6, `NavegadorRaiz` la llama al montarse y, con el simulador vacío (`() => ({})`), el test truena. Como nunca avisa, no cambia el estado que el test le puso al store.
-- [ ] **N10 — Probar los criterios de aceptación en el iPhone** y marcar los que ya se pueden probar. Los que dependen de otras features se marcan cuando esas features estén listas.
+- [x] **N10 — Probar los criterios de aceptación en el iPhone** y marcar los que ya se pueden probar. Los que dependen de otras features se marcan cuando esas features estén listas.
 
 ### Tasks que se implementan en otras features
 
