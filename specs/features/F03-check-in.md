@@ -247,7 +247,7 @@ Cada task ≈ un commit. D10, D11 y CAD02 ya se hicieron en el bloque de F02.
 - [x] **F03.2 — `Coordenadas`, `calcularDistanciaMetros` y `estaDentroDelRadio`** + pruebas (F03-CA14).
 - [x] **F03.3 — Crear `servicioUbicacion`** (`ubicacionNegada`, `pedirPermisoUbicacion`, `obtenerUbicacionActual`).
 - [x] **F03.4 — Mensaje `'sin-ubicacion'`** en `obtenerMensajeError` + prueba (F03-CA15).
-- [ ] **F03.5 — Ampliar `useStoreCheckIns`**: `permisoUbicacionNegado`, `revisarPermisoUbicacion`, `hacerCheckIn`, `terminarMiCheckIn` y `limpiar`.
+- [x] **F03.5 — Ampliar `useStoreCheckIns`**: `permisoUbicacionNegado`, `revisarPermisoUbicacion`, `hacerCheckIn`, `terminarMiCheckIn` y `limpiar`.
 - [ ] **F03.6 — Simuladores de Jest.** En los tests que dibujan `NavegadorRaiz`, la fábrica de `servicioCheckIns` (F02.6) agrega `crearCheckIn` y `terminarCheckIn` como `jest.fn()`, y se agrega una fábrica de `servicioUbicacion` (las 3 funciones como `jest.fn()`), para no cargar `expo-location` real.
 - [ ] **F03.7 — Crear `PanelCheckIn`.**
 - [ ] **F03.8 — `PanelCheckIn` en `PantallaDetalleCancha`**: `VistaCargando`, E1 de 01-navigation, revisar el permiso al montar, `trabajando`/`mensaje` y "Abrir Ajustes". Quita el texto provisional de N4.
