@@ -125,9 +125,13 @@ export const useStorePartidos = create<EstadoPartidos>((set, get) => ({
     }
   },
 
+  // Las 3 acciones de F05: si salen bien, esperan la recarga (página 1 + todos) antes de
+  // devolver null, así el modal se cierra con la lista y los promedios ya al día (F06.3).
+  // cargarHistorial no lanza errores: si la recarga falla, igual se guardó (E10 de F06)
   registrarPartido: async (idUsuario, datos) => {
     try {
       await crearPartido(idUsuario, datos);
+      await get().cargarHistorial(idUsuario);
       return null;
     } catch (error) {
       console.error('registrarPartido:', error);
@@ -138,6 +142,7 @@ export const useStorePartidos = create<EstadoPartidos>((set, get) => ({
   actualizarPartido: async (idUsuario, idPartido, datos) => {
     try {
       await editarPartido(idUsuario, idPartido, datos);
+      await get().cargarHistorial(idUsuario);
       return null;
     } catch (error) {
       console.error('actualizarPartido:', error);
@@ -148,6 +153,7 @@ export const useStorePartidos = create<EstadoPartidos>((set, get) => ({
   borrarPartido: async (idUsuario, idPartido) => {
     try {
       await eliminarPartido(idUsuario, idPartido);
+      await get().cargarHistorial(idUsuario);
       return null;
     } catch (error) {
       console.error('borrarPartido:', error);

@@ -272,7 +272,7 @@ Cada task ≈ un commit.
 - ➡️ **D16 de 02-data-model** — `servicioCache` + pruebas (CAD15, CAD27).
 - [x] **F06.1 — `formatearFecha`, `formatearFechaHora` y `obtenerNombreCancha`** + pruebas (F06-CA13).
 - [x] **F06.2 — Ampliar `useStorePartidos`**: estado de la lista, `cargarHistorial` (con caché sin internet), `cargarMas` y `limpiar` completo.
-- [ ] **F06.3 — Recargar después de guardar**: las 3 acciones de F05 esperan `cargarHistorial` si salen bien.
+- [x] **F06.3 — Recargar después de guardar**: las 3 acciones de F05 esperan `cargarHistorial` si salen bien.
 - [ ] **F06.4 — Crear `VistaVacia` y `AvisoSinConexion`.**
 - [ ] **F06.5 — Crear `FilaPartido`** (3 líneas e icono de tarjeta).
 - [ ] **F06.6 — `PantallaHistorial` real**: 4 estados, `FlatList` con pie y aviso. Quita los provisionales de N7.
