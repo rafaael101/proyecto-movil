@@ -627,6 +627,7 @@ describe('Integración — NavegadorRaiz', () => {
 | Mapa y NetInfo | Una vez en `jest.setup.ts`: `react-native-maps` con una fábrica que devuelve `View` como `default` y como `Marker`, y NetInfo con su simulador oficial (`@react-native-community/netinfo/jest/netinfo-mock.js`) (F02) |
 | Mapa en tests de `NavegadorRaiz` con usuario | Mapa es la tab inicial: fábrica de `servicioCheckIns` con `obtenerCheckInsActivos: jest.fn(() => Promise.resolve({ jugadoresPorCancha: {}, miCheckIn: null }))` (F02) |
 | La fecha     | Se pasa como parámetro (`hoy`, `ahora`); no hace falta simular el reloj                                                                                                                                                                          |
+| Cámara, captura y compartir | Una vez en `jest.setup.ts`: `expo-image-picker`, `react-native-view-shot` y `expo-sharing` con fábrica de `jest.fn()` (F07.2) |
 
 ---
 
