@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import type { FC } from 'react';
 import { Linking, ScrollView, StyleSheet } from 'react-native';
 
@@ -24,6 +24,14 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
   // Solo los usa esta pantalla: useState y no el store (§8), como el error del servidor de F05
   const [trabajando, setTrabajando] = useState(false);
   const [mensaje, setMensaje] = useState<string | null>(null);
+  // undefined si el id no está en el catálogo (RN05, E1 de 01-navigation)
+  const cancha = buscarCancha(route.params.idCancha);
+
+  // Nombre de la cancha en el header (01-navigation, Títulos). Va antes de los return
+  // tempranos (regla de los hooks); en E1 queda "Cancha"
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: cancha?.nombre ?? 'Cancha' });
+  }, [navigation, cancha]);
 
   // Se revisa el permiso sin mostrar el diálogo: el diálogo sale al tocar "Hacer check-in"
   useEffect(() => {
@@ -36,7 +44,6 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
   }
 
   // El id no está en el catálogo (E1 de 01-navigation)
-  const cancha = buscarCancha(route.params.idCancha);
   if (cancha === undefined) {
     return (
       <VistaError
