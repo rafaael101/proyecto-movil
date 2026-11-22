@@ -277,7 +277,7 @@ Cada task ≈ un commit.
 - [x] **F06.5 — Crear `FilaPartido`** (3 líneas e icono de tarjeta).
 - [x] **F06.6 — `PantallaHistorial` real**: 4 estados, `FlatList` con pie y aviso. Quita los provisionales de N7.
 - [x] **F06.7 — `ResumenPromedios` en `PantallaPerfil`**, entre el correo y "Cerrar sesión".
-- [ ] **F06.8 — Test de integración** (F06-CA14).
+- [x] **F06.8 — Test de integración** (F06-CA14).
 - ➡️ **F01.17 de F01** — borrar la caché al cerrar sesión (ya existe D16).
 - ➡️ **F01.18 de F01, solo la parte de partidos** — `useStorePartidos.getState().limpiar()`. La parte de check-ins la hace F03.
 - [ ] **F06.9 — Probar en el iPhone** F06-CA01–CA12, F05-CA08–CA10 (y la parte de "Eliminar" de F05-CA11), CAD11–CAD14, y CA12, CA15 y CA16 de 01-navigation. Para los 23 partidos sirve el formulario o la consola.
