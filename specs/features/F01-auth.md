@@ -416,7 +416,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest, según 
 - [x] F01-CA18 — Con "Cerrar sesión" en la alerta, el botón se ve deshabilitado con indicador y después aparece "Iniciar sesión"; deslizar hacia atrás no regresa a la app (CA06b de 01-navigation).
 - [x] F01-CA19 — En modo avión, cerrar sesión también lleva a "Iniciar sesión".
 - [ ] F01-CA20 — *(Después de F01.16)* Con un check-in activo, después de cerrar sesión el documento `checkins/{mi uid}` ya no existe en la consola de Firestore (RN04). En modo avión la sesión se cierra igual y el documento sigue ahí hasta vencer (RN01).
-- [ ] F01-CA21 — *(Después de F01.17 y F01.18)* Después de cerrar sesión e iniciar con **otra** cuenta, en Historial y Perfil no aparece nada de la cuenta anterior, ni con internet ni en modo avión (RN11).
+- [x] F01-CA21 — *(Después de F01.17 y F01.18)* Después de cerrar sesión e iniciar con **otra** cuenta, en Historial y Perfil no aparece nada de la cuenta anterior, ni con internet ni en modo avión (RN11).
 
 **Pruebas (Jest)**
 
