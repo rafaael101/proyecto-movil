@@ -1,6 +1,6 @@
 # Estándar de código — HoopsMap
 
-> **Estado:** v2.2 · **Última actualización:** 2026-11-05
+> **Estado:** v2.3 · **Última actualización:** 2026-11-22
 > **Depende de:** `specs/00-project.md` (fuente de verdad), `specs/01-navigation.md` y `specs/02-data-model.md`. Si este documento y una spec no coinciden, **manda la spec** y se corrige este archivo.
 > **Clases de referencia:** [Git y Deploy](https://academy.alvesc.com/clase/git-y-deploy) · [TypeScript Básico](https://academy.alvesc.com/clase/typescript-basico) · [Hooks con TypeScript](https://academy.alvesc.com/clase/hooks-typescript) · [StyleSheet y Flexbox](https://academy.alvesc.com/clase/stylesheet-flexbox) · [Validación de Formularios](https://academy.alvesc.com/clase/validacion-formularios) · [Custom Hook de Formulario](https://academy.alvesc.com/clase/custom-hook-formulario) · [Sugerencias de Proyectos Finales](https://academy.alvesc.com/clase/sugerencias-de-proyectos-finales)
 
