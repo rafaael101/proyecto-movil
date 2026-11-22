@@ -1,5 +1,7 @@
 import type { Region } from 'react-native-maps';
 
+import type { NivelAfluencia } from '../tipos/checkIn';
+
 export const CHECK_IN_DURACION_MINUTOS = 90; // RN01
 export const CHECK_IN_DISTANCIA_MAXIMA_METROS = 150; // RN02 (la usa F03)
 export const PARTIDOS_POR_PAGINA = 10; // F06
@@ -9,6 +11,14 @@ export const NOMBRE_LONGITUD_MINIMA = 2; // F01
 export const NOMBRE_LONGITUD_MAXIMA = 30; // F01
 export const CONTRASENA_LONGITUD_MINIMA = 6; // F01 (igual al mínimo de Firebase)
 export const CLAVE_CACHE_HISTORIAL = 'hoopsmap.historial'; // RN11
+
+// Nombres de los niveles de RN07 (F04). Las llaves son NivelAfluencia.
+export const NOMBRES_AFLUENCIA: Record<NivelAfluencia, string> = {
+  vacia: 'Vacía',
+  poca: 'Poca gente',
+  reta: 'Hay reta',
+  llena: 'Llena',
+};
 
 // Región inicial del mapa: centro y margen de las 7 canchas públicas de RN05 (F02).
 // No usa la ubicación del usuario ni la cancha de prueba.
