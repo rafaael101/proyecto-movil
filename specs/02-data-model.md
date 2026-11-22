@@ -814,9 +814,9 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Código**
 
-- [ ] CAD28 — `npx tsc --noEmit` pasa; no hay `any` en `src/tipos/`, `src/servicios/` ni `src/utilidades/`.
-- [ ] CAD29 — Solo `src/servicios/` importa `firebase/*`, AsyncStorage y NetInfo (excepto `FirebaseError` en `errores.ts` y `useNetInfo` en las pantallas, solo para mostrar que no hay conexión; excepciones 1 y 3 de coding-standards §4).
-- [ ] CAD30 — Buscar en el repo las coordenadas de la cancha de prueba no da resultados; `.env.example` existe sin valores.
+- [x] CAD28 — `npx tsc --noEmit` pasa; no hay `any` en `src/tipos/`, `src/servicios/` ni `src/utilidades/`.
+- [x] CAD29 — Solo `src/servicios/` importa `firebase/*`, AsyncStorage y NetInfo (excepto `FirebaseError` en `errores.ts` y `useNetInfo` en las pantallas, solo para mostrar que no hay conexión; excepciones 1 y 3 de coding-standards §4).
+- [x] CAD30 — Buscar en el repo las coordenadas de la cancha de prueba no da resultados; `.env.example` existe sin valores.
 
 ---
 
@@ -851,8 +851,8 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 
 **Cierre**
 
-- [ ] **D17 — Revisar CAD28–CAD30** y actualizar `00-project.md` y `01-navigation.md` con lo que cambió (ver *Cambios propuestos a otras specs*).
-- [ ] **D18 — Antes de la entrega:** `'prueba'` se queda en `firestore.rules` para la demostración en clase (RN05). Cambiar los comentarios de la cancha de prueba en `canchas.ts` y `firestore.rules`, borrar de la consola los check-ins y partidos de prueba, y poner en el `.env` de la laptop las coordenadas del salón.
+- [x] **D17 — Revisar CAD28–CAD30** y actualizar `00-project.md` y `01-navigation.md` con lo que cambió (ver *Cambios propuestos a otras specs*).
+- [x] **D18 — Antes de la entrega:** `'prueba'` se queda en `firestore.rules` para la demostración en clase (RN05). Cambiar los comentarios de la cancha de prueba en `canchas.ts` y `firestore.rules`, borrar de la consola los check-ins y partidos de prueba, y poner en el `.env` de la laptop las coordenadas del salón.
 
 ---
 
