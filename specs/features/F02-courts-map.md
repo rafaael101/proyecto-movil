@@ -214,7 +214,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Antes d
 - [x] F02-CA08 — Con números en pantalla activo el modo avión: pasan a "?" y aparece el aviso sin tocar nada. Quito el modo avión, toco "Reintentar" y vuelven los números.
 - [x] F02-CA09 — En la consola cambio por un momento la lectura de `checkins` a `allow read: if false;`. Al tocar "Actualizar" aparece "No tienes permiso para hacer esto." + "Reintentar" y burbujas "?". **Regreso la regla original** (D5).
 - [x] F02-CA10 — Con el permiso de ubicación negado en Ajustes, el mapa se ve y funciona igual.
-- [ ] F02-CA11 — *(Después de F03)* Cierro sesión y entro con otra cuenta: el Mapa muestra el indicador y carga de nuevo (F01.18).
+- [x] F02-CA11 — *(Después de F03)* Cierro sesión y entro con otra cuenta: el Mapa muestra el indicador y carga de nuevo (F01.18).
 
 **Código y pruebas**
 
