@@ -247,7 +247,7 @@ Cada task ≈ un commit.
   - `expo-sharing`: `isAvailableAsync` y `shareAsync` como `jest.fn()`.
 - [x] **F07.3 — Mensaje `'sin-compartir'`** en `obtenerMensajeError` + prueba (F07-CA12).
 - [x] **F07.4 — Crear `servicioTarjeta`** (`camaraNegada`, `pedirPermisoCamara`, `abrirCamara`, `abrirGaleria`, `compartirImagenDeVista`).
-- [ ] **F07.5 — Crear `useTarjetaJugador`.**
+- [x] **F07.5 — Crear `useTarjetaJugador`.**
 - [ ] **F07.6 — Crear `TarjetaJugador`** y agregar `tamanoFotoTarjeta = 160` a `tema.ts`.
 - [ ] **F07.7 — Crear `AccionesTarjeta`.**
 - [ ] **F07.8 — `PantallaTarjetaJugador` real**: `VistaCargando`, E3 de 01-navigation con `VistaError`, la tarjeta dentro del `View` con `ref`, `AccionesTarjeta` y "Abrir Ajustes". Quita el texto provisional de N4.
