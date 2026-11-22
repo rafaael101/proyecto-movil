@@ -131,15 +131,15 @@ El detalle muestra el nombre de la cancha en el header, cuántos jugadores hay c
 
 Probados en el iPhone con Expo Go y en la consola de Firebase. Los documentos `prueba-N` se crean y borran como en F02.
 
-- [ ] F04-CA01 — Toco Sullivan en el Mapa: el header dice su nombre (iOS puede cortarlo con "…"), no se ve la barra de tabs y la flecha regresa al Mapa (CA13 de 01-navigation).
-- [ ] F04-CA02 — Sin check-ins en Sullivan: burbuja "0" gris y "0 jugadores · Vacía".
-- [ ] F04-CA03 — Con 1 documento en `sullivan` y "Actualizar" en el Mapa: "1 jugador · Poca gente" en verde. Con 6: "6 jugadores · Hay reta" en naranja ("Llena" lo cubre CAD24 en Jest). Siempre el mismo número que la burbuja del Mapa y ningún uid (RN06, RN07).
-- [ ] F04-CA04 — En la cancha de prueba hago check-in: la tarjeta sube 1 sin salir del detalle; con "Ya me voy" baja 1.
-- [ ] F04-CA05 — En modo avión abro un detalle: "?" y "No podemos ver quién está jugando. Actualiza desde el mapa."; nunca "0". Con el detalle abierto y números en pantalla, activo el modo avión: cambia a "?" sin tocar nada.
-- [ ] F04-CA06 — Con la regla de lectura de `checkins` en `if false;` y "Actualizar" en el Mapa, el detalle muestra "?". **Regreso la regla original** (D5).
-- [ ] F04-CA07 — Con el permiso de ubicación negado, la tarjeta se ve igual.
-- [ ] F04-CA08 — Con el detalle de la cancha de prueba abierto, cambio **temporalmente** su `idCancha` en `canchas.ts` (Fast Refresh deja la pantalla abierta): header "Cancha", "No encontramos esta cancha" y "Volver al mapa" funciona (CA19 de 01-navigation). **Deshago el cambio**, sin commit.
-- [ ] F04-CA09 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan. `PantallaDetalleCancha` no importa servicios y no pasa de ~150 líneas; NetInfo solo aparece como `useNetInfo` (§4, §6). No queda texto provisional.
+- [x] F04-CA01 — Toco Sullivan en el Mapa: el header dice su nombre (iOS puede cortarlo con "…"), no se ve la barra de tabs y la flecha regresa al Mapa (CA13 de 01-navigation).
+- [x] F04-CA02 — Sin check-ins en Sullivan: burbuja "0" gris y "0 jugadores · Vacía".
+- [x] F04-CA03 — Con 1 documento en `sullivan` y "Actualizar" en el Mapa: "1 jugador · Poca gente" en verde. Con 6: "6 jugadores · Hay reta" en naranja ("Llena" lo cubre CAD24 en Jest). Siempre el mismo número que la burbuja del Mapa y ningún uid (RN06, RN07).
+- [x] F04-CA04 — En la cancha de prueba hago check-in: la tarjeta sube 1 sin salir del detalle; con "Ya me voy" baja 1.
+- [x] F04-CA05 — En modo avión abro un detalle: "?" y "No podemos ver quién está jugando. Actualiza desde el mapa."; nunca "0". Con el detalle abierto y números en pantalla, activo el modo avión: cambia a "?" sin tocar nada.
+- [x] F04-CA06 — Con la regla de lectura de `checkins` en `if false;` y "Actualizar" en el Mapa, el detalle muestra "?". **Regreso la regla original** (D5).
+- [x] F04-CA07 — Con el permiso de ubicación negado, la tarjeta se ve igual.
+- [x] F04-CA08 — Con el detalle de la cancha de prueba abierto, cambio **temporalmente** su `idCancha` en `canchas.ts` (Fast Refresh deja la pantalla abierta): header "Cancha", "No encontramos esta cancha" y "Volver al mapa" funciona (CA19 de 01-navigation). **Deshago el cambio**, sin commit.
+- [x] F04-CA09 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan. `PantallaDetalleCancha` no importa servicios y no pasa de ~150 líneas; NetInfo solo aparece como `useNetInfo` (§4, §6). No queda texto provisional.
 
 ---
 
@@ -151,7 +151,7 @@ Cada task ≈ un commit. Se hacen después de F03.
 - [x] **F04.2 — Crear `TarjetaAfluencia`.**
 - [x] **F04.3 — Título con el nombre de la cancha** (`useLayoutEffect` en `PantallaDetalleCancha`).
 - [x] **F04.4 — `TarjetaAfluencia` en `PantallaDetalleCancha`**, arriba del `PanelCheckIn`, con `useNetInfo` y la regla del "?".
-- [ ] **F04.5 — Probar en el iPhone** F04-CA01–CA09, CA13 y CA19 de 01-navigation.
+- [x] **F04.5 — Probar en el iPhone** F04-CA01–CA09, CA13 y CA19 de 01-navigation.
 
 ---
 
