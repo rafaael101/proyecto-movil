@@ -39,3 +39,12 @@ describe('obtenerMensajeError con errores de Firebase Auth', () => {
     );
   });
 });
+
+// F03-CA15
+describe('obtenerMensajeError con errores de ubicación', () => {
+  it('traduce el error "sin-ubicacion"', () => {
+    expect(obtenerMensajeError(new Error('sin-ubicacion'))).toBe(
+      'No pudimos obtener tu ubicación. Revisa que esté activada e intenta de nuevo.',
+    );
+  });
+});

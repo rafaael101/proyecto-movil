@@ -33,6 +33,11 @@ export function obtenerMensajeError(error: unknown): string {
     return MENSAJE_SIN_CONEXION;
   }
 
+  // Lo lanza obtenerUbicacionActual() con el GPS apagado o sin señal (F03)
+  if (error instanceof Error && error.message === 'sin-ubicacion') {
+    return 'No pudimos obtener tu ubicación. Revisa que esté activada e intenta de nuevo.';
+  }
+
   if (error instanceof FirebaseError) {
     const mensaje = MENSAJES_FIREBASE[error.code];
     if (mensaje !== undefined) {
