@@ -225,7 +225,7 @@ type PropsContenedorSesion = {
    1. **Terminar el check-in** (RN04) *(task F01.16, después de D11)*: llama **siempre** a `terminarCheckIn(idUsuario)`, sin revisar antes si hay uno activo (borrar un documento que no existe no da error, E7 de 02-data-model). Va **antes** de `signOut` porque las reglas de Firestore necesitan la sesión. Si falla (por ejemplo, sin internet): `console.error` y **se sigue**; el check-in vence solo a los 90 min (RN01).
    2. **Cerrar la sesión de Firebase:** `salirDeFirebase()` (`signOut`). **No** llama a `verificarConexion()`, porque cerrar sesión debe funcionar sin internet (02-data-model).
    3. **Borrar la caché del historial** (RN11) *(task F01.17, después de D16)*: `borrarCacheHistorial()`. Si falla: `console.error` y se sigue (la caché guarda `idUsuario`, así que el siguiente usuario igual no la vería; E5 de 02-data-model).
-   4. **Limpiar los stores** *(task F01.18, después de los stores de F03 y F06)*: `limpiar()` del store de check-ins y del de partidos, y al final `limpiar()` de `useStoreSesion`.
+   4. **Limpiar los stores** *(task F01.18, después de los stores de F02 y F05)*: `limpiar()` del store de check-ins y del de partidos, y al final `limpiar()` de `useStoreSesion`.
 4. Firebase avisa que ya no hay usuario → se muestra "Iniciar sesión" y desaparecen todas las pantallas con sesión, incluido cualquier modal (01-navigation).
 
 Mientras no existan D11, D16 y los stores de F03 y F06, `cerrarSesion` hace solo los pasos 2 y "limpiar `useStoreSesion`".
