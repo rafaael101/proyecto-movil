@@ -275,7 +275,7 @@ Cada task ≈ un commit.
 - [x] **F06.3 — Recargar después de guardar**: las 3 acciones de F05 esperan `cargarHistorial` si salen bien.
 - [x] **F06.4 — Crear `VistaVacia` y `AvisoSinConexion`.**
 - [x] **F06.5 — Crear `FilaPartido`** (3 líneas e icono de tarjeta).
-- [ ] **F06.6 — `PantallaHistorial` real**: 4 estados, `FlatList` con pie y aviso. Quita los provisionales de N7.
+- [x] **F06.6 — `PantallaHistorial` real**: 4 estados, `FlatList` con pie y aviso. Quita los provisionales de N7.
 - [ ] **F06.7 — `ResumenPromedios` en `PantallaPerfil`**, entre el correo y "Cerrar sesión".
 - [ ] **F06.8 — Test de integración** (F06-CA14).
 - ➡️ **F01.17 de F01** — borrar la caché al cerrar sesión (ya existe D16).
