@@ -769,7 +769,7 @@ git push
 
 - `.gitignore` listo **antes** del primer commit: además de lo que trae la plantilla, `.env` y `coverage/`.
 - Para deshacer algo ya subido: `git revert <commit>`. Nunca `git push --force` ni reescribir el historial: el profesor lo revisa en la defensa.
-- **Los commits los haces tú**, no Claude Code: revisas el diff, entiendes cada línea y commiteas. Así puedes defender cualquier commit.
+- **Claude Code hace un commit local por task** (CLAUDE.md). Tú revisas cada uno con `git log` y `git diff`, entiendes cada línea y haces el `push`. Así puedes defender cualquier commit.
 
 ---
 
