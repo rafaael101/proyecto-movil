@@ -46,7 +46,8 @@ export const CANCHAS: Cancha[] = [
   },
 ];
 
-// PROVISIONAL (D18): la cancha de prueba se quita antes de la entrega.
+// Cancha de prueba para desarrollo y la demostración en clase (RN05). Sin las
+// variables del .env no aparece.
 // Sirve para probar RN02 desde casa; sus coordenadas solo viven en el .env (§15).
 const textoLatitudPrueba = process.env.EXPO_PUBLIC_CANCHA_PRUEBA_LAT;
 const textoLongitudPrueba = process.env.EXPO_PUBLIC_CANCHA_PRUEBA_LNG;

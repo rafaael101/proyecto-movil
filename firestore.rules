@@ -12,7 +12,7 @@ service cloud.firestore {
     }
 
     // RN05: mismo catálogo que src/constantes/canchas.ts
-    // 'prueba' solo existe en desarrollo; se quita antes de la entrega
+    // 'prueba' es la cancha de desarrollo y de la demostración en clase (RN05)
     function canchasValidas() {
       return ['sullivan', 'parque-morelos', 'siglo-xxi', 'uabc-sauzal',
               'parque-hidalgo', 'gimnasio-municipal', 'parque-la-hoja', 'prueba'];
