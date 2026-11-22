@@ -9,6 +9,7 @@ import {
 } from '../servicios/servicioSesion';
 import type { Usuario, ValoresInicioSesion, ValoresRegistro } from '../tipos/usuario';
 import { obtenerMensajeError } from '../utilidades/errores';
+import { useStorePartidos } from './useStorePartidos';
 
 // Sin cargando ni mensajeError (excepción de coding-standards §8): revisandoSesion
 // hace de "cargando" y cada acción devuelve el mensaje para que lo guarde la
@@ -64,8 +65,8 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
     }
   },
 
-  // signOut, borrar la caché (F01.17) y limpiar() de este store. Terminar el check-in
-  // (F01.16) y limpiar los otros stores (F01.18) llegan después.
+  // signOut, borrar la caché (F01.17), limpiar el store de partidos (F01.18) y al final
+  // este store. Terminar el check-in (F01.16) y limpiar el de check-ins llegan con F03.
   cerrarSesion: async () => {
     set({ cerrandoSesion: true });
     try {
@@ -83,6 +84,8 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
     } catch (error) {
       console.error('cerrarSesion (borrar caché):', error);
     }
+    // Excepción 4 de §4: solo cerrarSesion limpia otros stores, con getState() (fuera de React)
+    useStorePartidos.getState().limpiar();
     get().limpiar();
     return null;
   },
