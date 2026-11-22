@@ -249,7 +249,7 @@ Cada task ≈ un commit.
 - [x] **F07.4 — Crear `servicioTarjeta`** (`camaraNegada`, `pedirPermisoCamara`, `abrirCamara`, `abrirGaleria`, `compartirImagenDeVista`).
 - [x] **F07.5 — Crear `useTarjetaJugador`.**
 - [x] **F07.6 — Crear `TarjetaJugador`** y agregar `tamanoFotoTarjeta = 160` a `tema.ts`.
-- [ ] **F07.7 — Crear `AccionesTarjeta`.**
+- [x] **F07.7 — Crear `AccionesTarjeta`.**
 - [ ] **F07.8 — `PantallaTarjetaJugador` real**: `VistaCargando`, E3 de 01-navigation con `VistaError`, la tarjeta dentro del `View` con `ref`, `AccionesTarjeta` y "Abrir Ajustes". Quita el texto provisional de N4.
 - [ ] **F07.9 — Probar en el iPhone** F07-CA01–CA10 y revisar F07-CA11 en el código. Marcar CA20 de 01-navigation.
 
