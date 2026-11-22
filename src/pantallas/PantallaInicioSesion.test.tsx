@@ -27,6 +27,16 @@ jest.mock('../servicios/servicioCheckIns', () => ({
   obtenerCheckInsActivos: jest.fn(() =>
     Promise.resolve({ jugadoresPorCancha: {}, miCheckIn: null }),
   ),
+  crearCheckIn: jest.fn(),
+  terminarCheckIn: jest.fn(),
+}));
+
+// El store de check-ins carga expo-location (F03): el servicio se simula con fábrica
+// para que no se cargue el módulo nativo real (§12)
+jest.mock('../servicios/servicioUbicacion', () => ({
+  ubicacionNegada: jest.fn(),
+  pedirPermisoUbicacion: jest.fn(),
+  obtenerUbicacionActual: jest.fn(),
 }));
 
 // En la v14 de Testing Library render y fireEvent son asíncronos: llevan await (§12)
