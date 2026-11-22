@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 
+import { borrarCacheHistorial } from '../servicios/servicioCache';
 import {
   crearCuenta,
   entrarConCorreo,
@@ -63,8 +64,8 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
     }
   },
 
-  // Por ahora solo signOut y limpiar() de este store. Terminar el check-in (F01.16),
-  // borrar la caché (F01.17) y limpiar los otros stores (F01.18) llegan después.
+  // signOut, borrar la caché (F01.17) y limpiar() de este store. Terminar el check-in
+  // (F01.16) y limpiar los otros stores (F01.18) llegan después.
   cerrarSesion: async () => {
     set({ cerrandoSesion: true });
     try {
@@ -74,6 +75,13 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
       console.error('cerrarSesion:', error);
       set({ cerrandoSesion: false });
       return obtenerMensajeError(error);
+    }
+    // Cerrar sesión de verdad (RN11): sin caché, el siguiente usuario no ve estos partidos.
+    // Si falla se sigue: la caché guarda idUsuario y no se le mostraría a otro (E5)
+    try {
+      await borrarCacheHistorial();
+    } catch (error) {
+      console.error('cerrarSesion (borrar caché):', error);
     }
     get().limpiar();
     return null;

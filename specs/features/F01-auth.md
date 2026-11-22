@@ -470,7 +470,7 @@ Cada task ≈ un commit. El orden importa: algunas tasks de 01-navigation y de 0
 **Cierre de sesión completo (se hacen después, cuando exista lo que usan)**
 
 - [ ] **F01.16 — Terminar el check-in al cerrar sesión** (RN04): `cerrarSesion` llama siempre a `terminarCheckIn(idUsuario)` **antes** de `signOut`; si falla, `console.error` y sigue. Probar F01-CA20. *Se hace en el bloque de F03 (D11 ya existe desde F02).*
-- [ ] **F01.17 — Borrar la caché del historial al cerrar sesión** (RN11): `borrarCacheHistorial()` después de `signOut`; si falla, `console.error` y sigue. *Después de D16; se hace en el bloque de F06.*
+- [x] **F01.17 — Borrar la caché del historial al cerrar sesión** (RN11): `borrarCacheHistorial()` después de `signOut`; si falla, `console.error` y sigue. *Después de D16; se hace en el bloque de F06.*
 - [ ] **F01.18 — Limpiar los stores al cerrar sesión**: `limpiar()` del store de check-ins y del de partidos con `getState()`. Probar F01-CA21. *La parte de check-ins se hace en el bloque de F03 (`useStoreCheckIns` lo crea F02); la de partidos, en el bloque de F06* (`useStorePartidos` lo crea F05).
 
 ---
