@@ -793,10 +793,10 @@ git push
 
 **Para Claude Code**
 
-- Implementar algo sin spec, más de una task a la vez, o funcionalidades que la spec no pide (se proponen como texto).
+- Implementar algo sin spec, más tasks de las que se le pidieron, o funcionalidades que la spec no pide (se proponen como texto).
 - Inventar requisitos: si la spec es ambigua o contradice el código, pregunta.
 - Instalar paquetes sin preguntar, o con `npm install` en lugar de `npx expo install`.
-- Hacer commits o `push`.
+- Hacer `push`.
 - Cambiar una spec sin proponer el cambio primero.
 - "Arreglar" un error de TypeScript o ESLint apagando la revisión (`any`, `@ts-ignore`, `eslint-disable`).
 
