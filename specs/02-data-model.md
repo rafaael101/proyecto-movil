@@ -43,6 +43,7 @@ Esta spec **no** define pantallas: las features (F01–F07) usan lo que aquí se
 | Cancha del check-in | Botón "Hacer check-in" (F03) | Sí | Firestore `checkins` |
 | Datos del partido | Formulario de partido (F05) | Sí | Firestore `usuarios/{idUsuario}/partidos` |
 | Foto de la tarjeta | Cámara o galería (F07) | **No.** Se usa para crear la imagen y compartirla | Memoria |
+| Imagen de la tarjeta (PNG) | `captureRef` (F07) | **No.** Archivo temporal solo para la hoja de compartir; la app no lo sube ni lo vuelve a leer | Archivo temporal del teléfono |
 
 ### Qué va dónde (tabla de la clase *Persistencia*)
 
