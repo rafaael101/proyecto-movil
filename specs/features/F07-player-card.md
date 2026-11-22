@@ -246,7 +246,7 @@ Cada task ≈ un commit.
   - `react-native-view-shot`: `captureRef: jest.fn()`.
   - `expo-sharing`: `isAvailableAsync` y `shareAsync` como `jest.fn()`.
 - [x] **F07.3 — Mensaje `'sin-compartir'`** en `obtenerMensajeError` + prueba (F07-CA12).
-- [ ] **F07.4 — Crear `servicioTarjeta`** (`camaraNegada`, `pedirPermisoCamara`, `abrirCamara`, `abrirGaleria`, `compartirImagenDeVista`).
+- [x] **F07.4 — Crear `servicioTarjeta`** (`camaraNegada`, `pedirPermisoCamara`, `abrirCamara`, `abrirGaleria`, `compartirImagenDeVista`).
 - [ ] **F07.5 — Crear `useTarjetaJugador`.**
 - [ ] **F07.6 — Crear `TarjetaJugador`** y agregar `tamanoFotoTarjeta = 160` a `tema.ts`.
 - [ ] **F07.7 — Crear `AccionesTarjeta`.**
