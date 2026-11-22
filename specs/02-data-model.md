@@ -786,13 +786,13 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 **Partidos**
 
 - [x] CAD10 — Un partido creado aparece en `usuarios/{mi uid}/partidos/{id}` con exactamente los 8 campos de la tabla.
-- [ ] CAD11 — Con 23 partidos, el historial llega en páginas de 10, 10 y 3; después de la tercera, `hayMas` es `false`.
-- [ ] CAD12 — Editar un partido borrado desde la consola muestra "Este partido ya no existe".
+- [x] CAD11 — Con 23 partidos, el historial llega en páginas de 10, 10 y 3; después de la tercera, `hayMas` es `false`.
+- [x] CAD12 — Editar un partido borrado desde la consola muestra "Este partido ya no existe".
 
 **Sin conexión y caché**
 
 - [ ] CAD13 — En modo avión, intentar guardar un partido o hacer check-in muestra "No hay conexión…" en menos de 2 segundos (sin spinner eterno).
-- [ ] CAD14 — Después de abrir el Historial con internet, en modo avión el Historial y los promedios se ven desde la caché con el aviso y la fecha de guardado.
+- [x] CAD14 — Después de abrir el Historial con internet, en modo avión el Historial y los promedios se ven desde la caché con el aviso y la fecha de guardado.
 - [x] CAD15 — Después de cerrar sesión, `leerCacheHistorial` devuelve `null` (prueba de Jest con AsyncStorage simulado).
 
 **Pruebas unitarias (Jest)** — cubren los 12 unitarios de la rúbrica
