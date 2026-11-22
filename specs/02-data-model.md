@@ -803,9 +803,9 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 - [x] CAD19 — `validarMarcador`: ambos vacíos (válido) y solo uno lleno.
 - [x] CAD20 — `validarMarcador`: empate, ganó con marcador menor, y puntos mayores que el marcador propio.
 - [x] CAD21 — `convertirAPartido`: marcador vacío → `null`, textos → números.
-- [ ] CAD22 — `calcularExpiracion` y `minutosRestantes` (incluye vencido → 0).
-- [ ] CAD23 — `contarJugadoresPorCancha` (incluye lista vacía).
-- [ ] CAD24 — `obtenerNivelAfluencia` en 0, 1, 5, 6, 9 y 10 (RN07).
+- [x] CAD22 — `calcularExpiracion` y `minutosRestantes` (incluye vencido → 0).
+- [x] CAD23 — `contarJugadoresPorCancha` (incluye lista vacía).
+- [x] CAD24 — `obtenerNivelAfluencia` en 0, 1, 5, 6, 9 y 10 (RN07).
 - [x] CAD25 — `calcularPromedios` con 3 partidos y con 0 partidos (sin `NaN`).
 - [x] CAD26 — `obtenerMensajeError` con `'sin-conexion'`, `permission-denied` y un error desconocido.
 - [x] CAD27 — `leerCacheHistorial` con JSON roto y con caché de otro usuario → `null` y la clave se borra.
