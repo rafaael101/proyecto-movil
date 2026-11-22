@@ -1,27 +1,90 @@
+import { useEffect, useState } from 'react';
 import type { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet } from 'react-native';
 
-import { colores, tipografia } from '../constantes/tema';
+import { PanelCheckIn } from '../componentes/PanelCheckIn';
+import { VistaCargando } from '../componentes/VistaCargando';
+import { VistaError } from '../componentes/VistaError';
+import { colores, espaciado } from '../constantes/tema';
 import type { PropsPantallaDetalleCancha } from '../navegacion/tipos';
+import { useStoreCheckIns } from '../stores/useStoreCheckIns';
+import { useStoreSesion } from '../stores/useStoreSesion';
+import { buscarCancha } from '../utilidades/canchas';
 
-// PROVISIONAL (N4): el contenido real lo pone F04
-export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = () => {
+// Detalle de una cancha: por ahora solo el check-in (F03). F04 agrega arriba del
+// panel el nombre y la afluencia.
+export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigation, route }) => {
+  // Hooks arriba, antes de cualquier return (§6)
+  const usuario = useStoreSesion((estado) => estado.usuario);
+  const resumen = useStoreCheckIns((estado) => estado.resumen);
+  const permisoNegado = useStoreCheckIns((estado) => estado.permisoUbicacionNegado);
+  const revisarPermisoUbicacion = useStoreCheckIns((estado) => estado.revisarPermisoUbicacion);
+  const hacerCheckIn = useStoreCheckIns((estado) => estado.hacerCheckIn);
+  const terminarMiCheckIn = useStoreCheckIns((estado) => estado.terminarMiCheckIn);
+  // Solo los usa esta pantalla: useState y no el store (§8), como el error del servidor de F05
+  const [trabajando, setTrabajando] = useState(false);
+  const [mensaje, setMensaje] = useState<string | null>(null);
+
+  // Se revisa el permiso sin mostrar el diálogo: el diálogo sale al tocar "Hacer check-in"
+  useEffect(() => {
+    revisarPermisoUbicacion();
+  }, [revisarPermisoUbicacion]);
+
+  // Pasa un instante al cerrar sesión con el detalle abierto
+  if (usuario === null) {
+    return <VistaCargando />;
+  }
+
+  // El id no está en el catálogo (E1 de 01-navigation)
+  const cancha = buscarCancha(route.params.idCancha);
+  if (cancha === undefined) {
+    return (
+      <VistaError
+        mensaje="No encontramos esta cancha"
+        textoBoton="Volver al mapa"
+        alPresionarBoton={() => navigation.goBack()}
+      />
+    );
+  }
+
+  const alHacerCheckIn = async () => {
+    setMensaje(null);
+    setTrabajando(true);
+    setMensaje(await hacerCheckIn(usuario.idUsuario, cancha));
+    setTrabajando(false);
+  };
+
+  const alTerminar = async () => {
+    setMensaje(null);
+    setTrabajando(true);
+    setMensaje(await terminarMiCheckIn(usuario.idUsuario));
+    setTrabajando(false);
+  };
+
   return (
-    <View style={estilos.contenedor}>
-      <Text style={estilos.texto}>PantallaDetalleCancha</Text>
-    </View>
+    <ScrollView style={estilos.contenedor} contentContainerStyle={estilos.contenido}>
+      <PanelCheckIn
+        cancha={cancha}
+        // Sin conteo (por ejemplo, sin internet) no se sabe si tengo check-in (E1 de F03)
+        miCheckIn={resumen?.miCheckIn ?? null}
+        permisoNegado={permisoNegado}
+        trabajando={trabajando}
+        mensaje={mensaje}
+        alHacerCheckIn={alHacerCheckIn}
+        alTerminar={alTerminar}
+        // Abre los ajustes de Expo Go, donde se activa la ubicación
+        alAbrirAjustes={() => Linking.openSettings()}
+      />
+    </ScrollView>
   );
 };
 
 const estilos = StyleSheet.create({
   contenedor: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: colores.fondo,
   },
-  texto: {
-    ...tipografia.cuerpo,
-    color: colores.texto,
+  contenido: {
+    padding: espaciado.md,
   },
 });

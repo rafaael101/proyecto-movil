@@ -250,7 +250,7 @@ Cada task ≈ un commit. D10, D11 y CAD02 ya se hicieron en el bloque de F02.
 - [x] **F03.5 — Ampliar `useStoreCheckIns`**: `permisoUbicacionNegado`, `revisarPermisoUbicacion`, `hacerCheckIn`, `terminarMiCheckIn` y `limpiar`.
 - [x] **F03.6 — Simuladores de Jest.** En los tests que dibujan `NavegadorRaiz`, la fábrica de `servicioCheckIns` (F02.6) agrega `crearCheckIn` y `terminarCheckIn` como `jest.fn()`, y se agrega una fábrica de `servicioUbicacion` (las 3 funciones como `jest.fn()`), para no cargar `expo-location` real.
 - [x] **F03.7 — Crear `PanelCheckIn`.**
-- [ ] **F03.8 — `PanelCheckIn` en `PantallaDetalleCancha`**: `VistaCargando`, E1 de 01-navigation, revisar el permiso al montar, `trabajando`/`mensaje` y "Abrir Ajustes". Quita el texto provisional de N4.
+- [x] **F03.8 — `PanelCheckIn` en `PantallaDetalleCancha`**: `VistaCargando`, E1 de 01-navigation, revisar el permiso al montar, `trabajando`/`mensaje` y "Abrir Ajustes". Quita el texto provisional de N4.
 - ➡️ **F01.16 de F01** — `cerrarSesion` llama siempre a `terminarCheckIn` antes de `signOut`.
 - ➡️ **F01.18 de F01, parte de check-ins** — `useStoreCheckIns.getState().limpiar()` en `cerrarSesion`.
 - [ ] **F03.9 — Probar en el iPhone** F03-CA01–CA13, CAD06–CAD09, CAD13 (check-in), F01-CA20 y CA19 de 01-navigation.
