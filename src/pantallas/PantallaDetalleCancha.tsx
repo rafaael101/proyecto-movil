@@ -2,7 +2,10 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import type { FC } from 'react';
 import { Linking, ScrollView, StyleSheet } from 'react-native';
 
+import { useNetInfo } from '@react-native-community/netinfo';
+
 import { PanelCheckIn } from '../componentes/PanelCheckIn';
+import { TarjetaAfluencia } from '../componentes/TarjetaAfluencia';
 import { VistaCargando } from '../componentes/VistaCargando';
 import { VistaError } from '../componentes/VistaError';
 import { colores, espaciado } from '../constantes/tema';
@@ -11,8 +14,9 @@ import { useStoreCheckIns } from '../stores/useStoreCheckIns';
 import { useStoreSesion } from '../stores/useStoreSesion';
 import { buscarCancha } from '../utilidades/canchas';
 
-// Detalle de una cancha: por ahora solo el check-in (F03). F04 agrega arriba del
-// panel el nombre y la afluencia.
+// Detalle de una cancha: nombre en el header y afluencia (F04), y debajo el check-in (F03).
+// No pide el conteo: usa el que cargó el Mapa. Al hacer o terminar un check-in, F03
+// llama a cargarResumen y la tarjeta cambia sola (mismo store).
 export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigation, route }) => {
   // Hooks arriba, antes de cualquier return (§6)
   const usuario = useStoreSesion((estado) => estado.usuario);
@@ -24,6 +28,10 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
   // Solo los usa esta pantalla: useState y no el store (§8), como el error del servidor de F05
   const [trabajando, setTrabajando] = useState(false);
   const [mensaje, setMensaje] = useState<string | null>(null);
+  // Excepción 3 de §4: useNetInfo solo para el "?". Con null ("aún no sé") se intenta,
+  // igual que el Mapa (F02)
+  const { isConnected, isInternetReachable } = useNetInfo();
+  const sinConexion = isConnected === false || isInternetReachable === false;
   // undefined si el id no está en el catálogo (RN05, E1 de 01-navigation)
   const cancha = buscarCancha(route.params.idCancha);
 
@@ -54,6 +62,11 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
     );
   }
 
+  // La misma regla de F02: sin datos confiables "?" (null), nunca un "0" falso.
+  // Una cancha que no aparece en jugadoresPorCancha tiene 0 (02-data-model)
+  const jugadores =
+    sinConexion || resumen === null ? null : (resumen.jugadoresPorCancha[cancha.idCancha] ?? 0);
+
   const alHacerCheckIn = async () => {
     setMensaje(null);
     setTrabajando(true);
@@ -70,6 +83,7 @@ export const PantallaDetalleCancha: FC<PropsPantallaDetalleCancha> = ({ navigati
 
   return (
     <ScrollView style={estilos.contenedor} contentContainerStyle={estilos.contenido}>
+      <TarjetaAfluencia jugadores={jugadores} />
       <PanelCheckIn
         cancha={cancha}
         // Sin conteo (por ejemplo, sin internet) no se sabe si tengo check-in (E1 de F03)
@@ -91,7 +105,9 @@ const estilos = StyleSheet.create({
     flex: 1,
     backgroundColor: colores.fondo,
   },
+  // gap: el espacio md entre la tarjeta y el panel
   contenido: {
     padding: espaciado.md,
+    gap: espaciado.md,
   },
 });
