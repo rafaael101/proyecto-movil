@@ -38,7 +38,7 @@ Esta spec **no** define pantallas: las features (F01–F07) usan lo que aquí se
 | Nombre | Formulario de registro (F01) | Sí | Firebase Auth (`displayName`) |
 | `idUsuario` | Firebase Auth (el `uid`) | Sí | Lo genera Firebase |
 | Canchas (nombre y coordenadas) | Código de la app (RN05) | Ya está en el código | `src/constantes/canchas.ts` |
-| Coordenadas de la cancha de prueba | `.env` (solo desarrollo, RN05) | No se escriben en el código | `.env` |
+| Coordenadas de la cancha de prueba | `.env` (desarrollo y demostración en clase, RN05) | No se escriben en el código | `.env` |
 | Ubicación GPS del usuario | `expo-location` (F03) | **No.** Solo se usa en el teléfono para revisar RN02 | Memoria |
 | Cancha del check-in | Botón "Hacer check-in" (F03) | Sí | Firestore `checkins` |
 | Datos del partido | Formulario de partido (F05) | Sí | Firestore `usuarios/{idUsuario}/partidos` |
@@ -110,7 +110,7 @@ export type Coordenadas = {
 
 **Catálogo (`src/constantes/canchas.ts`):** exporta `CANCHAS: Cancha[]` con las 7 canchas de la tabla de RN05.
 
-**Cancha de prueba (solo desarrollo, RN05):**
+**Cancha de prueba (desarrollo y demostración en clase, RN05):**
 
 - `idCancha: 'prueba'`, `nombre: 'Cancha de prueba'`.
 - Latitud y longitud se leen de `EXPO_PUBLIC_CANCHA_PRUEBA_LAT` y `EXPO_PUBLIC_CANCHA_PRUEBA_LNG` y se convierten con `Number(...)`.
@@ -852,7 +852,7 @@ Cada task ≈ un commit. Las marcadas **(con Fxx)** se hacen cuando se implement
 **Cierre**
 
 - [ ] **D17 — Revisar CAD28–CAD30** y actualizar `00-project.md` y `01-navigation.md` con lo que cambió (ver *Cambios propuestos a otras specs*).
-- [ ] **D18 — Antes de la entrega:** quitar `'prueba'` de `firestore.rules` y del `.env`, y borrar los partidos de prueba que usen esa cancha (si no, ya no se podrían editar).
+- [ ] **D18 — Antes de la entrega:** `'prueba'` se queda en `firestore.rules` para la demostración en clase (RN05). Cambiar los comentarios de la cancha de prueba en `canchas.ts` y `firestore.rules`, borrar de la consola los check-ins y partidos de prueba, y poner en el `.env` de la laptop las coordenadas del salón.
 
 ---
 
