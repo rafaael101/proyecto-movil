@@ -57,7 +57,7 @@ Los permisos y los módulos nativos se usan desde un servicio (§4, §10). **Sol
 | `pedirPermisoCamara(): Promise<boolean>` | `ImagePicker.requestCameraPermissionsAsync()`. Da `true` si `status === 'granted'`. La primera vez iOS muestra el diálogo de Expo Go; después responde sin preguntar |
 | `abrirCamara(): Promise<string \| null>` | `ImagePicker.launchCameraAsync()`. Si `resultado.canceled` → `null`; si no → `resultado.assets[0].uri` |
 | `abrirGaleria(): Promise<string \| null>` | `ImagePicker.launchImageLibraryAsync()`, igual que `abrirCamara`. En iOS, abrir la galería para elegir una foto **no** pide permiso (documentación de Expo SDK 58) |
-| `compartirImagenDeVista(vista: RefObject<View \| null>): Promise<void>` | 1) Si `await Sharing.isAvailableAsync()` es `false` → lanza `new Error('sin-compartir')`. 2) `captureRef(vista, { format: 'png', quality: 1, result: 'tmpfile' })` → `uri`. 3) `Sharing.shareAsync(uri, { mimeType: 'image/png' })` |
+| `compartirImagenDeVista(vista: RefObject<HostInstance \| null>): Promise<void>` | 1) Si `await Sharing.isAvailableAsync()` es `false` → lanza `new Error('sin-compartir')`. 2) `captureRef(vista, { format: 'png', quality: 1, result: 'tmpfile' })` → `uri`. 3) `Sharing.shareAsync(uri, { mimeType: 'image/png' })` |
 
 - Sin opciones extra en la cámara y la galería: solo fotos (el valor por defecto) y sin recorte (`allowsEditing: false`, por defecto).
 - **No** llaman a `verificarConexion()`: todo pasa en el teléfono (ver E7).
@@ -77,7 +77,7 @@ type EstadoTarjeta = {
   mensaje: string | null; // error debajo de "Compartir"
   tomarFoto: () => Promise<void>;
   elegirFoto: () => Promise<void>;
-  compartirTarjeta: (vista: RefObject<View | null>) => Promise<void>;
+  compartirTarjeta: (vista: RefObject<HostInstance | null>) => Promise<void>;
 };
 
 export function useTarjetaJugador(): EstadoTarjeta;
@@ -146,7 +146,7 @@ type PropsAccionesTarjeta = {
 
 ### `PantallaTarjetaJugador` (reemplaza la provisional de N4)
 
-Todos los hooks arriba (§6): `usuario` de `useStoreSesion`, `partidos` de `useStorePartidos`, `vistaTarjeta = useRef<View>(null)` y `useTarjetaJugador()`.
+Todos los hooks arriba (§6): `usuario` de `useStoreSesion`, `partidos` de `useStorePartidos`, `vistaTarjeta = useRef<HostInstance>(null)` y `useTarjetaJugador()` (`HostInstance` de `react-native`: en la versión 0.88 `View` es una función, y el ref de un `<View>` apunta a la vista dibujada).
 
 En el orden de §9:
 
