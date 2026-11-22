@@ -5,3 +5,9 @@ export type Cancha = {
   latitud: number;
   longitud: number;
 };
+
+// Un punto en el mapa. Una Cancha ya tiene esta forma, así que se puede pasar directo (F03, RN02)
+export type Coordenadas = {
+  latitud: number;
+  longitud: number;
+};
