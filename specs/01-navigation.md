@@ -453,7 +453,7 @@ Probados en el iPhone con Expo Go.
 - [x] CA09 — La tab activa muestra su icono relleno en el color primario; las inactivas, el icono de contorno en el color inactivo.
 - [x] CA10 — Los headers de las 3 tabs, de "Detalle de cancha" y de las pantallas de sesión son blancos, con el título en `texto` y los botones/flecha en `primario`, y muestran los títulos de la tabla de pantallas.
 - [x] CA11 — Solo se ve **un** header en cada tab (no hay header duplicado).
-- [ ] CA12 — Si hago scroll en Historial, cambio a Perfil y regreso, el scroll sigue donde estaba.
+- [x] CA12 — Si hago scroll en Historial, cambio a Perfil y regreso, el scroll sigue donde estaba.
 
 **Stack y modales**
 
