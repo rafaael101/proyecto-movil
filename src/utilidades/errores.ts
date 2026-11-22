@@ -38,6 +38,11 @@ export function obtenerMensajeError(error: unknown): string {
     return 'No pudimos obtener tu ubicación. Revisa que esté activada e intenta de nuevo.';
   }
 
+  // Lo lanza compartirImagenDeVista() si el teléfono no puede compartir (F07)
+  if (error instanceof Error && error.message === 'sin-compartir') {
+    return 'Compartir no está disponible en este teléfono.';
+  }
+
   if (error instanceof FirebaseError) {
     const mensaje = MENSAJES_FIREBASE[error.code];
     if (mensaje !== undefined) {

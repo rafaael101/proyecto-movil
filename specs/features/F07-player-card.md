@@ -245,7 +245,7 @@ Cada task ≈ un commit.
   - `expo-image-picker`: `getCameraPermissionsAsync: jest.fn(() => Promise.resolve({ status: 'undetermined' }))`, más `requestCameraPermissionsAsync`, `launchCameraAsync` y `launchImageLibraryAsync` como `jest.fn()`.
   - `react-native-view-shot`: `captureRef: jest.fn()`.
   - `expo-sharing`: `isAvailableAsync` y `shareAsync` como `jest.fn()`.
-- [ ] **F07.3 — Mensaje `'sin-compartir'`** en `obtenerMensajeError` + prueba (F07-CA12).
+- [x] **F07.3 — Mensaje `'sin-compartir'`** en `obtenerMensajeError` + prueba (F07-CA12).
 - [ ] **F07.4 — Crear `servicioTarjeta`** (`camaraNegada`, `pedirPermisoCamara`, `abrirCamara`, `abrirGaleria`, `compartirImagenDeVista`).
 - [ ] **F07.5 — Crear `useTarjetaJugador`.**
 - [ ] **F07.6 — Crear `TarjetaJugador`** y agregar `tamanoFotoTarjeta = 160` a `tema.ts`.

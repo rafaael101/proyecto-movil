@@ -48,3 +48,12 @@ describe('obtenerMensajeError con errores de ubicación', () => {
     );
   });
 });
+
+// F07-CA12
+describe('obtenerMensajeError con errores de compartir', () => {
+  it('traduce el error "sin-compartir"', () => {
+    expect(obtenerMensajeError(new Error('sin-compartir'))).toBe(
+      'Compartir no está disponible en este teléfono.',
+    );
+  });
+});
