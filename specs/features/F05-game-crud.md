@@ -218,13 +218,13 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Los mar
 **Editar y eliminar**
 
 - [x] F05-CA07 — "Editar partido de prueba" (provisional de N7) muestra "Este partido ya no existe" y "Cerrar" regresa al Historial (CA20 de 01-navigation).
-- [ ] F05-CA08 — *(después de F06)* Tocar un partido abre "Editar partido" con sus datos. Cambiar los puntos y guardar actualiza el **mismo** documento en la consola.
-- [ ] F05-CA09 — *(después de F06)* Con el modal abierto, borro el partido en la consola y toco "Guardar" → "Este partido ya no existe." (CAD12).
-- [ ] F05-CA10 — *(después de F06)* "Eliminar partido" muestra la alerta. "Cancelar" no hace nada; "Eliminar" cierra el modal y el documento ya no está en la consola. En "Nuevo partido" no aparece "Eliminar partido".
+- [x] F05-CA08 — *(después de F06)* Tocar un partido abre "Editar partido" con sus datos. Cambiar los puntos y guardar actualiza el **mismo** documento en la consola.
+- [x] F05-CA09 — *(después de F06)* Con el modal abierto, borro el partido en la consola y toco "Guardar" → "Este partido ya no existe." (CAD12).
+- [x] F05-CA10 — *(después de F06)* "Eliminar partido" muestra la alerta. "Cancelar" no hace nada; "Eliminar" cierra el modal y el documento ya no está en la consola. En "Nuevo partido" no aparece "Eliminar partido".
 
 **Sin internet y cancelar**
 
-- [ ] F05-CA11 — En modo avión, "Guardar" con datos válidos muestra "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 s; el botón se habilita y lo escrito sigue ahí (CAD13). *(Después de F06)* lo mismo con "Eliminar".
+- [x] F05-CA11 — En modo avión, "Guardar" con datos válidos muestra "No hay conexión. Revisa tu internet e intenta de nuevo." en menos de 2 s; el botón se habilita y lo escrito sigue ahí (CAD13). *(Después de F06)* lo mismo con "Eliminar".
 - [x] F05-CA12 — Escribo datos y toco "Cancelar" (o deslizo hacia abajo): el modal se cierra sin preguntar y, al abrir [+] otra vez, el formulario está como en F05-CA01.
 
 **Pruebas (Jest)**
