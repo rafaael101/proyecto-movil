@@ -245,7 +245,7 @@ Cada task ≈ un commit. D10, D11 y CAD02 ya se hicieron en el bloque de F02.
 
 - [x] **F03.1 — Instalar `expo-location`** con `npx expo install expo-location` (§14). Revisar su documentación para el SDK de `package.json`.
 - [x] **F03.2 — `Coordenadas`, `calcularDistanciaMetros` y `estaDentroDelRadio`** + pruebas (F03-CA14).
-- [ ] **F03.3 — Crear `servicioUbicacion`** (`ubicacionNegada`, `pedirPermisoUbicacion`, `obtenerUbicacionActual`).
+- [x] **F03.3 — Crear `servicioUbicacion`** (`ubicacionNegada`, `pedirPermisoUbicacion`, `obtenerUbicacionActual`).
 - [ ] **F03.4 — Mensaje `'sin-ubicacion'`** en `obtenerMensajeError` + prueba (F03-CA15).
 - [ ] **F03.5 — Ampliar `useStoreCheckIns`**: `permisoUbicacionNegado`, `revisarPermisoUbicacion`, `hacerCheckIn`, `terminarMiCheckIn` y `limpiar`.
 - [ ] **F03.6 — Simuladores de Jest.** En los tests que dibujan `NavegadorRaiz`, la fábrica de `servicioCheckIns` (F02.6) agrega `crearCheckIn` y `terminarCheckIn` como `jest.fn()`, y se agrega una fábrica de `servicioUbicacion` (las 3 funciones como `jest.fn()`), para no cargar `expo-location` real.
