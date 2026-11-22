@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 import { borrarCacheHistorial } from '../servicios/servicioCache';
+import { terminarCheckIn } from '../servicios/servicioCheckIns';
 import {
   crearCuenta,
   entrarConCorreo,
@@ -65,10 +66,21 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
     }
   },
 
-  // signOut, borrar la caché (F01.17), limpiar el store de partidos (F01.18) y al final
-  // este store. Terminar el check-in (F01.16) y limpiar el de check-ins llegan con F03.
+  // Terminar el check-in (F01.16), signOut, borrar la caché (F01.17), limpiar el store
+  // de partidos (F01.18) y al final este store. Limpiar el de check-ins llega con F03.
   cerrarSesion: async () => {
     set({ cerrandoSesion: true });
+    // RN04: se llama siempre, sin revisar si hay uno activo (borrar uno que no existe no
+    // da error). Va antes de signOut porque las reglas de Firestore necesitan la sesión.
+    // Si falla (por ejemplo, sin internet) se sigue: el check-in vence solo (RN01)
+    const usuario = get().usuario;
+    if (usuario !== null) {
+      try {
+        await terminarCheckIn(usuario.idUsuario);
+      } catch (error) {
+        console.error('cerrarSesion (terminar check-in):', error);
+      }
+    }
     try {
       await salirDeFirebase();
     } catch (error) {
