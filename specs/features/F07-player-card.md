@@ -241,7 +241,7 @@ Probados en el iPhone con Expo Go y con Jest. Para volver a probar el diálogo d
 Cada task ≈ un commit.
 
 - [x] **F07.1 — Instalar las dependencias** con `npx expo install expo-image-picker react-native-view-shot expo-sharing` (§14). Revisar su documentación para el SDK de `package.json`.
-- [ ] **F07.2 — Simuladores en `jest.setup.ts`**, para que los tests que dibujan `NavegadorRaiz` no carguen los módulos nativos. Con fábrica:
+- [x] **F07.2 — Simuladores en `jest.setup.ts`**, para que los tests que dibujan `NavegadorRaiz` no carguen los módulos nativos. Con fábrica:
   - `expo-image-picker`: `getCameraPermissionsAsync: jest.fn(() => Promise.resolve({ status: 'undetermined' }))`, más `requestCameraPermissionsAsync`, `launchCameraAsync` y `launchImageLibraryAsync` como `jest.fn()`.
   - `react-native-view-shot`: `captureRef: jest.fn()`.
   - `expo-sharing`: `isAvailableAsync` y `shareAsync` como `jest.fn()`.

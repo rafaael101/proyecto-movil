@@ -21,3 +21,22 @@ jest.mock('react-native-maps', () => {
 jest.mock('@react-native-community/netinfo', () =>
   require('@react-native-community/netinfo/jest/netinfo-mock.js'),
 );
+
+// Cámara, galería, captura y compartir son nativos y no existen en las pruebas (F07).
+// Se simulan con fábrica para que los tests que dibujan NavegadorRaiz no los carguen.
+// El permiso de cámara responde "aún no se ha preguntado", como recién instalada la app.
+jest.mock('expo-image-picker', () => ({
+  getCameraPermissionsAsync: jest.fn(() => Promise.resolve({ status: 'undetermined' })),
+  requestCameraPermissionsAsync: jest.fn(),
+  launchCameraAsync: jest.fn(),
+  launchImageLibraryAsync: jest.fn(),
+}));
+
+jest.mock('react-native-view-shot', () => ({
+  captureRef: jest.fn(),
+}));
+
+jest.mock('expo-sharing', () => ({
+  isAvailableAsync: jest.fn(),
+  shareAsync: jest.fn(),
+}));
