@@ -101,7 +101,7 @@ export const useStoreCheckIns = create<EstadoCheckIns>((set, get) => ({
     }
   },
 
-  // Lo llama cerrarSesion (F01.18, en el bloque de F03)
+  // Lo llama cerrarSesion (F01.18): la siguiente cuenta empieza sin conteo ni permiso viejos
   limpiar: () =>
     set({ resumen: null, cargando: false, mensajeError: null, permisoUbicacionNegado: false }),
 }));

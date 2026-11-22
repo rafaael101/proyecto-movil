@@ -10,6 +10,7 @@ import {
 } from '../servicios/servicioSesion';
 import type { Usuario, ValoresInicioSesion, ValoresRegistro } from '../tipos/usuario';
 import { obtenerMensajeError } from '../utilidades/errores';
+import { useStoreCheckIns } from './useStoreCheckIns';
 import { useStorePartidos } from './useStorePartidos';
 
 // Sin cargando ni mensajeError (excepción de coding-standards §8): revisandoSesion
@@ -66,8 +67,8 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
     }
   },
 
-  // Terminar el check-in (F01.16), signOut, borrar la caché (F01.17), limpiar el store
-  // de partidos (F01.18) y al final este store. Limpiar el de check-ins llega con F03.
+  // Terminar el check-in (F01.16), signOut, borrar la caché (F01.17), limpiar los stores
+  // de check-ins y de partidos (F01.18) y al final este store.
   cerrarSesion: async () => {
     set({ cerrandoSesion: true });
     // RN04: se llama siempre, sin revisar si hay uno activo (borrar uno que no existe no
@@ -97,6 +98,7 @@ export const useStoreSesion = create<EstadoSesion>((set, get) => ({
       console.error('cerrarSesion (borrar caché):', error);
     }
     // Excepción 4 de §4: solo cerrarSesion limpia otros stores, con getState() (fuera de React)
+    useStoreCheckIns.getState().limpiar();
     useStorePartidos.getState().limpiar();
     get().limpiar();
     return null;
