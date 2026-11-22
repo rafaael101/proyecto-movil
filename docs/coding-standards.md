@@ -615,7 +615,7 @@ describe('Integración — NavegadorRaiz', () => {
 });
 ```
 
-> Desde Testing Library v14, `render` es asíncrono. El título del Stack nativo no es un `<Text>`: se busca en la prop `title` o en un elemento de la pantalla.
+> Desde Testing Library v14, `render` y `fireEvent` son asíncronos: se escriben `await render(...)` y `await fireEvent.press(...)`. El título del Stack nativo no es un `<Text>`: se busca en la prop `title` o en un elemento de la pantalla.
 
 ### Cómo simular
 
