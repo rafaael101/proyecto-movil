@@ -229,29 +229,29 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Historial**
 
-- [ ] F06-CA01 — Con una cuenta nueva, Historial muestra "Aún no registras partidos" y Perfil muestra 0 partidos y `0.0` en los promedios.
-- [ ] F06-CA02 — Un partido del 2 nov en Sullivan, ganado, con 14/6/3, se ve como "2 nov 2026 · Ganó" (en verde), "14 pts · 6 reb · 3 ast" y "Unidad Deportiva Juan A. Rodríguez Sullivan". Sin cancha → "Sin cancha".
-- [ ] F06-CA03 — Con 23 partidos llegan 10 al abrir. Al bajar aparece el indicador en el pie y llegan 10 más, y luego 3. Después ya no aparece el indicador (CAD11).
-- [ ] F06-CA04 — Tocar la fila abre "Editar partido" con sus datos (F05-CA08). Tocar el icono abre "Tarjeta de jugador" (CA16 de 01-navigation). Ya no están los botones provisionales.
-- [ ] F06-CA05 — Al crear un partido con fecha de hoy, el modal se cierra y aparece primero en la lista; en Perfil cambian los promedios. Al editarlo cambia su fila; al eliminarlo desaparece (F05-CA10).
-- [ ] F06-CA06 — Bajo hasta la segunda página, voy a Perfil (aunque sea la primera vez) y regreso: el scroll sigue donde estaba (CA12 de 01-navigation).
+- [x] F06-CA01 — Con una cuenta nueva, Historial muestra "Aún no registras partidos" y Perfil muestra 0 partidos y `0.0` en los promedios.
+- [x] F06-CA02 — Un partido del 2 nov en Sullivan, ganado, con 14/6/3, se ve como "2 nov 2026 · Ganó" (en verde), "14 pts · 6 reb · 3 ast" y "Unidad Deportiva Juan A. Rodríguez Sullivan". Sin cancha → "Sin cancha".
+- [x] F06-CA03 — Con 23 partidos llegan 10 al abrir. Al bajar aparece el indicador en el pie y llegan 10 más, y luego 3. Después ya no aparece el indicador (CAD11).
+- [x] F06-CA04 — Tocar la fila abre "Editar partido" con sus datos (F05-CA08). Tocar el icono abre "Tarjeta de jugador" (CA16 de 01-navigation). Ya no están los botones provisionales.
+- [x] F06-CA05 — Al crear un partido con fecha de hoy, el modal se cierra y aparece primero en la lista; en Perfil cambian los promedios. Al editarlo cambia su fila; al eliminarlo desaparece (F05-CA10).
+- [x] F06-CA06 — Bajo hasta la segunda página, voy a Perfil (aunque sea la primera vez) y regreso: el scroll sigue donde estaba (CA12 de 01-navigation).
 
 **Sin internet y fallas**
 
-- [ ] F06-CA07 — Abro Historial con internet, activo el modo avión y cierro y abro la app: Historial muestra "Sin conexión — datos guardados el …" con la fecha y la hora, y todos los partidos. Perfil muestra los promedios con el mismo aviso (CAD14).
-- [ ] F06-CA08 — Con una cuenta que nunca abrió Historial, en modo avión: "Sin conexión y sin datos guardados" + "Reintentar". Quito el modo avión, toco "Reintentar" y se carga la lista.
-- [ ] F06-CA09 — Con el aviso en pantalla, quito el modo avión y toco "Reintentar" del aviso: el aviso desaparece y la lista vuelve a paginar.
-- [ ] F06-CA10 — Con 23 partidos, cargo la página 1, activo el modo avión y bajo: el pie muestra "No hay conexión…" + "Reintentar". Quito el modo avión, toco "Reintentar" y llega la página 2.
-- [ ] F06-CA11 — En la consola cambio por un momento la regla de partidos a `allow read: if false;`. Al tocar "Reintentar" aparece "No tienes permiso para hacer esto.". **Regreso la regla original** (D5).
+- [x] F06-CA07 — Abro Historial con internet, activo el modo avión y cierro y abro la app: Historial muestra "Sin conexión — datos guardados el …" con la fecha y la hora, y todos los partidos. Perfil muestra los promedios con el mismo aviso (CAD14).
+- [x] F06-CA08 — Con una cuenta que nunca abrió Historial, en modo avión: "Sin conexión y sin datos guardados" + "Reintentar". Quito el modo avión, toco "Reintentar" y se carga la lista.
+- [x] F06-CA09 — Con el aviso en pantalla, quito el modo avión y toco "Reintentar" del aviso: el aviso desaparece y la lista vuelve a paginar.
+- [x] F06-CA10 — Con 23 partidos, cargo la página 1, activo el modo avión y bajo: el pie muestra "No hay conexión…" + "Reintentar". Quito el modo avión, toco "Reintentar" y llega la página 2.
+- [x] F06-CA11 — En la consola cambio por un momento la regla de partidos a `allow read: if false;`. Al tocar "Reintentar" aparece "No tienes permiso para hacer esto.". **Regreso la regla original** (D5).
 
 **Cerrar sesión**
 
-- [ ] F06-CA12 — F01-CA21: cierro sesión y entro con otra cuenta. Ni con internet ni en modo avión aparece nada de la cuenta anterior (CAD15).
+- [x] F06-CA12 — F01-CA21: cierro sesión y entro con otra cuenta. Ni con internet ni en modo avión aparece nada de la cuenta anterior (CAD15).
 
 **Pruebas (Jest)**
 
 - [x] F06-CA13 — `formatearFecha('2026-11-02')` da `'2 nov 2026'` (no `'1 nov'`). `formatearFechaHora(new Date(2026, 10, 2, 18, 5).toISOString())` da `'2 nov, 18:05'`. `obtenerNombreCancha`: `null`, `'no-existe'` y `'sullivan'`.
-- [ ] F06-CA14 — **Integración — `PantallaHistorial`** (`src/pantallas/PantallaHistorial.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`, y `useStorePartidos.getState().limpiar()` antes de cada `it`. Se simulan con fábrica: `servicioSesion` (como N9), `servicioCheckIns` (como F02.6), `servicioPartidos` (las 5 funciones), `servicioConexion` (`hayConexion` resuelve `false`) y `servicioCache`. El test toca la tab "Historial" y:
+- [x] F06-CA14 — **Integración — `PantallaHistorial`** (`src/pantallas/PantallaHistorial.test.tsx`). Se dibuja `NavegadorRaiz` con `usuario` de prueba y `revisandoSesion: false`, y `useStorePartidos.getState().limpiar()` antes de cada `it`. Se simulan con fábrica: `servicioSesion` (como N9), `servicioCheckIns` (como F02.6), `servicioPartidos` (las 5 funciones), `servicioConexion` (`hayConexion` resuelve `false`) y `servicioCache`. El test toca la tab "Historial" y:
   1. `leerCacheHistorial` resuelve una caché con el partido de F06-CA02 → aparecen "Sin conexión — datos guardados el" y "14 pts · 6 reb · 3 ast". `obtenerPaginaPartidos` **no** se llamó.
   2. `leerCacheHistorial` resuelve `null` → aparece "Sin conexión y sin datos guardados".
 
@@ -280,7 +280,7 @@ Cada task ≈ un commit.
 - [x] **F06.8 — Test de integración** (F06-CA14).
 - ➡️ **F01.17 de F01** — borrar la caché al cerrar sesión (ya existe D16).
 - ➡️ **F01.18 de F01, solo la parte de partidos** — `useStorePartidos.getState().limpiar()`. La parte de check-ins la hace F03.
-- [ ] **F06.9 — Probar en el iPhone** F06-CA01–CA12, F05-CA08–CA10 (y la parte de "Eliminar" de F05-CA11), CAD11–CAD14, y CA12, CA15 y CA16 de 01-navigation. Para los 23 partidos sirve el formulario o la consola.
+- [x] **F06.9 — Probar en el iPhone** F06-CA01–CA12, F05-CA08–CA10 (y la parte de "Eliminar" de F05-CA11), CAD11–CAD14, y CA12, CA15 y CA16 de 01-navigation. Para los 23 partidos sirve el formulario o la consola.
 
 **Nota para los tests ya hechos (F06.6 y F06.7):** desde que Historial y Perfil usan `useStorePartidos`, los tests que dibujan `NavegadorRaiz` (N9, F01.14, F05.7) cargan ese store. Si truenan porque se cargan Firebase o NetInfo reales, se agrega en esos tests el simulador con fábrica de `servicioPartidos`, `servicioConexion` y `servicioCache` (§12). En el de F05.7, la fábrica de `servicioPartidos` también trae `obtenerPaginaPartidos` y `obtenerTodosLosPartidos`.
 
