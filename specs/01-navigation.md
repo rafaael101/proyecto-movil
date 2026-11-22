@@ -457,7 +457,7 @@ Probados en el iPhone con Expo Go.
 
 **Stack y modales**
 
-- [ ] CA13 — Tocar una cancha en Mapa abre su detalle con el nombre de la cancha en el header; no se ve la barra de tabs; la flecha de regreso vuelve a Mapa.
+- [x] CA13 — Tocar una cancha en Mapa abre su detalle con el nombre de la cancha en el header; no se ve la barra de tabs; la flecha de regreso vuelve a Mapa.
 - [x] CA14 — El botón [+] del header de Historial abre "Nuevo partido" deslizándose desde abajo.
 - [x] CA15 — Tocar un partido en Historial abre el modal con el título "Editar partido".
 - [x] CA16 — El control de tarjeta de un partido abre "Tarjeta de jugador" como modal.
@@ -466,7 +466,7 @@ Probados en el iPhone con Expo Go.
 
 **Errores**
 
-- [ ] CA19 — Abrir `DetalleCancha` con un `idCancha` que no está en el catálogo muestra "No encontramos esta cancha" y el botón "Volver al mapa" funciona.
+- [x] CA19 — Abrir `DetalleCancha` con un `idCancha` que no está en el catálogo muestra "No encontramos esta cancha" y el botón "Volver al mapa" funciona.
 - [ ] CA20 — Abrir "Editar partido" o "Tarjeta de jugador" con un `idPartido` inexistente muestra "Este partido ya no existe" y el botón "Cerrar" funciona. La parte de la tarjeta se verifica en el código (F07-CA11): desde la app no se puede abrir con un id que no esté en la lista.
 - [x] CA21 — Con modo avión y sesión guardada, la app abre en Mapa y se puede entrar a las 3 tabs y al detalle de una cancha sin que se cierre.
 
