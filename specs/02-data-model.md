@@ -771,17 +771,17 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 **Firestore y reglas** (Rules Playground de la consola de Firebase)
 
 - [x] CAD01 — Como usuario A, leer `usuarios/B/partidos/x` → **denegado**. Leer `usuarios/A/partidos/x` → permitido.
-- [ ] CAD02 — Como usuario A, escribir en `checkins/B` → **denegado**. Escribir en `checkins/A` con `idCancha: 'sullivan'` y `creadoEn` = hora de la petición → permitido.
+- [x] CAD02 — Como usuario A, escribir en `checkins/B` → **denegado**. Escribir en `checkins/A` con `idCancha: 'sullivan'` y `creadoEn` = hora de la petición → permitido.
 - [x] CAD03 — Escribir `checkins/A` con `idCancha: 'mi-casa'` → **denegado**.
 - [x] CAD04 — Crear un partido con `puntos: 150`, o con un campo extra (`mvp: true`), o sin `rebotes` → **denegado**.
 - [x] CAD05 — Sin sesión, cualquier lectura o escritura → **denegada**.
 
 **Check-ins**
 
-- [ ] CAD06 — Después de hacer check-in, en la consola existe `checkins/{mi uid}` con **solo** `idCancha` y `creadoEn`.
-- [ ] CAD07 — Al hacer check-in en otra cancha, en la consola sigue habiendo **un solo** documento con mi uid, con la nueva cancha (RN03).
-- [ ] CAD08 — Después de "Ya me voy", el documento ya no existe (RN04).
-- [ ] CAD09 — Con dos cuentas con check-in en Sullivan, `obtenerCheckInsActivos` devuelve `jugadoresPorCancha.sullivan === 2` y el resultado no contiene ningún uid ajeno (RN06).
+- [x] CAD06 — Después de hacer check-in, en la consola existe `checkins/{mi uid}` con **solo** `idCancha` y `creadoEn`.
+- [x] CAD07 — Al hacer check-in en otra cancha, en la consola sigue habiendo **un solo** documento con mi uid, con la nueva cancha (RN03).
+- [x] CAD08 — Después de "Ya me voy", el documento ya no existe (RN04).
+- [x] CAD09 — Con dos cuentas con check-in en Sullivan, `obtenerCheckInsActivos` devuelve `jugadoresPorCancha.sullivan === 2` y el resultado no contiene ningún uid ajeno (RN06).
 
 **Partidos**
 
@@ -791,7 +791,7 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest.
 
 **Sin conexión y caché**
 
-- [ ] CAD13 — En modo avión, intentar guardar un partido o hacer check-in muestra "No hay conexión…" en menos de 2 segundos (sin spinner eterno).
+- [x] CAD13 — En modo avión, intentar guardar un partido o hacer check-in muestra "No hay conexión…" en menos de 2 segundos (sin spinner eterno).
 - [x] CAD14 — Después de abrir el Historial con internet, en modo avión el Historial y los promedios se ven desde la caché con el aviso y la fecha de guardado.
 - [x] CAD15 — Después de cerrar sesión, `leerCacheHistorial` devuelve `null` (prueba de Jest con AsyncStorage simulado).
 
