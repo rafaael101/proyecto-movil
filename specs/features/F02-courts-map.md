@@ -201,25 +201,25 @@ Probados en el iPhone con Expo Go, en la consola de Firebase y con Jest. Antes d
 
 **Mapa**
 
-- [ ] F02-CA01 — Al abrir la tab Mapa se ve Ensenada con las 7 canchas (más la de prueba si está en `.env`) y **no** se pide permiso de ubicación.
-- [ ] F02-CA02 — Sin check-ins: las burbujas muestran "0" en gris y arriba aparece "Nadie está jugando ahora. Sé el primero en hacer check-in.".
-- [ ] F02-CA03 — Con 1 documento en `sullivan`, su burbuja dice "1" en verde y el aviso desaparece. Con 6 documentos, "6" en naranja. La pantalla nunca muestra uids (RN06).
-- [ ] F02-CA04 — Un documento con `creadoEn` de hace más de 90 min no cuenta (RN01).
-- [ ] F02-CA05 — Tocar una burbuja abre el detalle de esa cancha; con la flecha regreso al Mapa. Dos toques rápidos abren uno solo (CA18 de 01-navigation). Ya no está el botón "Ver Sullivan".
-- [ ] F02-CA06 — Agrego o borro un documento en la consola y toco "Actualizar": cambia el número. Mientras carga se ve el indicador y el icono está deshabilitado.
+- [x] F02-CA01 — Al abrir la tab Mapa se ve Ensenada con las 7 canchas (más la de prueba si está en `.env`) y **no** se pide permiso de ubicación.
+- [x] F02-CA02 — Sin check-ins: las burbujas muestran "0" en gris y arriba aparece "Nadie está jugando ahora. Sé el primero en hacer check-in.".
+- [x] F02-CA03 — Con 1 documento en `sullivan`, su burbuja dice "1" en verde y el aviso desaparece. Con 6 documentos, "6" en naranja. La pantalla nunca muestra uids (RN06).
+- [x] F02-CA04 — Un documento con `creadoEn` de hace más de 90 min no cuenta (RN01).
+- [x] F02-CA05 — Tocar una burbuja abre el detalle de esa cancha; con la flecha regreso al Mapa. Dos toques rápidos abren uno solo (CA18 de 01-navigation). Ya no está el botón "Ver Sullivan".
+- [x] F02-CA06 — Agrego o borro un documento en la consola y toco "Actualizar": cambia el número. Mientras carga se ve el indicador y el icono está deshabilitado.
 
 **Sin internet y fallas**
 
-- [ ] F02-CA07 — En modo avión abro la app: canchas con "?", aviso "Sin conexión: no podemos ver quién está jugando." y ninguna burbuja dice "0". La app no se cierra (CA21 de 01-navigation).
-- [ ] F02-CA08 — Con números en pantalla activo el modo avión: pasan a "?" y aparece el aviso sin tocar nada. Quito el modo avión, toco "Reintentar" y vuelven los números.
-- [ ] F02-CA09 — En la consola cambio por un momento la lectura de `checkins` a `allow read: if false;`. Al tocar "Actualizar" aparece "No tienes permiso para hacer esto." + "Reintentar" y burbujas "?". **Regreso la regla original** (D5).
-- [ ] F02-CA10 — Con el permiso de ubicación negado en Ajustes, el mapa se ve y funciona igual.
+- [x] F02-CA07 — En modo avión abro la app: canchas con "?", aviso "Sin conexión: no podemos ver quién está jugando." y ninguna burbuja dice "0". La app no se cierra (CA21 de 01-navigation).
+- [x] F02-CA08 — Con números en pantalla activo el modo avión: pasan a "?" y aparece el aviso sin tocar nada. Quito el modo avión, toco "Reintentar" y vuelven los números.
+- [x] F02-CA09 — En la consola cambio por un momento la lectura de `checkins` a `allow read: if false;`. Al tocar "Actualizar" aparece "No tienes permiso para hacer esto." + "Reintentar" y burbujas "?". **Regreso la regla original** (D5).
+- [x] F02-CA10 — Con el permiso de ubicación negado en Ajustes, el mapa se ve y funciona igual.
 - [ ] F02-CA11 — *(Después de F03)* Cierro sesión y entro con otra cuenta: el Mapa muestra el indicador y carga de nuevo (F01.18).
 
 **Código y pruebas**
 
 - [x] F02-CA12 — CAD22, CAD23 y CAD24 pasan en Jest (D10).
-- [ ] F02-CA13 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan (incluidos N9 y F01.14). `PantallaMapa` no importa servicios; NetInfo solo aparece como `useNetInfo` para el aviso (§4). No queda código provisional en `PantallaMapa`.
+- [x] F02-CA13 — `npx tsc --noEmit`, `npx expo lint` y `npx jest` pasan (incluidos N9 y F01.14). `PantallaMapa` no importa servicios; NetInfo solo aparece como `useNetInfo` para el aviso (§4). No queda código provisional en `PantallaMapa`.
 
 ---
 
@@ -236,7 +236,7 @@ Cada task ≈ un commit.
 - [x] **F02.5 — Crear `AvisoMapa`.**
 - [x] **F02.6 — Simuladores de Jest para el mapa.** En `jest.setup.ts`: `react-native-maps` (fábrica que devuelve `View` como `default` y como `Marker`) y NetInfo con su simulador oficial (`@react-native-community/netinfo/jest/netinfo-mock.js`). En los tests que dibujan `NavegadorRaiz` con usuario (N9): fábrica de `servicioCheckIns` con `obtenerCheckInsActivos` que resuelve `{ jugadoresPorCancha: {}, miCheckIn: null }`, porque Mapa es la tab inicial.
 - [x] **F02.7 — `PantallaMapa` real:** `MapView`, marcadores, avisos, indicador y "Actualizar". Quita el texto de N4 y el botón "Ver Sullivan" de N7.
-- [ ] **F02.8 — Probar en el iPhone** F02-CA01–CA10 y CA13 (la parte del mapa) (CA11 se prueba en F03.9), CA18 y CA21 de 01-navigation.
+- [x] **F02.8 — Probar en el iPhone** F02-CA01–CA10 y CA13 (la parte del mapa) (CA11 se prueba en F03.9), CA18 y CA21 de 01-navigation.
 
 ---
 
