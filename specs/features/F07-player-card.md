@@ -217,7 +217,7 @@ Probados en el iPhone con Expo Go y con Jest. Para volver a probar el diálogo d
 - [x] F07-CA01 — El icono de tarjeta del partido de F06-CA02 abre "Tarjeta de jugador" con: círculo gris con el icono, mi nombre, "2 nov 2026 · Ganó" (en verde), "14 pts · 6 reb · 3 ast", "Unidad Deportiva Juan A. Rodríguez Sullivan" y "HoopsMap". Debajo: "Tomar foto", "Elegir de la galería" y "Compartir". Con un partido sin cancha: "Sin cancha".
 - [x] F07-CA02 — "Tomar foto": la primera vez iOS pide el permiso; acepto, tomo una foto y aparece en el círculo. Tomo otra y reemplaza a la primera.
 - [x] F07-CA03 — "Elegir de la galería" abre la galería sin pedir permiso. La foto elegida aparece en el círculo.
-- [ ] F07-CA04 — Abro la cámara y cancelo, y luego la galería y cancelo: la tarjeta sigue igual y no aparece ningún mensaje.
+- [x] F07-CA04 — Abro la cámara y cancelo, y luego la galería y cancelo: la tarjeta sigue igual y no aparece ningún mensaje.
 - [x] F07-CA05 — Con foto, "Compartir" muestra el indicador y abre la hoja de compartir de iOS. Me la mando por Mensajes: la imagen es solo la tarjeta (sin botones) y se ve igual que en pantalla. Si cierro la hoja sin compartir, no aparece ningún mensaje.
 - [x] F07-CA06 — Sin foto, "Compartir" manda la tarjeta con el círculo gris.
 - [x] F07-CA07 — Con foto, toco "Cerrar" y vuelvo a abrir la misma tarjeta: está sin foto (E13). En la consola de Firebase no apareció nada nuevo.
