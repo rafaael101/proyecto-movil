@@ -169,7 +169,7 @@ El check-in solo tiene sentido si **otros usuarios lo ven**. Si los datos se gua
 | **Permiso de ubicación negado** | El mapa se muestra centrado en la ciudad, el botón de check-in se deshabilita y se explica cómo activarlo en Ajustes. |
 | **Permiso de cámara negado** | Permitir elegir una foto de la galería o generar la tarjeta sin foto. |
 | **Sin internet** | RN11: historial desde caché; mensajes de error claros. |
-| **"Build exitoso con EAS" (checklist de entrega)** | No se publica en tiendas. Desarrollo y demo con Expo Go en iPhone. Si el profesor exige el build de EAS, se genera uno de Android (el de iOS requiere cuenta de Apple de pago). |
+| **"Build exitoso con EAS" (checklist de entrega)** | No se publica en tiendas ni se genera APK (el profesor usa iPhone). Se entrega la liga de EAS Update, que solo abre en Expo Go para miembros del proyecto (error 403); se avisa en Classroom. La demo corre desde la laptop con npx expo start.
 | **Sin Mac (laptop con Windows)** | No hay simulador de iOS; todo se prueba en el iPhone con Expo Go. |
 
 ---
